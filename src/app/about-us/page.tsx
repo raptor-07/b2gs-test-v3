@@ -12,37 +12,42 @@ const teamMembers = [
   {
     name: "Sagir Khan",
     role: "Chief Executive Officer",
+    edu_backgrnd: "Chemical Engineer",
     image: "/assets/people/sagir.png",
     linkedIn: "https://in.linkedin.com/in/sagir-khan",
   },
   // {
   //   name: "Abhisek Kumar",
   //   role: "CTO",
+  //   edu_backgrnd: "Law Practitioner",
   //   image: "/assets/people/abhishek.png",
   //   linkedIn: "https://www.linkedin.com/in/dummy-abhisek",
   // },
   {
     name: "Deekshith Poola",
     role: "Chief Operations Officer",
+    edu_backgrnd: "Corporate Lawyer",
     image: "/assets/people/deekshith.png",
     linkedIn: "https://uk.linkedin.com/in/contactpooladeekshith",
   },
   {
     name: "Shreya Naik",
     role: "Chief Strategy Officer",
+    edu_backgrnd: "Chemical Engineer",
     image: "/assets/people/shreya.png",
-    linkedIn:
-      "https://in.linkedin.com/in/shreya-a-naik",
+    linkedIn: "https://in.linkedin.com/in/shreya-a-naik",
   },
   {
     name: "Kashis Agarwal",
-    role: "Chief of Supply Chain",
+    role: "Chief Supply Chain Officer",
+    edu_backgrnd: "Computer Science Engineer",
     image: "/assets/people/kashis.png",
     // linkedIn: "https://www.linkedin.com/in/dummy-kashis",
   },
   {
     name: "Hurmaan Ahmed",
     role: "Associate Product Owner",
+    edu_backgrnd: "Computer Science Engineer",
     image: "/assets/people/hurmaan.png",
     // linkedIn: "https://www.linkedin.com/in/dummy-hurmaan",
   },
@@ -53,7 +58,8 @@ export default function AboutUs() {
     <main>
       <Navbar />
       <div className="bg-brown-100">
-        <Header />
+      <Header />
+
         <div className="pt-20 md:pt-24 lg:pt-32 pb-16 md:pb-20 lg:pb-24">
           {/* Quote/Tagline Section */}
           <motion.div
@@ -98,6 +104,7 @@ export default function AboutUs() {
                   image={member.image}
                   name={member.name}
                   role={member.role}
+                  edu_backgrnd={member.edu_backgrnd}
                   linkedIn={member.linkedIn}
                   index={index}
                 />

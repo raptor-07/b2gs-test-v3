@@ -8,6 +8,7 @@ interface TeamCardProps {
   image: string;
   name: string;
   role: string;
+  edu_backgrnd: string;
   index: number;
   linkedIn?: string;
 }
@@ -16,6 +17,7 @@ const TeamCard: React.FC<TeamCardProps> = ({
   image,
   name,
   role,
+  edu_backgrnd,
   index,
   linkedIn,
 }) => {
@@ -68,6 +70,8 @@ const TeamCard: React.FC<TeamCardProps> = ({
         )}
       </div>
       <p className="text-sm md:text-lg text-brown-600 text-nowrap">{role}</p>
+      <p className="text-[10px] md:text-[16px] text-brown-600 text-nowrap">{edu_backgrnd}</p>
+
     </motion.div>
   );
 };
