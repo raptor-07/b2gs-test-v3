@@ -55,8 +55,8 @@ const FindUsSection: React.FC<FindUsSectionProps> = ({ className }) => {
                   height={20}
                   className="w-5 h-5 object-contain brightness-0 invert"
                 />
-                <a href="mailto:info@brown2green.solutions">
-                  info@brown2green.solutions
+                <a href="mailto:info@brown2green.earth">
+                  info@brown2green.earth
                 </a>
               </div>
               <div className="flex gap-4">

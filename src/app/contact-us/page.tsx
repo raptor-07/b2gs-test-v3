@@ -44,7 +44,7 @@ export default function ContactUs() {
                     <span>Bengaluru, India</span>
                   </div>
                   <div className="flex items-center space-x-4 text-green-100">
-                    <span>info@brown2green.solutions</span>
+                    <span>info@brown2green.earth</span>
                   </div>
                 </div>
               </motion.div>
