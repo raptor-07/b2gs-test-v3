@@ -40,7 +40,7 @@ const Lockup: React.FC = () => {
           width={150}
           height={150}
           style={{
-            width: "150px",
+            width: "450px",
             height: "auto",
           }}
         />
