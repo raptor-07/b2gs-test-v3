@@ -37,8 +37,8 @@ const Lockup: React.FC = () => {
         <Image
           src="/assets/lockup.png"
           alt="Lockup"
-          width={150}
-          height={150}
+          width={450}
+          height={450}
           style={{
             width: "450px",
             height: "auto",
