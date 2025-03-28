@@ -38,7 +38,9 @@ const TeamCard: React.FC<TeamCardProps> = ({
       }}
       className="flex flex-col items-center p-6 md:p-8 lg:p-10"
     >
-      <div className="mb-3 md:mb-4 lg:mb-5">
+      <div className="mb-3 md:mb-4 lg:mb-5 flex justify-center">
+        {/* CHANGED: Shrunk image size and adjusted for consistent aspect ratio and no cropping. Restore previous by uncommenting below. */}
+        {/*
         <Image
           src={image}
           alt={name}
@@ -49,6 +51,19 @@ const TeamCard: React.FC<TeamCardProps> = ({
             height: "auto",
           }}
           className="rounded-lg transition-transform duration-300 hover:scale-105 object-cover"
+          priority={index < 3}
+        />
+        */}
+        <Image
+          src={image}
+          alt={name}
+          width={160}
+          height={160}
+          style={{
+            width: "160px",
+            height: "160px",
+          }}
+          className="rounded-lg transition-transform duration-300 hover:scale-105 object-contain"
           priority={index < 3}
         />
       </div>
@@ -70,8 +85,7 @@ const TeamCard: React.FC<TeamCardProps> = ({
         )}
       </div>
       <p className="text-sm md:text-lg text-brown-600 text-nowrap">{role}</p>
-      <p className="text-[10px] md:text-[16px] text-brown-600 text-nowrap">{edu_backgrnd}</p>
-
+      <p className="text-xs md:text-base text-brown-600 text-nowrap">{edu_backgrnd}</p>
     </motion.div>
   );
 };

@@ -44,13 +44,13 @@ const teamMembers = [
     image: "/assets/people/kashis.png",
     // linkedIn: "https://www.linkedin.com/in/dummy-kashis",
   },
-  {
-    name: "Hurmaan Ahmed",
-    role: "Associate Product Owner",
-    edu_backgrnd: "Computer Science Engineer",
-    image: "/assets/people/hurmaan.png",
-    // linkedIn: "https://www.linkedin.com/in/dummy-hurmaan",
-  },
+  // {
+  //   name: "Hurmaan Ahmed",
+  //   role: "Associate Product Owner",
+  //   edu_backgrnd: "Computer Science Engineer",
+  //   image: "/assets/people/hurmaan.png",
+  //   // linkedIn: "https://www.linkedin.com/in/dummy-hurmaan",
+  // },
 ];
 
 export default function AboutUs() {
@@ -97,7 +97,8 @@ export default function AboutUs() {
             >
               People at Brown2Green Solutions
             </motion.h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8">
+            {/* <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8"> */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8">
               {teamMembers.map((member, index) => (
                 <TeamCard
                   key={member.name}
