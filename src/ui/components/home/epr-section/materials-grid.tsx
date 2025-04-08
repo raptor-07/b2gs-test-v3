@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "../../utils/cn";
+import { cn } from "@/utils/cn";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -29,7 +29,12 @@ const materials = [
 
 const MaterialsGrid: React.FC<MaterialsGridProps> = ({ className }) => {
   return (
-    <div className={cn("grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8", className)}>
+    <div
+      className={cn(
+        "grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8",
+        className
+      )}
+    >
       {materials.map((material, index) => (
         <motion.div
           key={material.alt}

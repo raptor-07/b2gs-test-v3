@@ -4,7 +4,7 @@ import { StepTitle } from "./StepTitle";
 import { StepPoints } from "./StepPoints";
 // import { StepAnimation } from "../animations/StepAnimation";
 import type { StepData } from "../animations/types";
-import { useIsMobile } from "/hooks/useIsMobile";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 

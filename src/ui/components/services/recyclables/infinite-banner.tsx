@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { scrapMaterials, type Material } from "./types";
-import { cn } from "../../utils/cn";
+import { cn } from "@/utils/cn";
 
 function MaterialCard({ material }: { material: Material }) {
   return (

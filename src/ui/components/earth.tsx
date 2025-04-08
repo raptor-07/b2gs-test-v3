@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { cn } from "../../utils/cn";
+import { cn } from "@/utils/cn";
 
 interface EarthProps {
   className?: string;

@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { PreviewCard } from "./PreviewCard";
-import { cn } from "../../utils/cn";
+import { cn } from "@/utils/cn";
 
 interface CarouselProps {
   items: Array<{
@@ -60,7 +60,7 @@ export function Carousel({ items, className }: CarouselProps) {
 
     const container = containerRef.current;
     const scrollAmount = container.clientWidth;
-    
+
     container.scrollBy({
       left: direction === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",

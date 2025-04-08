@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, MotionValue, useTransform } from "motion/react";
-import { cn } from "../../utils/cn";
+import { cn } from "@/utils/cn";
 import { useMemo } from "react";
 
 export const TextGenerateEffect = ({

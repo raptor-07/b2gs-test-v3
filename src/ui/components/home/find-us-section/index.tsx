@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "../../utils/cn";
+import { cn } from "@/utils/cn";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
