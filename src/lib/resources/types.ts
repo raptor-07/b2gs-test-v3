@@ -6,7 +6,6 @@ export interface Resource {
   category: ResourceCategory;
   slug: string;
   content: string;
-  googlePageId?: string;
   ogImage: {
     url: string;
   };

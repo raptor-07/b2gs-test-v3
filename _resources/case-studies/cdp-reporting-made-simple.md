@@ -4,7 +4,6 @@ excerpt: "A comprehensive guide to understanding CDP reporting, scoring system, 
 coverImage: "/assets/resources/case-studies/cdp-reporting-made-simple/cover.png"
 date: "2025-01-24T12:00:00.000Z"
 category: "case-studies"
-googlePageId: "G-XXXXXX"
 ogImage:
   url: "/assets/resources/case-studies/cdp-reporting-made-simple/cover.png"
 ---

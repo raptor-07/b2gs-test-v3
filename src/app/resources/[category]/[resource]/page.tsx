@@ -2,12 +2,14 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ResourceHeader } from "@/ui/components/resources/header/ResourceHeader";
 import { RelatedSection } from "@/ui/components/resources/related/RelatedSection";
+import { Navbar } from "../../../../ui/components/navbar";
+import FindUsSection from "../../../../ui/components/home/find-us-section";
 import {
   getResourceBySlug,
   getRelatedResources,
   getResourceStaticParams,
-} from "@/lib/resources/api";
-import markdownToHtml from "@/lib/resources/markdownToHtml";
+} from "../../../../lib/resources/api";
+import markdownToHtml from "../../../../lib/resources/markdownToHtml";
 
 interface ResourcePageProps {
   params: {
@@ -50,10 +52,12 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
   );
 
   return (
-    <div className="min-h-screen bg-white">
-      <ResourceHeader />
+    <div className="min-h-screen">
+      <Navbar />
+      <div className="bg-white">
+        <ResourceHeader />
 
-      {/* Article Content */}
+        {/* Article Content */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="prose prose-lg prose-headings:font-semibold prose-headings:text-text-brown-01 prose-p:text-text-brown-01 prose-li:text-text-brown-01 prose-strong:text-text-brown-01 prose-em:text-text-brown-01 mx-auto">
           <div
@@ -73,6 +77,8 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
           />
         </section>
       </div>
+      </div>
+      <FindUsSection />
     </div>
   );
 }

@@ -1,0 +1,7 @@
+{
+  "extends": [
+    "next",
+    "next/typescript"
+  ]
+  // "root": true
+}

@@ -1,10 +1,11 @@
 "use client";
 
 import { BackgroundGradient } from "@/ui/components/gradient";
-import { cn } from "@/utils/cn";
+// import { cn } from "../../utils/cn";
 import dynamic from "next/dynamic";
+import Container from "../../../../ui/components/container";
 
-const LottieAnimation = dynamic(() => import("./LottieAnimation"), {
+const LottieEarthAnimation = dynamic(() => import("./LottieEarthAnimation"), {
   ssr: false,
 });
 
@@ -14,7 +15,7 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
   return (
-    <section className={cn("w-full mx-auto px-4 sm:px-6 lg:px-8", className)}>
+    <Container className={className}>
       <div className="w-full lg:my-12 flex items-center justify-center">
         <BackgroundGradient>
           <div className="relative w-full h-full flex flex-col items-center justify-evenly">
@@ -28,11 +29,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
             </div>
 
             {/* Lottie animation container */}
-            <LottieAnimation />
+            <LottieEarthAnimation />
           </div>
         </BackgroundGradient>
       </div>
-    </section>
+    </Container>
   );
 };
 

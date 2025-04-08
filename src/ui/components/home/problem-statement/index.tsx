@@ -1,8 +1,9 @@
 "use client";
 
-import { cn } from "@/utils/cn";
+import { cn } from "../../utils/cn";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Container from "../../../../ui/components/container";
 
 interface ProblemStatementProps {
   className?: string;
@@ -15,11 +16,8 @@ const ProblemStatement: React.FC<ProblemStatementProps> = ({ className }) => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section
-      className={cn(
-        "w-full min-h-[80vh] flex items-center justify-center py-4",
-        className
-      )}
+    <Container
+      className={cn("min-h-[80vh] flex items-center justify-center", className)}
     >
       <motion.div
         ref={ref}
@@ -28,11 +26,11 @@ const ProblemStatement: React.FC<ProblemStatementProps> = ({ className }) => {
         transition={{ duration: 0.8 }}
         className="w-[90%] sm:w-[80%] md:max-w-4xl lg:max-w-6xl px-4 sm:px-6 lg:px-4"
       >
-        <p className="text-xl sm:text-3xl md:text-3xl lg:text-4xl font-aleo text-center">
+        <p className="text-lg sm:text-3xl md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl font-aleo text-center">
           {problemText}
         </p>
       </motion.div>
-    </section>
+    </Container>
   );
 };
 

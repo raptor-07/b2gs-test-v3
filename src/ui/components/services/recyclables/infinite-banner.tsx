@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { scrapMaterials, type Material } from "./types";
-import { cn } from "@/utils/cn";
+import { cn } from "../../utils/cn";
 
 function MaterialCard({ material }: { material: Material }) {
   return (
@@ -18,7 +18,7 @@ function MaterialCard({ material }: { material: Material }) {
             sizes="(max-width: 768px) 100px, 100px"
           />
         </div>
-        <p className="text-brown-700 font-lexend text-lg text-center px-1">
+        <p className="text-brown-700 font-lexend text-lg text-center px-1 text-nowrap">
           {material.name}
         </p>
       </div>
@@ -28,7 +28,7 @@ function MaterialCard({ material }: { material: Material }) {
 
 function MaterialStrip() {
   return (
-    <div className="flex gap-4 items-center pl-4">
+    <div className="flex gap-16 items-center pl-8">
       {scrapMaterials.map((material, index) => (
         <MaterialCard key={`${material.name}-${index}`} material={material} />
       ))}
@@ -41,7 +41,7 @@ export default function InfiniteBanner() {
 
   return (
     <div
-      className="relative w-full my-20 overflow-hidden"
+      className="relative w-full my-20 xl:my-12 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

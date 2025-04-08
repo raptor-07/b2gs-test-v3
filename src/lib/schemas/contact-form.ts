@@ -53,6 +53,15 @@ export const contactFormSchema = z.object({
     invalid_type_error: "Please select a valid time slot",
   }),
   comments: z.string().max(200, "Comments cannot exceed 200 characters").optional(),
+  privacyConsent: z.object({
+    accepted: z.boolean({
+      required_error: "You must accept the privacy policy to proceed"
+    }).refine((val) => val === true, {
+      message: "You must accept the privacy policy to proceed"
+    }),
+    timestamp: z.string(),
+    analyticsEnabled: z.boolean()
+  })
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;

@@ -4,7 +4,6 @@ excerpt: "Learn about carbon credits, their types, trading mechanisms, and cruci
 coverImage: "/assets/resources/news/understanding-carbon-credits/cover.png"
 date: "2025-01-24T12:00:00.000Z"
 category: "news"
-googlePageId: "G-XXXXXX"
 ogImage:
   url: "/assets/resources/news/understanding-carbon-credits/cover.png"
 ---

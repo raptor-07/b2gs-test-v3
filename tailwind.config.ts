@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import typography from '@tailwindcss/typography';
+import typography from "@tailwindcss/typography";
 
 const config: Config = {
   content: [
@@ -7,6 +7,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/ui/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/features/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -22,31 +23,31 @@ const config: Config = {
       typography: {
         DEFAULT: {
           css: {
-            color: 'var(--s-text-brown-01)',
-            maxWidth: 'none',
+            color: "var(--s-text-brown-01)",
+            maxWidth: "none",
             h2: {
-              color: 'var(--s-text-brown-01)',
-              fontWeight: '600',
+              color: "var(--s-text-brown-01)",
+              fontWeight: "600",
             },
             h3: {
-              color: 'var(--s-text-brown-01)',
-              fontWeight: '600',
+              color: "var(--s-text-brown-01)",
+              fontWeight: "600",
             },
-            'ul > li': {
-              marginTop: '0.5rem',
-              marginBottom: '0.5rem',
-              paddingLeft: '0.5rem',
+            "ul > li": {
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+              paddingLeft: "0.5rem",
             },
-            'ul > li::marker': {
-              color: 'var(--p-brown-300)',
+            "ul > li::marker": {
+              color: "var(--p-brown-300)",
             },
-            'ol > li': {
-              marginTop: '0.5rem',
-              marginBottom: '0.5rem',
-              paddingLeft: '0.5rem',
+            "ol > li": {
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+              paddingLeft: "0.5rem",
             },
-            'ol > li::marker': {
-              color: 'var(--p-brown-300)',
+            "ol > li::marker": {
+              color: "var(--p-brown-300)",
             },
           },
         },
@@ -59,6 +60,11 @@ const config: Config = {
         fifth: "moveInCircle 20s ease infinite",
         scrollLeft: "scrollLeft 40s linear infinite",
         scrollRight: "scrollRight 40s linear infinite",
+        "spin-slow": "spin 3s linear infinite",
+        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      },
+      borderWidth: {
+        "3": "3px",
       },
       keyframes: {
         moveHorizontal: {
@@ -135,6 +141,7 @@ const config: Config = {
           200: "var(--p-olive-200)",
           300: "var(--p-olive-300)",
           400: "var(--p-olive-400)",
+          500: "var(--p-olive-500)",
         },
         lime: {
           100: "var(--p-lime-100)",

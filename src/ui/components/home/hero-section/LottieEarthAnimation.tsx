@@ -3,7 +3,7 @@
 import Lottie from "react-lottie-player";
 import { useEffect, useState } from "react";
 
-export default function LottieAnimation() {
+export default function LottieEarthAnimation() {
   const [animationData, setAnimationData] = useState<object>();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function LottieAnimation() {
   }, []);
 
   return (
-    <div className="w-[100%] sm:w-[75%] md:w-[40%] lg: mx-auto">
+    <div className="w-[100%] sm:w-[75%] md:w-[45%] 3xl:w-[50%] lg:mx-auto">
       {animationData && (
         <Lottie
           loop={false}

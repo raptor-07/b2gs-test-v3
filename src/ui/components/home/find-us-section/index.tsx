@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/utils/cn";
+import { cn } from "../../utils/cn";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -19,14 +19,10 @@ const FindUsSection: React.FC<FindUsSectionProps> = ({ className }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8 }}
-      className={cn(
-        "bg-olive-400 w-full transform -mt-1",
-        "overflow-hidden",
-        className
-      )}
+      className={cn("bg-olive-500 w-full", "overflow-hidden", className)}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div className="flex flex-col md:flex-row justify-between gap-12 lg:gap-16">
+        <div className="flex flex-col md:flex-row justify-evenly">
           <div className="flex-1 flex flex-col gap-8 font-aleo text-lime-100 lg:max-w-xl">
             <div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
@@ -135,6 +131,9 @@ const FindUsSection: React.FC<FindUsSectionProps> = ({ className }) => {
               />
             </div>
           </div>
+        </div>
+        <div className="mt-8 text-center text-lime-100 text-sm">
+          © 2024-25 Brown@Green Pvt Ltd. All Rights Reserved.
         </div>
       </div>
     </motion.section>

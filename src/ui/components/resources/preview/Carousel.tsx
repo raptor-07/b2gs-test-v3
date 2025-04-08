@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { PreviewCard } from "./PreviewCard";
-import { cn } from "@/utils/cn";
+import { cn } from "../../utils/cn";
 
 interface CarouselProps {
   items: Array<{

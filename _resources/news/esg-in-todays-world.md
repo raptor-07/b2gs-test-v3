@@ -4,7 +4,6 @@ excerpt: "Explore the critical role of Environmental, Social, and Governance (ES
 coverImage: "/assets/resources/news/esg-in-todays-world/cover.png"
 date: "2025-01-17T12:00:00.000Z"
 category: "news"
-googlePageId: "G-XXXXXX"
 ogImage:
   url: "/assets/resources/news/esg-in-todays-world/cover.png"
 ---

@@ -10,9 +10,9 @@ export function useIsMobile(threshold: number = 640): boolean {
 
   useEffect(() => {
     const checkMobile = () => {
-      console.log("checking mobile");
+      // console.log("checking mobile");
       const width = window.visualViewport?.width ?? window.innerWidth;
-      console.log(width);
+      // console.log(width);
       setIsMobile(width < threshold);
     };
 

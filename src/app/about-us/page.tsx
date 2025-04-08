@@ -1,12 +1,13 @@
 "use client";
 
 import React from "react";
-import Header from "@/ui/header";
-import Navbar from "@/ui/components/navbar";
-import TeamCard from "@/ui/components/team-card";
+import ValueSystem from "../../ui/components/about-us/value-system";
+import Header from "../../ui/header";
+import Navbar from "../../ui/components/navbar";
+import TeamCard from "../../ui/components/team-card";
 import { motion } from "motion/react";
 import Image from "next/image";
-import FindUsSection from "@/ui/components/home/find-us-section";
+import FindUsSection from "../../ui/components/home/find-us-section";
 
 const teamMembers = [
   {
@@ -58,7 +59,7 @@ export default function AboutUs() {
     <main>
       <Navbar />
       <div className="bg-brown-100">
-      <Header />
+        <Header />
 
         <div className="pt-20 md:pt-24 lg:pt-32 pb-16 md:pb-20 lg:pb-24">
           {/* Quote/Tagline Section */}
@@ -66,9 +67,9 @@ export default function AboutUs() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-6xl mx-auto text-center mb-16 md:mb-20 lg:mb-24 px-4 md:px-6 lg:px-8 relative"
+            className="w-full max-w-6xl mx-auto text-center mb-16 md:mb-20 lg:mb-4 px-4 md:px-6 lg:px-8 relative"
           >
-            <div className="absolute -translate-y-8 md:translate-x-4 lg:translate-x-4">
+            <div className="absolute -translate-y-8 md:translate-x-4 lg:translate-x-1">
               <Image
                 src="/assets/idea-illustrations/quotes.png"
                 alt="Quotes"
@@ -82,18 +83,22 @@ export default function AboutUs() {
             </h1>
             <p className="text-lg md:text-xl italic text-green-100">
               We take the lead in navigating Waste Management and Extended
-              Producer Responsibility for PIBOs. With seamless tracking and
-              traceability assurance, we make compliance effortless.
+              Producer Responsibility for Producers, Importers, and Brand Owners
+              (PIBOs). With seamless tracking and traceability assurance, we
+              make compliance effortless.
             </p>
           </motion.div>
 
+          {/* Value System Section */}
+          <ValueSystem />
+
           {/* Team Section */}
-          <div className="my-20 md:my-24 lg:my-32">
+          <div className="my-20 md:my-24 lg:my-16">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-2xl md:text-3xl font-bold text-green-100 text-center mb-12"
+              className="text-center text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl text-brown-700 font-semibold mb-24 md:mb-8 lg:mb-20"
             >
               People at Brown2Green Solutions
             </motion.h2>

@@ -1,11 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { usePrivacy } from "@/features/privacy/contexts/PrivacyContext";
+import { privacyDebug } from "@/features/privacy/utils/debug";
+import {
+  type ContactFormData,
+  contactFormSchema,
+  timeSlots,
+} from "@/lib/schemas/contact-form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "motion/react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { ContactFormData, contactFormSchema, timeSlots } from "@/lib/schemas/contact-form";
 import { TextInput } from "./text-input";
 import { PhoneInput } from "./phone-input";
 import { DatePicker } from "./date-picker";
@@ -13,10 +18,12 @@ import { TimeSlotSelect } from "./time-slot-select";
 import { SuccessNotification } from "./success-notification";
 import { ErrorNotification } from "./error-notification";
 import { LoadingSpinner } from "./loading-spinner";
+import { PrivacyFormNotice } from "@/features/privacy/components/PrivacyNotice";
+import { useEffect, useRef, useState } from "react";
 
 const containerVariants = {
-  hidden: { 
-    opacity: 0
+  hidden: {
+    opacity: 0,
   },
   visible: {
     opacity: 1,
@@ -25,36 +32,37 @@ const containerVariants = {
       when: "beforeChildren",
       duration: 0.3,
       ease: [0.25, 0.1, 0.25, 1.0],
-    }
+    },
   },
   exit: {
     opacity: 0,
     transition: {
       duration: 0.2,
       ease: [0.25, 0.1, 0.25, 1.0],
-    }
-  }
+    },
+  },
 };
 
 const itemVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
-    y: 20
+    y: 20,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1.0]
-    }
-  }
+      ease: [0.25, 0.1, 0.25, 1.0],
+    },
+  },
 };
 
-export const ContactForm: React.FC = () => {
+export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { consent } = usePrivacy();
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const form = useForm<ContactFormData>({
@@ -62,11 +70,16 @@ export const ContactForm: React.FC = () => {
     defaultValues: {
       phone: {
         countryCode: "+91",
-        number: ""
+        number: "",
       },
       comments: "",
-      recaptchaToken: ""
-    }
+      recaptchaToken: "",
+      privacyConsent: {
+        accepted: false,
+        timestamp: new Date().toISOString(),
+        analyticsEnabled: false,
+      },
+    },
   });
 
   const {
@@ -76,43 +89,57 @@ export const ContactForm: React.FC = () => {
     control,
     reset,
     formState: { errors },
-    watch
   } = form;
 
-  const recaptchaToken = watch("recaptchaToken");
-
+  // Reset success/error messages after delay
   useEffect(() => {
-    if (showSuccess) {
+    if (showSuccess || error) {
       const timer = setTimeout(() => {
         setShowSuccess(false);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [showSuccess]);
-
-  useEffect(() => {
-    if (error) {
-      const timer = setTimeout(() => {
         setError(null);
       }, 5000);
       return () => clearTimeout(timer);
     }
-  }, [error]);
+  }, [showSuccess, error]);
 
+  // Handle reCAPTCHA changes
   const handleRecaptchaChange = (token: string | null) => {
     setValue("recaptchaToken", token || "");
   };
 
+  // Submit handler with privacy consent and reCAPTCHA
   const onSubmit = async (data: ContactFormData) => {
+    const debug = privacyDebug.group("Contact Form Submit");
+    console.log("Submitting form data:", data);
     setIsSubmitting(true);
     setError(null);
+
     try {
+      // Get reCAPTCHA token
+      const token = data.recaptchaToken;
+      if (!token) {
+        throw new Error("Please complete the reCAPTCHA verification");
+      }
+
+      privacyDebug.init("Form data with reCAPTCHA:", { ...data, token });
+
+      // Update form data with latest privacy status
+      const formData: ContactFormData = {
+        ...data,
+        recaptchaToken: token,
+        privacyConsent: {
+          accepted: true,
+          timestamp: new Date().toISOString(),
+          analyticsEnabled: !!consent?.analytics,
+        },
+      };
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
 
       const responseData = await response.json();
@@ -124,11 +151,15 @@ export const ContactForm: React.FC = () => {
       setShowSuccess(true);
       reset();
       recaptchaRef.current?.reset();
+      privacyDebug.init("Form submitted successfully");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An unexpected error occurred");
-      console.error("Error submitting form:", err);
+      const message =
+        err instanceof Error ? err.message : "An unexpected error occurred";
+      privacyDebug.error("Form submission error:", err);
+      setError(message);
     } finally {
       setIsSubmitting(false);
+      debug.end();
     }
   };
 
@@ -189,18 +220,10 @@ export const ContactForm: React.FC = () => {
           />
         </motion.div>
 
-        <motion.div variants={itemVariants}>
-          <TextInput
-            label="Comments"
-            name="comments"
-            register={register}
-            error={errors.comments?.message}
-            placeholder="Any additional comments..."
-            maxLength={200}
-          />
-        </motion.div>
-
-        <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <motion.div
+          variants={itemVariants}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
           <DatePicker
             label="Preferred Date"
             register={register}
@@ -215,26 +238,68 @@ export const ContactForm: React.FC = () => {
             error={errors.timeSlot?.message}
             required
             onChange={(value) =>
-              setValue("timeSlot", value as typeof timeSlots[number])
+              setValue("timeSlot", value as (typeof timeSlots)[number])
             }
           />
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <TextInput
+            label="Comments"
+            name="comments"
+            register={register}
+            error={errors.comments?.message}
+            placeholder="Any additional comments..."
+            maxLength={200}
+          />
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="space-y-4">
+          <PrivacyFormNotice />
+          <div className="flex items-start gap-2">
+            <input
+              type="checkbox"
+              className="mt-1"
+              {...register("privacyConsent.accepted")}
+              onChange={(e) => {
+                setValue("privacyConsent", {
+                  accepted: e.target.checked,
+                  timestamp: new Date().toISOString(),
+                  analyticsEnabled: consent?.analytics || false,
+                });
+              }}
+            />
+            <label className="text-sm">
+              I agree to the processing of my data as described in the privacy
+              notice above.
+            </label>
+          </div>
+          {errors.privacyConsent?.accepted && (
+            <div className="text-sm text-red-600" role="alert">
+              {errors.privacyConsent.accepted.message}
+            </div>
+          )}
         </motion.div>
 
         <motion.div variants={itemVariants} className="flex justify-center">
           <ReCAPTCHA
             ref={recaptchaRef}
+            theme="light"
+            size="normal"
             sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
             onChange={handleRecaptchaChange}
           />
           {errors.recaptchaToken && (
-            <div className="text-red-500 text-sm mt-1">{errors.recaptchaToken.message}</div>
+            <div className="text-sm text-red-600 mt-2" role="alert">
+              {errors.recaptchaToken.message}
+            </div>
           )}
         </motion.div>
 
         <motion.div variants={itemVariants}>
           <button
             type="submit"
-            disabled={isSubmitting || !recaptchaToken}
+            disabled={isSubmitting}
             className={`
               w-full
               bg-green-100
@@ -279,4 +344,4 @@ export const ContactForm: React.FC = () => {
       </AnimatePresence>
     </>
   );
-};
+}

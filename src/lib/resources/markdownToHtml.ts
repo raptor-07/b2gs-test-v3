@@ -7,19 +7,6 @@ import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import { Resource } from "./types";
 
-function getGoogleAnalyticsScript(googlePageId: string) {
-  return `
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=${googlePageId}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${googlePageId}');
-    </script>
-  `;
-}
-
 export default async function markdownToHtml(resource: Resource): Promise<string> {
   const result = await unified()
     .use(remarkParse)
@@ -38,13 +25,6 @@ export default async function markdownToHtml(resource: Resource): Promise<string
     })
     .process(resource.content);
 
-  let htmlContent = result.toString();
-
-  // If googlePageId is present, inject the analytics script
-  if (resource.googlePageId) {
-    const analyticsScript = getGoogleAnalyticsScript(resource.googlePageId);
-    htmlContent = analyticsScript + htmlContent;
-  }
-
+  const htmlContent = result.toString();
   return htmlContent;
 }

@@ -9,6 +9,9 @@ export const Z_INDEX = {
 
   LOGO: 102,
 
+  // Privacy related z-indices
+  CONSENT_BANNER: 115, // Higher than navbar to ensure visibility
+
   MATERIALS: 10,
   HOURGLASS: 20,
   REQUEST_PROCUREMENT: 102,

@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useRef } from "react";
-import Header from "@/ui/header";
-import Navbar from "@/ui/components/navbar";
-import DashboardSection from "@/ui/components/services/dashboard/dashboard-section";
-import SectorsSection from "@/ui/components/services/sectors/sectors-section";
-import RecyclablesSection from "@/ui/components/services/recyclables/recyclables-section";
-import FindUsSection from "@/ui/components/home/find-us-section";
+import Header from "../../ui/header";
+import Navbar from "../../ui/components/navbar";
+import DashboardSection from "../../ui/components/services/dashboard/dashboard-section";
+import SectorsSection from "../../ui/components/services/sectors/sectors-section";
+import RecyclablesSection from "../../ui/components/services/recyclables/recyclables-section";
+import FindUsSection from "../../ui/components/home/find-us-section";
 
 export default function Services() {
   const sectorsRef = useRef<HTMLDivElement>(null);

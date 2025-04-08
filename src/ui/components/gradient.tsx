@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/utils/cn";
+import { cn } from "../../utils/cn";
 import { useEffect, useRef, useState } from "react";
 import { Z_INDEX } from "@/utils/z-index";
 

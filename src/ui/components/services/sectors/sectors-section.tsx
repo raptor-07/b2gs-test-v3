@@ -13,7 +13,7 @@ export default function SectorsSection({
   return (
     <section
       ref={attachReference}
-      className="w-full min-h-[100vh] md:flex md:flex-col justify-center bg-olive-300 py-16 lg:py-4"
+      className="w-full min-h-[100vh] md:flex md:flex-col justify-center bg-olive-500 py-16 lg:py-4"
     >
       <div className="max-w-[1920px] mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-center gap-12 items-stretch overflow-hidden">

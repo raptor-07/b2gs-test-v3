@@ -4,7 +4,6 @@ excerpt: "Explore how circular economy is reshaping our approach to production a
 coverImage: "/assets/resources/blogs/circular-economy-rethinking-waste/cover.jpg"
 date: "2024-12-25T12:00:00.000Z"
 category: "blogs"
-googlePageId: "G-XXXXXX"
 ogImage:
   url: "/assets/resources/blogs/circular-economy-rethinking-waste/cover.jpg"
 ---
