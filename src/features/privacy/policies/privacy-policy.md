@@ -55,8 +55,8 @@ You have the right to:
 
 As required by Information Technology Act, 2000, and Rules made thereunder, in case of any grievances, you can contact our Grievance Officer:
 
-**Name:** [Grievance Officer Name]  
-**Email:** [grievance@brown2green.earth]  
+**Name:** Sagir Khan  
+**Email:** info@brown2green.earth  
 **Response Time:** Within 30 days
 
 ## 7. Changes to Our Privacy Policy
