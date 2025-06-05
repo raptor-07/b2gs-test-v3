@@ -1,101 +1,120 @@
-import Image from "next/image";
+import ThemeToggle from "./components/theme/ThemeToggle";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="min-h-screen p-8 bg-white dark:bg-mint-950 transition-colors">
+      <div className="max-w-4xl mx-auto space-y-8">
+        <div className="flex justify-between items-center pb-8 border-b border-gray-200 dark:border-gray-800">
+          <h1 className="text-2xl font-lexend font-semibold text-gray-800 dark:text-white">
+            Theme Preview
+          </h1>
+          <ThemeToggle />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        {/* Primary Colors */}
+        <section>
+          <h2 className="text-2xl font-lexend font-semibold mb-4 text-gray-800 dark:text-white">
+            Primary Colors
+          </h2>
+          <div className="grid grid-cols-6 gap-4">
+            {[50, 100, 200, 300, 400, 500].map((weight) => (
+              <div key={weight} className="space-y-2">
+                <div
+                  className={`h-20 w-full bg-primary-${weight} rounded-lg dark:ring-1 dark:ring-white/10`}
+                />
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  primary-{weight}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Secondary Colors */}
+        <section>
+          <h2 className="text-2xl font-lexend font-semibold mb-4 text-gray-800 dark:text-white">
+            Secondary Colors
+          </h2>
+          <div className="grid grid-cols-8 gap-4">
+            {[100, 200, 300, 400, 500, 600, 700, 800].map((weight) => (
+              <div key={weight} className="space-y-2">
+                <div
+                  className={`h-20 w-full bg-secondary-${weight} rounded-lg dark:ring-1 dark:ring-white/10`}
+                />
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  secondary-{weight}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Accent Colors */}
+        <section>
+          <h2 className="text-2xl font-lexend font-semibold mb-4 text-gray-800 dark:text-white">
+            Accent Colors
+          </h2>
+          <div className="grid grid-cols-6 gap-4">
+            {[50, 100, 200, 300, 400, 500].map((weight) => (
+              <div key={weight} className="space-y-2">
+                <div
+                  className={`h-20 w-full bg-accent-${weight} rounded-lg dark:ring-1 dark:ring-white/10`}
+                />
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  accent-{weight}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Typography */}
+        <section>
+          <h2 className="text-2xl font-lexend font-semibold mb-4 text-gray-800 dark:text-white">
+            Typography
+          </h2>
+          <div className="space-y-4">
+            <p className="font-lexend text-4xl font-medium text-gray-800 dark:text-white">
+              Lexend Font (text-4xl)
+            </p>
+            <p className="font-ibm text-2xl text-gray-800 dark:text-white">
+              IBM Plex Serif Font (text-2xl)
+            </p>
+            <div className="space-y-2">
+              {["xs", "sm", "base", "lg", "xl", "2xl", "3xl"].map((size) => (
+                <p
+                  key={size}
+                  className={`text-${size} text-gray-800 dark:text-gray-200`}
+                >
+                  Text size {size}
+                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Dark Mode Demo Card */}
+        <section className="mt-8">
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6">
+            <h3 className="text-xl font-lexend font-medium text-gray-800 dark:text-white mb-4">
+              Dark Mode Demo Card
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              This card demonstrates how different elements adapt to dark mode.
+              The colors, borders, and text all adjust automatically based on
+              the current theme.
+            </p>
+            <div className="flex gap-3">
+              <button className="px-4 py-2 rounded-md bg-primary-500 text-white hover:bg-primary-600 dark:bg-primary-400 dark:hover:bg-primary-300 transition-colors">
+                Primary Button
+              </button>
+              <button className="px-4 py-2 rounded-md bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 transition-colors">
+                Secondary Button
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
