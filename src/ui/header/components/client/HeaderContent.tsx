@@ -14,18 +14,18 @@ const NAV_ITEM_WIDTH = 80; // px - Approximate width of nav items
 
 function HeaderSkeleton() {
   return (
-    <div className="flex h-16 w-full items-center justify-between">
+    <div className="flex h-16 w-full items-center justify-between px-2 lg:px-4 py-4 border-b-2 border-gray-400/40">
       {/* Logo skeleton */}
       <div className="relative h-8 w-32">
         <div className="h-full w-full rounded bg-gray-100 animate-pulse" />
       </div>
 
       {/* Navigation skeleton - Hidden on mobile */}
-      <div className="hidden md:flex items-center space-x-8">
+      <div className="hidden md:flex items-center">
         {Array.from({ length: NAV_ITEMS_COUNT }).map((_, i) => (
           <div
             key={i}
-            className="h-4 w-20 rounded bg-gray-100 animate-pulse"
+            className="h-2 w-20 rounded bg-gray-100 animate-pulse"
             style={{
               animationDelay: `${i * 0.1}s`,
               width: `${NAV_ITEM_WIDTH}px`,
@@ -33,7 +33,7 @@ function HeaderSkeleton() {
           />
         ))}
         {/* Demo button skeleton */}
-        <div className="h-9 w-28 rounded bg-gray-100 animate-pulse" />
+        <div className="h-9 w-34 rounded bg-gray-100 animate-pulse" />
       </div>
 
       {/* Mobile menu button skeleton */}
@@ -52,7 +52,7 @@ export function HeaderContent({ items }: HeaderContentProps) {
 
   return (
     <>
-      <div className="flex h-16 w-full items-center justify-between px-2 py-4 border-b-2 border-gray-400/40">
+      <div className="flex h-16 w-full items-center justify-between px-2 lg:px-4 py-4 border-b-2 border-gray-400/40">
         <Link href="/">
           <LogoImage variant={isMobile ? "mobile" : "desktop"} />
         </Link>

@@ -14,11 +14,10 @@ const DemoButton = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        "group relative w-auto cursor-pointer overflow-hidden rounded-full border bg-yellow-100 p-2 px-6 text-center font-semibold text-green-500 lg:text-md md:text-[12px]",
+        "group relative w-auto cursor-pointer overflow-hidden rounded-full border bg-yellow-100 p-2 px-6 text-sm text-center font-semibold text-green-500",
         className
       )}
       onClick={(e) => {
-        console.log("Procurement requested");
         router.push("/");
         onClick?.(e);
       }}
