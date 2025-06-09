@@ -5,6 +5,7 @@ A responsive header component with mobile menu support and animations.
 ## Features
 
 - Responsive design (mobile, tablet, desktop)
+- Smooth loading transitions with skeleton states
 - Animated mobile drawer menu
 - Reduced motion support
 - Server/Client component separation
@@ -17,14 +18,16 @@ header/
 ├── animations/
 │   └── variants.ts       # Framer Motion animation variants
 ├── components/
-│   ├── Logo.tsx         # Server component for logo
-│   ├── MenuButton.tsx   # Client component for hamburger menu
-│   ├── MobileMenu.tsx   # Client component for mobile drawer
-│   └── Navigation.tsx   # Client component for desktop nav
+│   ├── server/
+│   │   ├── HeaderRoot.tsx   # Server component container
+│   │   └── LogoImage.tsx    # Server component for logo
+│   └── client/
+│       ├── HeaderContent.tsx   # Client component with loading states
+│       ├── NavigationMenu.tsx  # Desktop navigation
+│       ├── MenuToggle.tsx      # Mobile menu button
+│       └── MobileDrawer.tsx    # Mobile drawer menu
 ├── types.ts             # TypeScript type definitions
-├── Header.tsx           # Main header component
 └── index.ts            # Barrel exports
-
 ```
 
 ## Usage
@@ -42,26 +45,49 @@ export default function Layout() {
 }
 ```
 
+## Performance Optimizations
+
+### Loading States
+- Implements skeleton loading during hydration
+- Prevents flash of wrong layout
+- Smooth transition from loading to interactive state
+
+### Server/Client Splitting
+- Server components for static content
+- Client components only where needed
+- Proper hydration handling
+
+### Media Query Optimization
+- Efficient screen size detection
+- Proper SSR support
+- No layout shifts during hydration
+
 ## Components
 
-### Header
-The main container component that orchestrates all subcomponents.
+### HeaderRoot (Server)
+The main container component that provides the layout structure.
 
-### Logo
+### LogoImage (Server)
 Server component that handles responsive logo rendering.
 
-### Navigation
-Client component for desktop navigation with hover animations.
+### HeaderContent (Client)
+Manages responsive layout and loading states.
+- Shows skeleton loader during hydration
+- Handles screen size detection
+- Manages mobile menu state
 
-### MenuButton
-Client component for the mobile menu hamburger button with animations.
+### NavigationMenu (Client)
+Desktop navigation with hover animations.
 
-### MobileMenu
-Client component for the mobile drawer menu with animations and transitions.
+### MenuToggle (Client)
+Mobile menu button with animations.
+
+### MobileDrawer (Client)
+Mobile drawer menu with animations and transitions.
 
 ## Customization
 
-Navigation items can be customized by modifying the `navItems` array in `Header.tsx`:
+Navigation items can be customized by modifying the `navItems` array in `HeaderRoot.tsx`:
 
 ```tsx
 const navItems = [
@@ -87,3 +113,4 @@ When making changes:
 3. Maintain accessibility features
 4. Test responsive behavior
 5. Consider reduced motion preferences
+6. Test loading states and hydration

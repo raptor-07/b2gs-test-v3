@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 
 export const useMediaQuery = (query: string) => {
-  const [matches, setMatches] = useState(false);
+  const [matches, setMatches] = useState<boolean | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Initialize with correct value on mount
+    setMounted(true);
     const media = window.matchMedia(query);
     setMatches(media.matches);
 
@@ -20,5 +21,6 @@ export const useMediaQuery = (query: string) => {
     return () => media.removeEventListener("change", listener);
   }, [query]);
 
-  return matches;
+  // If not mounted yet, return null
+  return mounted ? matches : null;
 };
