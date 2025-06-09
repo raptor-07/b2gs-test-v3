@@ -11,7 +11,7 @@ const navItems = [
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm">
-      <div className="container mx-auto px-4">
+      <div className="">
         <HeaderContent items={navItems} />
       </div>
     </header>

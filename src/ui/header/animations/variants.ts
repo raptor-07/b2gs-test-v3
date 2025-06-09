@@ -8,49 +8,37 @@ export const underlineMotion: Variants = {
   },
 };
 
-export const drawerVariants: Variants = {
+export const overlayVariants: Variants = {
   closed: {
     x: "100%",
     transition: {
       type: "spring",
-      stiffness: 400,
-      damping: 40,
+      damping: 30,
     },
   },
   open: {
     x: 0,
     transition: {
       type: "spring",
-      stiffness: 400,
-      damping: 40,
-    },
-  },
-};
-
-export const menuItemVariants: Variants = {
-  closed: { x: 20, opacity: 0 },
-  open: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 300,
       damping: 30,
     },
   },
 };
 
-export const hamburgerVariants: Variants = {
-  closed: { rotate: 0, y: 0 },
-  open: { rotate: 45, y: 8 },
+export const menuItemVariants: Variants = {
+  initial: { x: 50, opacity: 0 },
+  animate: (i: number) => ({
+    x: 0,
+    opacity: 1,
+    transition: {
+      delay: i * 0.1,
+      type: "spring",
+      damping: 25,
+    },
+  }),
 };
 
-export const hamburgerMiddleVariants: Variants = {
-  closed: { opacity: 1 },
-  open: { opacity: 0 },
-};
-
-export const hamburgerBottomVariants: Variants = {
-  closed: { rotate: 0, y: 0 },
-  open: { rotate: -45, y: -8 },
+export const menuButtonVariants: Variants = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
 };

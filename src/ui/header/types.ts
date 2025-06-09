@@ -12,14 +12,12 @@ export interface NavbarProps {
 export interface MenuButtonProps {
   isOpen: boolean;
   onClick: () => void;
-  shouldReduceMotion?: boolean;
 }
 
-export interface MobileDrawerProps {
+export interface MobileOverlayProps {
   items: NavItem[];
   isOpen: boolean;
   onClose: () => void;
-  shouldReduceMotion?: boolean;
 }
 
 export interface LogoImageProps extends Omit<ImageProps, "src" | "alt" | "width" | "height"> {

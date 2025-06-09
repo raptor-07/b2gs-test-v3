@@ -6,20 +6,8 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  safelist: [
-    {
-      pattern:
-        /^bg-(primary|secondary|complementary|accent|illustrations)-(50|100|200|300|400|500|600|700|800|900|950)/,
-    },
-    {
-      pattern:
-        /^text-(primary|secondary|complementary|accent|illustrations)-(50|100|200|300|400|500|600|700|800|900|950)/,
-    },
-    {
-      pattern:
-        /^border-(primary|secondary|complementary|accent|illustrations)-(50|100|200|300|400|500|600|700|800|900|950)/,
-    },
+    "./src/ui/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     screens: {
