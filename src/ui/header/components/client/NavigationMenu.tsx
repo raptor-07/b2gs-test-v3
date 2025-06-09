@@ -3,29 +3,30 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import DemoButton from "@/components/buttons/demo-button";
-import { NavbarProps } from "../../types";
 import { underlineMotion } from "../../animations/variants";
+import { NavbarProps } from "../../types";
 
 export function NavigationMenu({ items }: NavbarProps) {
   return (
-    <nav className="flex items-center space-x-8">
+    <nav className="hidden md:flex items-center space-x-8">
       {items.map((item) => (
-        <Link key={item.name} href={item.href} className="relative py-2">
-          <motion.div
-            initial="rest"
-            whileHover="hover"
-            animate="rest"
-            className="relative"
+        <div key={item.name} className="relative w-20">
+          <Link
+            href={item.href}
+            className="relative text-sm font-medium text-gray-800 hover:text-primary-500"
           >
-            <span className="relative z-10">{item.name}</span>
+            {item.name}
             <motion.div
+              className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary-500"
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
               variants={underlineMotion}
-              className="absolute bottom-0 left-0 h-0.5 bg-primary-500"
             />
-          </motion.div>
-        </Link>
+          </Link>
+        </div>
       ))}
-      <DemoButton />
+      <DemoButton className="h-9 w-28" />
     </nav>
   );
 }

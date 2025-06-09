@@ -9,7 +9,7 @@ export function MenuToggle({ isOpen, onClick }: MenuButtonProps) {
   return (
     <motion.button
       onClick={onClick}
-      className="z-50 p-2 text-gray-800"
+      className="h-10 w-10 flex items-center justify-center text-gray-800"
       animate={isOpen ? "hidden" : "visible"}
       variants={menuButtonVariants}
       aria-label="Toggle menu"
