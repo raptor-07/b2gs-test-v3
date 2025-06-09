@@ -1,3 +1,4 @@
+import { combineWithZIndex } from "@/utils/styles";
 import { HeaderContent } from "../client/HeaderContent";
 
 const navItems = [
@@ -10,7 +11,12 @@ const navItems = [
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-sm">
+    <header 
+      className={combineWithZIndex(
+        "sticky top-0 w-full border-b bg-white/80 backdrop-blur-sm",
+        "header"
+      )}
+    >
       <div className="">
         <HeaderContent items={navItems} />
       </div>

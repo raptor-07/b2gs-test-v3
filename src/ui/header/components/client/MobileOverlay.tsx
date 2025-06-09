@@ -9,6 +9,7 @@ import { Portal } from "@/components/utils/Portal";
 import { LogoImage } from "../server/LogoImage";
 import { overlayVariants, menuItemVariants, backdropVariants } from "../../animations/variants";
 import { lockScroll, unlockScroll } from "../../utils/scroll-lock";
+import { combineWithZIndex } from "@/utils/styles";
 import { MobileOverlayProps } from "../../types";
 
 function Backdrop({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) {
@@ -18,14 +19,16 @@ function Backdrop({ isOpen, onClick }: { isOpen: boolean; onClick: () => void })
       animate={isOpen ? "open" : "closed"}
       exit="closed"
       variants={backdropVariants}
-      className="fixed inset-0 z-[90] bg-black/50 backdrop-blur-sm"
+      className={combineWithZIndex(
+        "fixed inset-0 bg-black/50 backdrop-blur-sm",
+        "overlay.backdrop"
+      )}
       onClick={onClick}
     />
   );
 }
 
 export function MobileOverlay({ isOpen, onClose, items }: MobileOverlayProps) {
-  // Handle scroll locking
   useEffect(() => {
     if (isOpen) {
       lockScroll();
@@ -46,7 +49,10 @@ export function MobileOverlay({ isOpen, onClose, items }: MobileOverlayProps) {
               animate="open"
               exit="closed"
               variants={overlayVariants}
-              className="fixed inset-0 z-[100] bg-white overflow-hidden"
+              className={combineWithZIndex(
+                "fixed inset-0 bg-white overflow-hidden",
+                "overlay.content"
+              )}
             >
               <div className="relative flex flex-col h-[100dvh]">
                 {/* Header - Static */}
