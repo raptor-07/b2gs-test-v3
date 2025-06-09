@@ -16,12 +16,13 @@ const ibmPlex = IBM_Plex_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://b2g.com'), // Replace with your actual domain
+  metadataBase: new URL("https://b2g.com"),
   title: {
     default: "B2G",
     template: "%s | B2G - Building the future of business",
   },
-  description: "B2G - Your trusted partner in building innovative business solutions through cutting-edge technology and strategic expertise",
+  description:
+    "B2G - Your trusted partner in building innovative business solutions through cutting-edge technology and strategic expertise",
   applicationName: "B2G",
   authors: [{ name: "B2G Team", url: "https://b2g.com/team" }],
   keywords: [
@@ -31,59 +32,61 @@ export const metadata: Metadata = {
     "Digital Transformation",
     "Enterprise Solutions",
     "Business Technology",
-    "Future of Business"
+    "Future of Business",
   ],
-  category: 'technology',
+  category: "technology",
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://b2g.com',
-    siteName: 'B2G',
-    title: 'B2G - Building the future of business',
-    description: 'Your trusted partner in building innovative business solutions through cutting-edge technology and strategic expertise',
+    type: "website",
+    locale: "en_US",
+    url: "https://b2g.com",
+    siteName: "B2G",
+    title: "B2G - Building the future of business",
+    description:
+      "Your trusted partner in building innovative business solutions through cutting-edge technology and strategic expertise",
     images: [
       {
-        url: 'https://b2g.com/og-image.png', // Replace with your actual OG image
+        url: "https://b2g.com/og-image.png", // Replace with your actual OG image
         width: 1200,
         height: 630,
-        alt: 'B2G - Building the future of business',
+        alt: "B2G - Building the future of business",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'B2G - Building the future of business',
-    description: 'Your trusted partner in building innovative business solutions through cutting-edge technology and strategic expertise',
-    creator: '@b2g',
-    images: ['https://b2g.com/twitter-image.png'], // Replace with your actual Twitter image
+    card: "summary_large_image",
+    title: "B2G - Building the future of business",
+    description:
+      "Your trusted partner in building innovative business solutions through cutting-edge technology and strategic expertise",
+    creator: "@b2g",
+    images: ["https://b2g.com/twitter-image.png"], // Replace with your actual Twitter image
   },
   alternates: {
-    canonical: 'https://b2g.com',
+    canonical: "https://b2g.com",
   },
-  manifest: '/manifest.json',
+  manifest: "/manifest.json",
 };
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 2,
   userScalable: true,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
   ],
-  colorScheme: 'dark light',
+  colorScheme: "dark light",
 };
 
 export default function RootLayout({
