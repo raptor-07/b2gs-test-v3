@@ -10,7 +10,7 @@ const navItems = [
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 w-full backdrop-blur-sm">
       <div className="">
         <HeaderContent items={navItems} />
       </div>

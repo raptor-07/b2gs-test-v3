@@ -34,7 +34,7 @@ export function HeaderContent({ items }: HeaderContentProps) {
 
   return (
     <>
-      <div className="flex w-full items-center justify-between">
+      <div className="flex w-full items-center justify-between px-2 py-4 border-b-2 border-gray-400/40 ">
         <Link href="/">
           <LogoImage variant={isMobile ? "mobile" : "desktop"} />
         </Link>

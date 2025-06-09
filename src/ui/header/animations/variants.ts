@@ -8,34 +8,57 @@ export const underlineMotion: Variants = {
   },
 };
 
+export const backdropVariants: Variants = {
+  closed: {
+    opacity: 0,
+    transition: { 
+      duration: 0.2,
+      ease: "easeInOut"
+    }
+  },
+  open: {
+    opacity: 1,
+    transition: { 
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  }
+};
+
 export const overlayVariants: Variants = {
   closed: {
     x: "100%",
     transition: {
       type: "spring",
-      damping: 30,
-    },
+      damping: 25,
+      stiffness: 200,
+    }
   },
   open: {
     x: 0,
     transition: {
       type: "spring",
-      damping: 30,
-    },
-  },
+      damping: 25,
+      stiffness: 200,
+    }
+  }
 };
 
 export const menuItemVariants: Variants = {
-  initial: { x: 50, opacity: 0 },
+  initial: { 
+    opacity: 0,
+    x: 20,
+    transition: { duration: 0.2 }
+  },
   animate: (i: number) => ({
-    x: 0,
     opacity: 1,
+    x: 0,
     transition: {
       delay: i * 0.1,
-      type: "spring",
-      damping: 25,
-    },
-  }),
+      duration: 0.4,
+      ease: [0.645, 0.045, 0.355, 1]
+    }
+  })
 };
 
 export const menuButtonVariants: Variants = {
