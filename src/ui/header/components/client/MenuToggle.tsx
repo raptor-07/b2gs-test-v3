@@ -1,7 +1,7 @@
 "use client";
 
 import { Menu } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { MenuButtonProps } from "../../types";
 import { menuButtonVariants } from "../../animations/variants";
 
