@@ -1,26 +1,20 @@
-import Image, { ImageProps } from "next/image";
-
-interface LogoImageProps
-  extends Omit<ImageProps, "src" | "alt" | "width" | "height"> {
-  variant: "mobile" | "desktop";
-}
+import Image from "next/image";
+import { NAV_METADATA } from "@/constants/navigation";
+import type { LogoImageProps } from "../../types";
 
 export function LogoImage({
   variant = "desktop",
   className,
   ...props
 }: LogoImageProps) {
-  const imagePath =
-    variant === "mobile"
-      ? "/assets/logo/mobile/text-logo.png"
-      : "/assets/logo/desktop/text-logo.png";
+  const imagePath = NAV_METADATA.logo[variant];
 
   return (
     <Image
       src={imagePath}
-      alt="Logo"
+      alt={NAV_METADATA.logo.alt}
       width={variant === "mobile" ? 64 : 128}
-      height={0}
+      height={32}
       priority
       className={className}
       {...props}
