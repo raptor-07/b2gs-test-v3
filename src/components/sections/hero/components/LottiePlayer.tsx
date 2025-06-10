@@ -1,32 +1,33 @@
 "use client";
 
 import Lottie from "react-lottie-player";
-import { useInView } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface LottiePlayerProps {
-  animationData: Record<string, unknown>;
+  animationUrl: string;
   className?: string;
 }
 
-export function LottiePlayer({
-  animationData,
-  className = "",
-}: LottiePlayerProps) {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true });
-  const [hasPlayed, setHasPlayed] = useState(false);
+export function LottiePlayer({ animationUrl, className = "" }: LottiePlayerProps) {
+  const [animationData, setAnimationData] = useState<object>();
 
   useEffect(() => {
-    if (isInView && !hasPlayed) {
-      console.log("Animation is in view, playing now.");
-      setHasPlayed(true);
-    }
-  }, [isInView, hasPlayed]);
+    fetch(animationUrl)
+      .then((res) => res.json())
+      .then((data) => setAnimationData(data))
+      .catch((err) => console.error("Error loading animation:", err));
+  }, [animationUrl]);
+
+  if (!animationData) return null;
 
   return (
-    <div ref={containerRef} className={className}>
-      <Lottie animationData={animationData} loop={false} />
+    <div className={className}>
+      <Lottie
+        loop={false}
+        play
+        animationData={animationData}
+        style={{ width: "100%", height: "100%" }}
+      />
     </div>
   );
 }

@@ -3,14 +3,7 @@ import { ContentSection } from "./components/ContentSection";
 import { LottiePlayer } from "./components/LottiePlayer";
 import { StatsSection } from "./components/StatsSection";
 
-// Import the lottie animation
-async function getEarthAnimation(): Promise<Record<string, unknown>> {
-  const res = await import("../../../../public/assets/lottie/earth.json");
-  return res.default as Record<string, unknown>;
-}
-
-export default async function HeroSection() {
-  const earthAnimation = await getEarthAnimation();
+export default function HeroSection() {
 
   return (
     <section className="relative w-full overflow-hidden">
@@ -24,8 +17,8 @@ export default async function HeroSection() {
           {/* Animation */}
           <div className="relative lg:row-span-2 flex items-center justify-center">
             <LottiePlayer
-              animationData={earthAnimation}
-              className="w-full h-full"
+              animationUrl="/assets/lottie/earth.json"
+              className="w-full h-full max-w-[600px]"
             />
           </div>
 

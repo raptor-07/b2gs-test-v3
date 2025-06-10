@@ -1,14 +1,15 @@
-declare module 'lottie-react' {
-  import { ComponentType } from 'react';
+declare module "react-lottie-player" {
+  import { ComponentType } from "react";
 
-  export interface LottieComponentProps {
-    animationData: Record<string, unknown>;
+  interface LottiePlayerProps {
+    animationData: object;
+    play?: boolean;
     loop?: boolean;
-    autoplay?: boolean;
     style?: React.CSSProperties;
     className?: string;
+    speed?: number;
   }
 
-  declare const Lottie: ComponentType<LottieComponentProps>;
+  declare const Lottie: ComponentType<LottiePlayerProps>;
   export default Lottie;
 }
