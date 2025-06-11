@@ -1,9 +1,19 @@
+"use client";
+
+import { cn } from "@/utils/cn";
 import { Container } from "../../../components/layout";
 import { ContentSection } from "./components/ContentSection";
-import { LottiePlayer } from "./components/LottiePlayer";
+import { LottiePlayer, LottieWrapper, usePreloadAnimation } from "@/components/lottie";
 import { StatsSection } from "./components/StatsSection";
+import { useState } from "react";
+
+const EARTH_ANIMATION_URL = "/assets/lottie/earth.json";
 
 export default function HeroSection() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  // Preload the earth animation
+  usePreloadAnimation(EARTH_ANIMATION_URL);
 
   return (
     <section className="relative w-full overflow-hidden">
@@ -16,10 +26,18 @@ export default function HeroSection() {
 
           {/* Animation */}
           <div className="relative lg:row-span-2 flex items-center justify-center">
-            <LottiePlayer
-              animationUrl="/assets/lottie/earth.json"
-              className="w-full h-full max-w-[600px]"
-            />
+            <LottieWrapper className="w-full h-full max-w-[600px]">
+              <div className={cn(
+                "transition-opacity duration-500",
+                !isLoaded && "opacity-0"
+              )}>
+                <LottiePlayer
+                  animationUrl={EARTH_ANIMATION_URL}
+                  className="w-full h-full"
+                  onLoad={() => setIsLoaded(true)}
+                />
+              </div>
+            </LottieWrapper>
           </div>
 
           {/* Stats */}

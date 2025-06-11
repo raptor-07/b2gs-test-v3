@@ -5,14 +5,24 @@ import { X } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
 import DemoButton from "@/components/buttons/demo-button";
-import { Portal } from "@/components/utils/Portal";
+import { Portal } from "@/utils/Portal";
 import { LogoImage } from "../server/LogoImage";
-import { overlayVariants, menuItemVariants, backdropVariants } from "../../animations/variants";
+import {
+  overlayVariants,
+  menuItemVariants,
+  backdropVariants,
+} from "../../animations/variants";
 import { lockScroll, unlockScroll } from "../../utils/scroll-lock";
 import { combineWithZIndex } from "@/utils/styles";
 import { MobileOverlayProps } from "../../types";
 
-function Backdrop({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) {
+function Backdrop({
+  isOpen,
+  onClick,
+}: {
+  isOpen: boolean;
+  onClick: () => void;
+}) {
   return (
     <motion.div
       initial="closed"
