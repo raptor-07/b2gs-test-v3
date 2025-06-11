@@ -19,6 +19,13 @@ const config: Config = {
       "2xl": "1400px", // ≥ 1400px (Very large desktops, 4K displays)
     },
     extend: {
+      keyframes: {
+        shimmer: {
+          '100%': {
+            transform: 'translateX(100%)',
+          },
+        },
+      },
       colors: {
         // Primitive Colors
         forest: {
