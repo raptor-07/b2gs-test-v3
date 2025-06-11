@@ -9,13 +9,19 @@ export function LogoImage({
 }: LogoImageProps) {
   const imagePath = NAV_METADATA.logo[variant];
 
+  // Use proportional dimensions based on variant
+  const dimensions =
+    variant === "mobile"
+      ? { width: 64, height: 16 } // 4:1 ratio
+      : { width: 128, height: 32 }; // 4:1 ratio
+
   return (
     <Image
       src={imagePath}
       alt={NAV_METADATA.logo.alt}
-      width={variant === "mobile" ? 64 : 128}
-      height={32}
-      priority
+      {...dimensions}
+      fetchPriority="high"
+      style={{ height: 'auto' }}
       className={className}
       {...props}
     />

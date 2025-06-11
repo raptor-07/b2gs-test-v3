@@ -28,9 +28,9 @@ export function ContentSection() {
       {/* CTA Buttons */}
       <div className="flex flex-row gap-4 mt-4">
         <CloseTheLoopButton />
-        {/* <SecondaryButton className="h-9 w-34 bg-mint-950 text-white hover:bg-mint-800 transition-colors">
+        <SecondaryButton className="h-9 w-34 bg-mint-950 text-white hover:bg-mint-800 transition-colors">
           Join Vendor Network
-        </SecondaryButton> */}
+        </SecondaryButton>
       </div>
     </div>
   );
