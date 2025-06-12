@@ -1,56 +1,20 @@
-"use client";
+'use client';
 
-import { useRef, useState, useEffect } from "react";
-import { cn } from "@/utils/cn";
-import { LottiePlayer, LottieWrapper } from "@/components/lottie";
-import type { Player } from "@lottiefiles/react-lottie-player";
-import { useAnimationData } from "@/components/lottie/hooks/useAnimationData";
+import { useState } from 'react';
+import { cn } from '@/utils/cn';
+import { LottiePlayer, LottieWrapper } from '@/components/lottie';
+import { useAnimationData } from '@/components/lottie/hooks/useAnimationData';
 
-const EARTH_ANIMATION_URL = "/assets/lottie/earth.json";
+const EARTH_ANIMATION_URL = '/assets/lottie/earth.json';
 
 export function EarthAnimation({ className }: { className?: string }) {
-  const playerRef = useRef<Player>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasPlayed, setHasPlayed] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
   const animationData = useAnimationData(EARTH_ANIMATION_URL);
-
-  // Set up intersection observer for scroll-based playback
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting && !hasPlayed) {
-          console.debug("Earth: Playing animation on scroll");
-          const player = playerRef.current;
-          if (player) {
-            player.play();
-            setHasPlayed(true);
-          }
-        }
-      },
-      { threshold: 0.5 } // Trigger when 50% of the element is visible
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [hasPlayed]);
 
   const handleLoad = () => {
     setIsLoaded(true);
-    console.debug("Earth: Animation loaded");
-  };
-
-  const handleEvent = (event: string) => {
-    if (event === "complete" && playerRef.current) {
-      console.debug("Earth: Animation completed");
-      // No need to do anything, it will stay at the last frame
-    }
+    console.debug('Earth: Animation loaded');
   };
 
   // Don't render anything until animation data is loaded
@@ -58,7 +22,7 @@ export function EarthAnimation({ className }: { className?: string }) {
     return (
       <LottieWrapper
         aspectRatio="1/1"
-        className={cn("w-full max-w-[600px]", className)}
+        className={cn('w-full max-w-[600px]', className)}
         skeletonClassName="bg-gray-100/50 dark:bg-gray-800/50"
       >
         <div className="w-full h-full" />
@@ -67,28 +31,46 @@ export function EarthAnimation({ className }: { className?: string }) {
   }
 
   return (
-    <div ref={containerRef} className={className}>
-      <LottieWrapper
-        aspectRatio="1/1"
-        className="w-full max-w-[600px]"
-        skeletonClassName="bg-gray-100/50 dark:bg-gray-800/50"
+    <LottieWrapper
+      aspectRatio="1/1"
+      className={cn('w-full max-w-[600px]', className)}
+      skeletonClassName="bg-gray-100/50 dark:bg-gray-800/50"
+    >
+      <div
+        className={cn(
+          'w-full h-full transition-all duration-700',
+          isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+        )}
       >
-        <div
-          className={cn(
-            "w-full h-full transition-all duration-700",
-            isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
-          )}
-        >
-          <LottiePlayer
-            playerRef={playerRef}
-            animationData={animationData}
-            className="w-full h-full"
-            onLoad={handleLoad}
-            onEvent={handleEvent}
-            loop={false}
-          />
-        </div>
-      </LottieWrapper>
-    </div>
+        <LottiePlayer
+          animationData={animationData}
+          className="w-full h-full"
+          onLoad={handleLoad}
+          autoplay={false}
+          loop={false}
+          onEvent={(event) => {
+            if (event === 'complete') {
+              console.debug('Earth: Animation completed');
+              setHasPlayed(true);
+            }
+          }}
+          interactivity={{
+            mode: 'scroll',
+            actions: [
+              {
+                visibility: [0, 0.5],
+                type: 'stop',
+                frames: [0]
+              },
+              {
+                visibility: [0.5, 1.0],
+                type: hasPlayed ? 'stop' : 'play',
+                frames: [0, 180]
+              }
+            ]
+          }}
+        />
+      </div>
+    </LottieWrapper>
   );
 }
