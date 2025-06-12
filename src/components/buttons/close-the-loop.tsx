@@ -1,79 +1,88 @@
-'use client';
+"use client";
 
-import { ButtonHTMLAttributes, forwardRef } from 'react';
-import { cn } from '@/utils/cn';
-import { LottieWrapper } from '@/components/lottie';
-import { LottiePlayer } from '@/components/lottie';
-import { useAnimationData } from '@/components/lottie/hooks/useAnimationData';
-import type { InteractivityConfig } from '@/components/lottie/client/types';
+import { ButtonHTMLAttributes, forwardRef, useRef, useState } from "react";
+import { cn } from "@/utils/cn";
+import { useAnimationData } from "@/components/lottie/hooks/useAnimationData";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
+import { LottieWrapper } from "../lottie";
 
 interface CloseTheLoopButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-const ANIMATION_URL = '/assets/lottie/closetheloop.json';
-const TOTAL_FRAMES = 100; // From animation data
+const ANIMATION_URL = "/assets/lottie/closetheloop.json";
 
 const CloseTheLoopButton = forwardRef<
   HTMLButtonElement,
   CloseTheLoopButtonProps
 >(({ className, ...props }, ref) => {
   const animationData = useAnimationData(ANIMATION_URL);
-
-  // Configure cursor-based interaction with smoother transitions
-  const interactivity: InteractivityConfig = {
-    mode: 'cursor',
-    actions: [
-      {
-        // When cursor is inside the button
-        position: { x: [-0.2, 1.2], y: [-0.2, 1.2] },
-        type: 'seek',
-        frames: [0, TOTAL_FRAMES]
-      },
-      {
-        // When cursor is near the button (transition zone)
-        position: { x: [-0.5, -0.2], y: [-0.5, -0.2] },
-        type: 'seek',
-        frames: [TOTAL_FRAMES, Math.floor(TOTAL_FRAMES * 0.5)]
-      },
-      {
-        // When cursor is far from button
-        position: { x: [-1, -0.5], y: [-1, -0.5] },
-        type: 'seek',
-        frames: [Math.floor(TOTAL_FRAMES * 0.5), 0]
-      }
-    ]
-  };
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
+  const [isAnimationLoaded, setIsAnimationLoaded] = useState(false);
+  const [currentFrame, setCurrentFrame] = useState(0);
+  const [totalFrames, setTotalFrames] = useState(0);
 
   return (
     <button
       ref={ref}
       className={cn(
-        'text-mint-950 bg-yellow-200 px-4 py-2 rounded-full flex gap-2 items-center justify-center',
-        'transition-opacity duration-300',
+        "text-mint-950 bg-yellow-200 px-4 py-2 rounded-full flex gap-2 items-center justify-center",
+        "transition-opacity duration-300",
         className
       )}
       {...props}
+      onMouseEnter={() => {
+        if (isAnimationLoaded && lottieRef.current?.animationItem) {
+          // Set direction to forward and play from current frame to last frame
+          lottieRef.current.setDirection(1);
+          lottieRef.current.playSegments([currentFrame, totalFrames - 1], true);
+        }
+      }}
+      onMouseLeave={() => {
+        if (isAnimationLoaded && lottieRef.current?.animationItem) {
+          // Set direction to reverse and play from current frame to first frame
+          lottieRef.current.setDirection(-1);
+          lottieRef.current.playSegments([currentFrame, 0], true);
+        }
+      }}
     >
       <p className="text-sm">Let&#39;s close the loop</p>
-      <LottieWrapper className="w-6 h-6">
-        <div className={cn('w-full h-full')}>
-          {animationData && (
-            <LottiePlayer
-              animationData={animationData}
-              className="w-6 h-6"
-              autoplay={false}
-              loop={false}
-              interactivity={interactivity}
-            />
-          )}
-        </div>
+      <LottieWrapper
+        className="w-8 h-8"
+        aspectRatio="1/1"
+        skeletonClassName="bg-yellow-300 dark:bg-yellow-800"
+      >
+        <Lottie
+          lottieRef={lottieRef}
+          animationData={animationData}
+          loop={false}
+          autoplay={false}
+          onDOMLoaded={() => {
+            setIsAnimationLoaded(true);
+            if (lottieRef.current?.animationItem) {
+              // Store total frames and stop initial autoplay
+              setTotalFrames(lottieRef.current.animationItem.totalFrames);
+              lottieRef.current.stop();
+            }
+          }}
+          onEnterFrame={() => {
+            if (lottieRef.current?.animationItem) {
+              setCurrentFrame(lottieRef.current.animationItem.currentFrame);
+            }
+          }}
+          onComplete={() => {
+            if (lottieRef.current?.animationItem) {
+              lottieRef.current.stop();
+            }
+          }}
+          className="w-8 h-8"
+        />
       </LottieWrapper>
     </button>
   );
 });
 
-CloseTheLoopButton.displayName = 'CloseTheLoopButton';
+CloseTheLoopButton.displayName = "CloseTheLoopButton";
 
 export default CloseTheLoopButton;
