@@ -1,18 +1,10 @@
-import type { LottieRef } from 'lottie-react';
+import type { AnimationConfig } from 'lottie-web';
+import type { LottieRef, LottieRefCurrentProps } from 'lottie-react';
 
-// Types from legacy player for compatibility during migration
-type LottiePlayerType = {
-  play: () => void;
-  pause: () => void;
-  stop: () => void;
-  setPlayerDirection: (direction: number) => void;
-  setSeeker: (frame: number) => void;
-  state: {
-    frame: number;
-    totalFrames: number;
-  };
-};
+// Re-export necessary types from lottie-react
+export type { LottieRef, LottieRefCurrentProps };
 
+// Event types
 export type LottieEvent =
   | 'load'
   | 'error'
@@ -23,33 +15,43 @@ export type LottieEvent =
   | 'complete'
   | 'frame';
 
-export interface LottieOptions {
-  loop?: boolean | number;
-  autoplay?: boolean;
-  initialSegment?: [number, number];
+// Animation configuration with path support
+export interface AnimationConfigWithPath extends Omit<AnimationConfig, 'container'> {
+  path?: string;
+}
+
+// Extended options for our implementation
+export interface LottieOptions extends AnimationConfigWithPath {
+  lottieRef?: LottieRef;
   onComplete?: () => void;
   onLoopComplete?: () => void;
   onEnterFrame?: () => void;
-  onLoad?: () => void;
-  lottieRef?: React.RefObject<LottieRef>;
+  onSegmentStart?: () => void;
+  onConfigReady?: () => void;
+  onDataReady?: () => void;
+  onDataFailed?: () => void;
+  onLoadedImages?: () => void;
+  onDOMLoaded?: () => void;
+  onDestroy?: () => void;
 }
 
+// Interactivity types that match lottie-react's implementation
 export type InteractivityMode = 'scroll' | 'cursor';
+export type ActionType = 'seek' | 'play' | 'stop' | 'loop';
 
-export interface InteractivityAction {
-  frames: [number, number] | [number];
-  type: 'seek' | 'play' | 'stop' | 'loop';
+export interface Action {
   visibility?: [number, number];
   position?: {
     x: number | [number, number];
     y: number | [number, number];
   };
+  type: ActionType;
+  frames: [number] | [number, number];
 }
+
+export type InteractivityAction = Action;
 
 export interface InteractivityConfig {
   mode: InteractivityMode;
   actions: InteractivityAction[];
 }
-
-// Legacy type for backwards compatibility
-export type { LottiePlayerType };

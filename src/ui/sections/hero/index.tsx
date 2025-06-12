@@ -18,11 +18,7 @@ export default function HeroSection() {
 
           {/* Animation */}
           <div className="relative lg:row-span-2 flex items-center justify-center">
-            <EarthAnimation 
-              className={cn(
-                "w-full max-w-[600px]"
-              )}
-            />
+            <EarthAnimation className={cn("w-full max-w-[600px]")} />
           </div>
 
           {/* Stats */}

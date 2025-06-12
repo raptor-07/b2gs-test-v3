@@ -44,8 +44,6 @@ export function LottieWrapper({
   skeletonClassName,
 }: LottieWrapperProps) {
   const styles = {
-    // width: width || "100%",
-    // height: height || "100%",
     aspectRatio: aspectRatio || undefined,
   };
 
