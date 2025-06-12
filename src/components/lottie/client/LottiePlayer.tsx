@@ -1,63 +1,63 @@
 "use client";
 
-import Lottie from "react-lottie-player";
-import { useCallback, useEffect, useState } from "react";
+import { useRef } from "react";
+import { Player } from "@lottiefiles/react-lottie-player";
+import type { Player as PlayerType } from "@lottiefiles/react-lottie-player";
 
-const animationCache = new Map<string, object>();
+type LottieEvent =
+  | "load"
+  | "error"
+  | "play"
+  | "pause"
+  | "stop"
+  | "loop"
+  | "complete"
+  | "frame";
 
 interface LottiePlayerProps {
-  animationUrl: string;
+  animationData: object;
   className?: string;
-  isHovered?: boolean;
+  autoplay?: boolean;
+  loop?: boolean;
   onLoad?: () => void;
+  onEvent?: (event: LottieEvent) => void;
+  playerRef?: React.RefObject<PlayerType>;
+  style?: React.CSSProperties;
 }
 
 export function LottiePlayer({
-  animationUrl,
+  animationData,
   className = "",
-  isHovered = false,
+  autoplay = false,
+  loop = false,
   onLoad,
+  onEvent,
+  playerRef: externalRef,
+  style,
 }: LottiePlayerProps) {
-  const [animationData, setAnimationData] = useState<object | null>(() => {
-    // Check cache first
-    const cached = animationCache.get(animationUrl);
-    return cached || null;
-  });
-  const [playState, setPlayState] = useState(false);
+  const internalRef = useRef<PlayerType>(null);
+  const ref = externalRef || internalRef;
 
-  const fetchAnimation = useCallback(async () => {
-    try {
-      const res = await fetch(animationUrl);
-      const data = await res.json();
-      animationCache.set(animationUrl, data);
-      setAnimationData(data);
-      onLoad?.();
-    } catch (err) {
-      console.error("Error loading animation:", err);
-    }
-  }, [animationUrl, onLoad]);
-
-  useEffect(() => {
-    if (!animationData) {
-      fetchAnimation();
-    }
-  }, [animationData, fetchAnimation]);
-
-  useEffect(() => {
-    setPlayState(isHovered);
-  }, [isHovered]);
-
-  if (!animationData) {
-    return null;
-  }
+  const mergedStyle = {
+    width: "100%",
+    height: "100%",
+    ...style,
+  };
 
   return (
     <div className={className}>
-      <Lottie
-        play={playState}
-        loop={false}
-        animationData={animationData}
-        style={{ width: "100%", height: "100%" }}
+      <Player
+        ref={ref}
+        autoplay={autoplay}
+        loop={loop}
+        src={animationData}
+        style={mergedStyle}
+        onEvent={(event: LottieEvent) => {
+          if (event === "load" && onLoad) {
+            onLoad();
+          }
+          onEvent?.(event);
+        }}
       />
     </div>
   );

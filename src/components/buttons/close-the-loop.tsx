@@ -1,12 +1,11 @@
 "use client";
 
-import { ButtonHTMLAttributes, forwardRef, useState } from "react";
+import { ButtonHTMLAttributes, forwardRef, useRef, useState } from "react";
 import { cn } from "@/utils/cn";
-import {
-  LottiePlayer,
-  LottieWrapper,
-  usePreloadAnimation,
-} from "@/components/lottie";
+import { LottieWrapper } from "@/components/lottie";
+import type { Player } from "@lottiefiles/react-lottie-player";
+import { LottiePlayer } from "@/components/lottie";
+import { useAnimationData } from "@/components/lottie/hooks/useAnimationData";
 
 interface CloseTheLoopButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,11 +18,36 @@ const CloseTheLoopButton = forwardRef<
   HTMLButtonElement,
   CloseTheLoopButtonProps
 >(({ className, ...props }, ref) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const playerRef = useRef<Player>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const animationData = useAnimationData(ANIMATION_URL);
 
-  // Preload the animation
-  usePreloadAnimation(ANIMATION_URL);
+  const handleMouseEnter = () => {
+    const player = playerRef.current;
+    if (!player) return;
+
+    const currentFrame = player.state.frame;
+    player.setPlayerDirection(1); // Forward
+
+    console.debug("CloseTheLoop: Playing forward from frame", currentFrame);
+
+    // If we're at the end, start from beginning
+    if (currentFrame === player.state.totalFrames - 1) {
+      player.setSeeker(0);
+    }
+
+    player.play();
+  };
+
+  const handleMouseLeave = () => {
+    const player = playerRef.current;
+    if (!player) return;
+
+    const currentFrame = player.state.frame;
+    player.setPlayerDirection(-1); // Reverse
+    player.play();
+    console.debug("CloseTheLoop: Playing reverse from frame", currentFrame);
+  };
 
   return (
     <button
@@ -34,18 +58,27 @@ const CloseTheLoopButton = forwardRef<
         !isLoaded && "opacity-95",
         className
       )}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       {...props}
     >
       <p className="text-sm">Let&#39;s close the loop</p>
       <LottieWrapper className="w-6 h-6">
-        <LottiePlayer
-          animationUrl={ANIMATION_URL}
-          className="w-6 h-6"
-          isHovered={isHovered}
-          onLoad={() => setIsLoaded(true)}
-        />
+        <div
+          className={cn(
+            "w-full h-full",
+            isLoaded ? "opacity-100" : "opacity-0"
+          )}
+        >
+          {animationData && (
+            <LottiePlayer
+              playerRef={playerRef}
+              animationData={animationData}
+              className="w-6 h-6"
+              onLoad={() => setIsLoaded(true)}
+            />
+          )}
+        </div>
       </LottieWrapper>
     </button>
   );

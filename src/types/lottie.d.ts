@@ -1,15 +1,22 @@
-declare module "react-lottie-player" {
-  import { ComponentType } from "react";
-
-  interface LottiePlayerProps {
-    animationData: object;
-    play?: boolean;
-    loop?: boolean;
-    style?: React.CSSProperties;
-    className?: string;
-    speed?: number;
+declare module "@lottiefiles/react-lottie-player" {
+  export interface IPlayerState {
+    frame: number;
+    totalFrames: number;
+    currentState: string;
+    seeker: number;
+    playerSpeed: number;
+    autoplay: boolean;
+    loop: boolean;
+    direction: number;
   }
 
-  declare const Lottie: ComponentType<LottiePlayerProps>;
-  export default Lottie;
+  export interface Player {
+    state: Readonly<IPlayerState>;
+    play(): void;
+    pause(): void;
+    stop(): void;
+    setSeeker(frame: number, play?: boolean): void;
+    setPlayerDirection(direction: 1 | -1): void;
+    setPlayerSpeed(speed?: number): void;
+  }
 }
