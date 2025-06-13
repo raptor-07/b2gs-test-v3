@@ -25,6 +25,7 @@ const CloseTheLoopButton = forwardRef<
       className={cn(
         "text-mint-950 bg-yellow-200 px-4 py-2 rounded-full flex gap-2 items-center justify-center",
         "transition-opacity duration-300",
+        "hover:bg-yellow-300 transition-transform duration-400",
         className
       )}
       {...props}
@@ -34,7 +35,7 @@ const CloseTheLoopButton = forwardRef<
       <Lottie
         lottieRef={lottieRef}
         animationData={animationData}
-        loop={false}
+        loop={true}
         autoplay={true}
         className="w-6 h-6"
       />

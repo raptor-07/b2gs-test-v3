@@ -3,10 +3,13 @@
 import { cn } from "@/utils/cn";
 import { LottiePlayer, LottieWrapper } from "@/components/lottie";
 import { useAnimationData } from "@/components/lottie/hooks/useAnimationData";
-
-const EARTH_ANIMATION_URL = "/assets/lottie/earth.json";
+import { useScreenSize } from "@/hooks/useScreenSize";
 
 export function EarthAnimation({ className }: { className?: string }) {
+  const { isMobile } = useScreenSize();
+  const EARTH_ANIMATION_URL = isMobile
+    ? "/assets/lottie/mobile/earth-mobile.json"
+    : "/assets/lottie/earth.json";
   const animationData = useAnimationData(EARTH_ANIMATION_URL);
 
   // Don't render anything until animation data is loaded
