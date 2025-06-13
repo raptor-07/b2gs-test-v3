@@ -1,22 +1,27 @@
 import { useState, useEffect } from "react";
 
 // Global cache for animations
-const animationCache = new Map<string, object>();
+// const animationCache = new Map<string, object>();
 
 export function useAnimationData(url: string) {
-  const [data, setData] = useState<object | null>(() => animationCache.get(url) || null);
+  const [data, setData] = useState<object | null>(null);
 
   useEffect(() => {
-    if (!data) {
-      fetch(url)
-        .then((res) => res.json())
-        .then((json) => {
-          animationCache.set(url, json);
+    let mounted = true;
+    
+    fetch(url)
+      .then((res) => res.json())
+      .then((json) => {
+        if (mounted) {
           setData(json);
-        })
-        .catch((err) => console.error("Error loading animation:", err));
-    }
-  }, [url, data]);
+        }
+      })
+      .catch((err) => console.error("Error loading animation:", err));
+
+    return () => {
+      mounted = false;
+    };
+  }, [url]); // Only depend on url changes
 
   return data;
 }

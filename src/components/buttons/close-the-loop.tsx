@@ -1,10 +1,9 @@
 "use client";
 
-import { ButtonHTMLAttributes, forwardRef, useRef, useState } from "react";
+import { ButtonHTMLAttributes, forwardRef, useRef } from "react";
 import { cn } from "@/utils/cn";
 import { useAnimationData } from "@/components/lottie/hooks/useAnimationData";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import { LottieWrapper } from "../lottie";
 
 interface CloseTheLoopButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -17,11 +16,8 @@ const CloseTheLoopButton = forwardRef<
   HTMLButtonElement,
   CloseTheLoopButtonProps
 >(({ className, ...props }, ref) => {
-  const animationData = useAnimationData(ANIMATION_URL);
   const lottieRef = useRef<LottieRefCurrentProps>(null);
-  const [isAnimationLoaded, setIsAnimationLoaded] = useState(false);
-  const [currentFrame, setCurrentFrame] = useState(0);
-  const [totalFrames, setTotalFrames] = useState(0);
+  const animationData = useAnimationData(ANIMATION_URL);
 
   return (
     <button
@@ -32,53 +28,16 @@ const CloseTheLoopButton = forwardRef<
         className
       )}
       {...props}
-      onMouseEnter={() => {
-        if (isAnimationLoaded && lottieRef.current?.animationItem) {
-          // Set direction to forward and play from current frame to last frame
-          lottieRef.current.setDirection(1);
-          lottieRef.current.playSegments([currentFrame, totalFrames - 1], true);
-        }
-      }}
-      onMouseLeave={() => {
-        if (isAnimationLoaded && lottieRef.current?.animationItem) {
-          // Set direction to reverse and play from current frame to first frame
-          lottieRef.current.setDirection(-1);
-          lottieRef.current.playSegments([currentFrame, 0], true);
-        }
-      }}
     >
-      <p className="text-sm">Let&#39;s close the loop</p>
-      <LottieWrapper
-        className="w-8 h-8"
-        aspectRatio="1/1"
-        skeletonClassName="bg-yellow-300 dark:bg-yellow-800"
-      >
-        <Lottie
-          lottieRef={lottieRef}
-          animationData={animationData}
-          loop={false}
-          autoplay={false}
-          onDOMLoaded={() => {
-            setIsAnimationLoaded(true);
-            if (lottieRef.current?.animationItem) {
-              // Store total frames and stop initial autoplay
-              setTotalFrames(lottieRef.current.animationItem.totalFrames);
-              lottieRef.current.stop();
-            }
-          }}
-          onEnterFrame={() => {
-            if (lottieRef.current?.animationItem) {
-              setCurrentFrame(lottieRef.current.animationItem.currentFrame);
-            }
-          }}
-          onComplete={() => {
-            if (lottieRef.current?.animationItem) {
-              lottieRef.current.stop();
-            }
-          }}
-          className="w-8 h-8"
-        />
-      </LottieWrapper>
+      <p className="text-sm text-nowrap">Let&#39;s close the loop</p>
+
+      <Lottie
+        lottieRef={lottieRef}
+        animationData={animationData}
+        loop={false}
+        autoplay={true}
+        className="w-6 h-6"
+      />
     </button>
   );
 });
