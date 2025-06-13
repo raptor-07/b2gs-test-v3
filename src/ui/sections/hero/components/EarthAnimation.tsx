@@ -4,6 +4,7 @@ import { cn } from "@/utils/cn";
 import { LottiePlayer, LottieWrapper } from "@/components/lottie";
 import { useAnimationData } from "@/components/lottie/hooks/useAnimationData";
 import { useScreenSize } from "@/hooks/useScreenSize";
+import Image from "next/image";
 
 export function EarthAnimation({ className }: { className?: string }) {
   const { isMobile } = useScreenSize();
@@ -20,7 +21,16 @@ export function EarthAnimation({ className }: { className?: string }) {
         className={cn("w-full max-w-[600px]", className)}
         skeletonClassName="bg-gray-100/50 dark:bg-gray-800/50"
       >
-        <div className="w-full h-full" />
+        <div className="w-full h-full">
+          <Image
+            src="/assets/hero/earth.jpg"
+            alt="Earth Animation Placeholder"
+            width={600}
+            height={600}
+            className="w-full h-full object-cover rounded-lg"
+            priority
+          />
+        </div>
       </LottieWrapper>
     );
   }
