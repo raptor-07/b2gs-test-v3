@@ -1,8 +1,7 @@
 "use client";
 
 import Lottie from "lottie-react";
-import type { InteractivityConfig } from "./types";
-import { on } from "events";
+import type { InteractivityConfig, LottieRef } from "./types";
 
 interface LottieBaseProps {
   animationData: object;
@@ -11,7 +10,7 @@ interface LottieBaseProps {
   loop?: boolean;
   interactivity?: InteractivityConfig;
   style?: React.CSSProperties;
-  lottieRef?: React.MutableRefObject<HTMLDivElement | null>;
+  lottieRef?: LottieRef;
   currentFrame?: React.MutableRefObject<number>;
 }
 
@@ -40,9 +39,8 @@ export function LottieBase({
       loop={loop}
       {...(interactivity !== undefined && { interactivity })}
       onEnterFrame={() => {
-        if (currentFrame && lottieRef?.current) {
-          const animation = lottieRef.current.animationItem.currentFrame;
-          currentFrame.current = animation.currentFrame;
+        if (currentFrame && lottieRef?.current?.animationItem) {
+          currentFrame.current = lottieRef.current.animationItem.currentFrame;
         }
       }}
       lottieRef={lottieRef}

@@ -1,7 +1,7 @@
 "use client";
 
-import { LottieBase } from "./LottieBase";
-import type { InteractivityConfig } from "./types";
+import { LottieBase } from "../client/LottieBase";
+import type { InteractivityConfig, LottieRef } from "./types";
 
 interface LottiePlayerProps {
   animationData: object;
@@ -9,7 +9,7 @@ interface LottiePlayerProps {
   autoplay?: boolean;
   loop?: boolean;
   interactivity?: InteractivityConfig | undefined;
-  lottieRef?: React.MutableRefObject<HTMLDivElement | null>;
+  lottieRef?: LottieRef;
   currentFrame?: React.MutableRefObject<number>;
 }
 
