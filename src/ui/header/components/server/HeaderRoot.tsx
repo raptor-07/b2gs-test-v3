@@ -1,14 +1,12 @@
 import { SITE_NAVIGATION } from "@/constants/navigation";
-import { combineWithZIndex } from "@/utils/styles";
+import { Z_INDEX } from "@/constants/styles/z-index";
 import { HeaderContent } from "../client/HeaderContent";
 
 export default function Header() {
   return (
     <header
-      className={combineWithZIndex(
-        "sticky top-0 w-full border-b bg-white/80 backdrop-blur-sm",
-        "header"
-      )}
+      className="sticky top-0 w-full border-b bg-white/80 backdrop-blur-sm"
+      style={{ zIndex: Z_INDEX.header }}
     >
       <div>
         <HeaderContent items={SITE_NAVIGATION.items} />

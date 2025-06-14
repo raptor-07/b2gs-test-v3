@@ -10,7 +10,7 @@ export default function HeroSection() {
   return (
     <section className="relative w-full overflow-hidden">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-[calc(100vh-80px)]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-4 lg:gap-8">
           {/* Content */}
           <div className="flex flex-col justify-center space-y-8">
             <ContentSection />
@@ -18,7 +18,11 @@ export default function HeroSection() {
 
           {/* Animation */}
           <div className="relative lg:row-span-2 flex items-center justify-center">
-            <EarthAnimation className={cn("w-full max-w-[800px]")} />
+            <EarthAnimation
+              className={cn(
+                "w-full max-w-[400px] sm:max-w-[350px] md:max-w-[600px] lg:max-w-[500px]"
+              )}
+            />
           </div>
 
           {/* Stats */}

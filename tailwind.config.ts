@@ -12,8 +12,8 @@ const config: Config = {
   theme: {
     screens: {
       xs: "0px", // < 576px (Phones portrait)
-      sm: "576px", // ≥ 576px (Phones landscape, small tablets)
-      md: "768px", // ≥ 768px (Tablets portrait)
+      sm: "570px", // ≥ 576px (Phones landscape, small tablets)
+      md: "750px", // ≥ 768px (Tablets portrait)
       lg: "992px", // ≥ 992px (Tablets landscape, small laptops)
       xl: "1200px", // ≥ 1200px (Desktops, large laptops)
       "2xl": "1400px", // ≥ 1400px (Very large desktops, 4K displays)
@@ -21,8 +21,8 @@ const config: Config = {
     extend: {
       keyframes: {
         shimmer: {
-          '100%': {
-            transform: 'translateX(100%)',
+          "100%": {
+            transform: "translateX(100%)",
           },
         },
       },
