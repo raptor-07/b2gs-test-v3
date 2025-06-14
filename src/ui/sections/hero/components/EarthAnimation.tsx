@@ -12,6 +12,8 @@ export function EarthAnimation({ className }: { className?: string }) {
   const EARTH_ANIMATION_URL = isMobile
     ? "/assets/lottie/mobile/earth-mobile.json"
     : "/assets/lottie/earth.json";
+  // public/assets/lottie/earth.json
+  // : "/assets/lottie/earth.json";
   const animationData = useAnimationData(EARTH_ANIMATION_URL);
 
   return (
@@ -34,7 +36,7 @@ export function EarthAnimation({ className }: { className?: string }) {
               alt="Earth Animation Placeholder"
               width={600}
               height={600}
-              className="md:hidden w-full h-auto min-w-[450px] object-cover rounded-lg"
+              className="md:hidden w-full h-auto min-w-[480px] object-cover rounded-lg"
               priority
             />
             <Image
@@ -51,12 +53,12 @@ export function EarthAnimation({ className }: { className?: string }) {
             key="lottie"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
             className="w-full h-full relative"
           >
             <div className="w-full h-full">
               <LottiePlayer
-                animationData={animationData!}
+                animationData={animationData}
                 className="w-full h-full"
                 autoplay={true}
                 loop={false}
