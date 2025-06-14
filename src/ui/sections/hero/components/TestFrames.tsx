@@ -16,7 +16,7 @@ interface LottieData {
   v: string;   // version
 }
 
-const ANIMATION_URL = '/assets/lottie/closetheloop.json';
+const ANIMATION_URL = '/assets/lottie/earth.json';
 
 export function TestFrames() {
   const animationData = useAnimationData(ANIMATION_URL) as LottieData;

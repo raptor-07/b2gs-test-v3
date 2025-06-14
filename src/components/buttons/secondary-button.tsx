@@ -1,34 +1,31 @@
-'use client'
+"use client";
 
-import { ButtonHTMLAttributes, forwardRef } from 'react'
-import { cn } from '@/utils/cn'
+import { forwardRef } from "react";
+import { cn } from "@/utils/cn";
 
-interface SecondaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  fullWidth?: boolean
-  variant?: 'default' | 'outline'
+interface SecondaryButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  className?: string;
+  children: React.ReactNode;
 }
 
 const SecondaryButton = forwardRef<HTMLButtonElement, SecondaryButtonProps>(
-  ({ className, children, fullWidth = false, variant = 'default', ...props }, ref) => {
+  ({ className, children, ...props }, ref) => {
     return (
       <button
         ref={ref}
         className={cn(
-          'inline-flex items-center justify-center rounded-xl font-semibold transition-colors duration-200',
-          'px-6 py-3 text-sm',
-          variant === 'default' && 'bg-secondary text-white hover:bg-secondary/90',
-          variant === 'outline' && 'border-2 border-secondary text-secondary hover:bg-secondary/10',
-          fullWidth && 'w-full',
+          "px-4 py-2 rounded-full flex gap-2 items-center justify-center",
           className
         )}
         {...props}
       >
         {children}
       </button>
-    )
+    );
   }
-)
+);
 
-SecondaryButton.displayName = 'SecondaryButton'
+SecondaryButton.displayName = "SecondaryButton";
 
-export default SecondaryButton
+export default SecondaryButton;

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useInView, useMotionValue, useSpring } from "motion/react";
 import { ComponentPropsWithoutRef, useEffect, useRef } from "react";
@@ -48,7 +48,7 @@ function NumberTicker({
           }).format(Number(latest.toFixed(decimalPlaces)));
         }
       }),
-    [springValue, decimalPlaces],
+    [springValue, decimalPlaces]
   );
 
   return (
@@ -56,7 +56,7 @@ function NumberTicker({
       ref={ref}
       className={cn(
         "inline-block tabular-nums tracking-wider text-mint-950",
-        className,
+        className
       )}
       {...props}
     >
@@ -72,12 +72,12 @@ interface StatCardProps {
 
 export function StatCard({ value, label }: StatCardProps) {
   return (
-    <div className="flex flex-col sm:flex-row lg:flex-col items-center lg:items-start gap-2 sm:gap-4">
-      <div className="text-4xl lg:text-5xl font-bold text-mint-950">
+    <div className="flex flex-row sm:flex-row lg:flex-col items-center lg:items-start gap-2 sm:gap-4 lg:gap-2 xl:gap-4">
+      <div className="flex text-2xl min-w-[70px] lg:text-xl font-normal text-mint-950">
         <NumberTicker value={value} />
         <span>%</span>
       </div>
-      <p className="text-center sm:text-left lg:text-left text-sm lg:text-base text-mint-950 max-w-[200px]">
+      <p className="sm:text-left lg:text-left text-sm lg:text-sm text-mint-950 w-auto lg:max-w-[200px]">
         {label}
       </p>
     </div>
