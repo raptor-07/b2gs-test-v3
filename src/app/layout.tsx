@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Lexend, IBM_Plex_Serif } from "next/font/google";
 import { ThemeProvider } from "./context/ThemeContext";
-import { NAV_METADATA } from "@/constants/navigation";
 import "./globals.css";
 
 const lexend = Lexend({
@@ -110,20 +109,6 @@ export default function RootLayout({
               } catch {}
             `,
           }}
-        />
-
-        {/* Preload Logo Images */}
-        <link
-          rel="preload"
-          as="image"
-          href={NAV_METADATA.logo.mobile}
-          type="image/png"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href={NAV_METADATA.logo.desktop}
-          type="image/png"
         />
       </head>
       <body
