@@ -11,7 +11,7 @@ export function EarthAnimation({ className }: { className?: string }) {
   const isMobile = useIsMobile();
   const EARTH_ANIMATION_URL = isMobile
     ? "/assets/lottie/mobile/earth-mobile.json"
-    : "/assets/lottie/earth.json";
+    : "/assets/lottie/earth-2.json";
   // public/assets/lottie/earth.json
   // : "/assets/lottie/earth.json";
   const animationData = useAnimationData(EARTH_ANIMATION_URL);
@@ -40,7 +40,7 @@ export function EarthAnimation({ className }: { className?: string }) {
               priority
             />
             <Image
-              src="/assets/hero/earth.jpg"
+              src="/assets/hero/earth-2.jpg"
               alt="Earth Animation Placeholder"
               width={600}
               height={600}

@@ -6,22 +6,22 @@ export function ContentSection() {
   return (
     <div className="flex flex-col gap-2 my-4">
       {/* Tagline */}
-      <h1 className="text-lg md:text-4xl lg:text-5xl xl:text-6xl font-medium text-mint-950 leading-tight">
+      <h1 className="text-lg md:text-4xl lg:text-2xl xl:text-3xl font-medium text-mint-950 leading-tight">
         Champion <GradientText>Circular Economy</GradientText>, One Scrap at a
         Time.
       </h1>
 
       {/* SubTag */}
-      <h2 className="text-base md:text-lg lg:text-2xl font-ibm italic text-mint-950 font-semibold tracking-tighter">
+      <h2 className="text-base md:text-lg lg:text-md font-ibm italic text-mint-950 font-semibold tracking-tighter">
         Waste Management: Measured, Monetized and Compliant!
       </h2>
 
       {/* Description */}
-      <p className="text-sm md:text-base lg:text-lg text-mint-950 max-w-2xl">
+      <p className="text-sm md:text-base lg:text-base text-mint-950 max-w-2xl">
         We seamlessly integrate Circularity Systems into your business, lowering
         its costs and emissions while fulfilling regulations.
       </p>
-      <p className="text-sm md:text-base lg:text-lg text-mint-950 max-w-2xl">
+      <p className="text-sm md:text-base lg:text-base text-mint-950 max-w-2xl">
         Are you a recycler or a trader? Join our vendor network Today !
       </p>
 
