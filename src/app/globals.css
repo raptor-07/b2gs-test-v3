@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;700&family=Lexend:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+
+@layer base {
+  :root {
+    /* ====================================
+     * Typography
+     * ==================================== */
+
+    /* Font Families */
+    --typography-fonts-lexend: "Lexend";
+    --typography-fonts-ibm: "IBM Plex Serif";
+
+    /* Font Sizes */
+    --typography-font-size-xs: 10px;
+    --typography-font-size-sm: 12px;
+    --typography-font-size-base: 16px;
+    --typography-font-size-md: 18px;
+    --typography-font-size-lg: 22px;
+    --typography-font-size-xl: 26px;
+    --typography-font-size-2xl: 32px;
+    --typography-font-size-3xl: 38px;
+    --typography-font-size-4xl: 46px;
+    --typography-font-size-5xl: 54px;
+    --typography-font-size-6xl: 64px;
+    --typography-font-size-7xl: 78px;
+    --typography-font-size-8xl: 90px;
+    --typography-font-size-9xl: 108px;
+    --typography-font-size-10xl: 128px;
+    --typography-font-size-11xl: 144px;
+    --typography-font-size-12xl: 160px;
+    --typography-font-size-13xl: 180px;
+    --typography-font-size-14xl: 200px;
+
+    /* ====================================
+     * Primitive Colors
+     * ==================================== */
+
+    /* Forest Colors */
+    --color-forest-50: #359335;
+    --color-forest-100: #2c8e2c;
+    --color-forest-200: #278b27;
+    --color-forest-300: #258725;
+    --color-forest-400: #238322;
+    --color-forest-500: #267d24;
+    --color-forest-600: #287726;
+    --color-forest-700: #267224;
+    --color-forest-800: #236c20;
+    --color-forest-900: #1f661c;
+
+    /* Gray Colors */
+    --color-gray-50: #ffffff;
+    --color-gray-100: #eeeeee;
+    --color-gray-200: #dddddd;
+    --color-gray-300: #aaaaaa;
+    --color-gray-400: #888888;
+    --color-gray-500: #555555;
+    --color-gray-600: #444444;
+    --color-gray-700: #222222;
+    --color-gray-800: #111111;
+
+    /* Red Colors */
+    --color-red-50: #fee2e2;
+    --color-red-100: #ef4444;
+    --color-red-200: #dc2626;
+
+    /* Brown Colors */
+    --color-brown-50: #fffdf9;
+    --color-brown-100: #fff9ee;
+    --color-brown-200: #efe1ca;
+    --color-brown-300: #eadac0;
+    --color-brown-400: #e3d4b9;
+    --color-brown-500: #d9caa9;
+    --color-brown-600: #624d24;
+    --color-brown-700: #413115;
+    --color-brown-800: #1f1606;
+
+    /* Green Colors */
+    --color-green-100: #4a806f;
+    --color-green-200: #386859;
+    --color-green-300: #2f5c4e;
+    --color-green-400: #2a5648;
+    --color-green-500: #254f42;
+    --color-green-600: #184739;
+    --color-green-700: #0e4433;
+    --color-green-800: #083628;
+
+    /* Olive Colors */
+    --color-olive-100: #6aa070;
+    --color-olive-200: #56885d;
+    --color-olive-300: #4c7c53;
+    --color-olive-400: #426f49;
+    --color-olive-500: #3a6641;
+    --color-olive-600: #325937;
+    --color-olive-700: #27442b;
+    --color-olive-800: #1d3020;
+
+    /* Lime Colors */
+    --color-lime-100: #d3d5d3;
+    --color-lime-200: #def3c6;
+    --color-lime-300: #c9ddb3;
+    --color-lime-400: #91db7c;
+    --color-lime-500: #73f360;
+    --color-lime-600: #22c55e;
+
+    /* Mint Colors */
+    --color-mint-50: #05cd99;
+    --color-mint-100: #109078;
+    --color-mint-200: #128575;
+    --color-mint-300: #147a71;
+    --color-mint-400: #166f6e;
+    --color-mint-500: #18646a;
+    --color-mint-600: #10565c;
+    --color-mint-700: #0d4f54;
+    --color-mint-800: #0a484c;
+    --color-mint-900: #064044;
+    --color-mint-950: #023135;
+
+    /* Yellow Colors */
+    --color-yellow-100: #ffda85;
+    --color-yellow-200: #ffd166;
+    --color-yellow-300: #faca4f;
+    --color-yellow-400: #f5c237;
+    --color-yellow-500: #f0bb20;
+    --color-yellow-600: #edb714;
+
+    /* Paper Colors */
+    --color-paper-50: #fdfdfd;
+    --color-paper-100: #f2efe7;
+    --color-paper-200: #e9e5da;
+    --color-paper-300: #dcd8cd;
+    --color-paper-400: #d1cdc4;
+    --color-paper-500: #c1bdb3;
+
+    /* ====================================
+     * Schematic Colors
+     * ==================================== */
+
+    /* Primary Colors */
+    --primary-50: var(--color-mint-50);
+    --primary-100: var(--color-mint-100);
+    --primary-200: var(--color-mint-300);
+    --primary-300: var(--color-mint-600);
+    --primary-400: var(--color-mint-800);
+    --primary-500: var(--color-mint-950);
+
+    /* Secondary Colors */
+    --secondary-100: var(--color-green-100);
+    --secondary-200: var(--color-green-200);
+    --secondary-300: var(--color-green-300);
+    --secondary-400: var(--color-green-400);
+    --secondary-500: var(--color-green-500);
+    --secondary-600: var(--color-green-600);
+    --secondary-700: var(--color-green-700);
+    --secondary-800: var(--color-green-800);
+
+    /* Complementary Colors */
+    --complementary-50: var(--color-yellow-100);
+    --complementary-100: var(--color-yellow-200);
+    --complementary-200: var(--color-yellow-300);
+    --complementary-300: var(--color-yellow-400);
+    --complementary-400: var(--color-yellow-500);
+    --complementary-500: var(--color-yellow-600);
+
+    /* Accent Colors */
+    --accent-50: var(--color-yellow-100);
+    --accent-100: var(--color-yellow-200);
+    --accent-200: var(--color-yellow-300);
+    --accent-300: var(--color-yellow-400);
+    --accent-400: var(--color-yellow-500);
+    --accent-500: var(--color-yellow-600);
+    --accent-red-50: #fee2e2;
+    --accent-red-100: #ef4444;
+    --accent-red-200: #dc2626;
+    --accent-lime-100: var(--color-lime-200);
+    --accent-lime-200: var(--color-lime-300);
+    --accent-lime-300: var(--color-lime-400);
+    --accent-lime-400: var(--color-lime-500);
+    --accent-lime-500: var(--color-lime-600);
+
+    /* Illustration Colors */
+    --illustrations-50: var(--color-yellow-100);
+    --illustrations-100: var(--color-yellow-200);
+    --illustrations-200: var(--color-yellow-300);
+    --illustrations-300: var(--color-yellow-400);
+    --illustrations-400: var(--color-yellow-500);
+    --illustrations-500: var(--color-yellow-600);
+
+    --illustrations-olive-50: var(--color-olive-100);
+    --illustrations-olive-100: var(--color-olive-400);
+    --illustrations-olive-200: var(--color-olive-600);
+    --illustrations-olive-300: var(--color-olive-800);
+
+    --illustrations-lime-50: var(--color-lime-100);
+    --illustrations-lime-100: var(--color-lime-200);
+    --illustrations-lime-200: var(--color-lime-300);
+    --illustrations-lime-300: var(--color-lime-400);
+    --illustrations-lime-400: var(--color-lime-500);
+    --illustrations-lime-500: var(--color-lime-600);
+
+    --illustrations-forest-100: var(--color-forest-50);
+    --illustrations-forest-200: var(--color-forest-300);
+    --illustrations-forest-300: var(--color-forest-600);
+    --illustrations-forest-400: var(--color-forest-800);
+    --illustrations-forest-500: var(--color-forest-900);
+
+    --illustrations-sun-100: var(--color-yellow-200);
+    --illustrations-sun-200: var(--color-yellow-300);
+    --illustrations-sun-300: var(--color-yellow-400);
+    --illustrations-sun-400: var(--color-yellow-500);
+    --illustrations-sun-500: var(--color-yellow-600);
+
+    --illustrations-green-100: var(--color-green-400);
+    --illustrations-green-200: var(--color-green-500);
+    --illustrations-green-300: var(--color-green-600);
+    --illustrations-green-400: var(--color-green-700);
+    --illustrations-green-500: var(--color-green-800);
+  }
+
+  .dark {
+    color-scheme: dark;
+
+    /* Essential Dark Mode Variables */
+    --bg-primary: #111111;
+    --bg-secondary: #222222;
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+  }
+
+  body {
+    @apply text-gray-800 bg-gray-50 transition-colors font-lexend;
+  }
+
+  body.dark {
+    @apply text-white bg-gray-900;
+  }
+
+  * {
+    @apply transition-colors duration-200;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
