@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
+=======
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+>>>>>>> 2e201a4b04102ec8db85801264d10a900fedab08
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -12,6 +19,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+<<<<<<< HEAD
     "plugins": [
       {
         "name": "next"
@@ -20,6 +28,9 @@
     "paths": {
       "@/*": ["./src/*"]
     }
+=======
+    "plugins": [{ "name": "next" }]
+>>>>>>> 2e201a4b04102ec8db85801264d10a900fedab08
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
