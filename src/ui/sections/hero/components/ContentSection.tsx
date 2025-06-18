@@ -28,7 +28,7 @@ export function ContentSection() {
       {/* CTA Buttons */}
       <div className="flex justify-start items-center gap-2 mt-2">
         <CloseTheLoopButton className="" />
-        <SecondaryButton className="h-10 w-auto bg-mint-400 text-gray-50 transition-colors duration-300 hover:gray-300">
+        <SecondaryButton className="h-10 w-auto bg-gray-200 text-gray-600 transition-colors duration-300 hover:gray-300">
           <p className=" text-sm text-nowrap">Become a Partner</p>
         </SecondaryButton>
       </div>

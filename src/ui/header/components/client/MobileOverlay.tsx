@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import ThemeToggle from "@/components/client/ThemeToggle";
+import { motion, AnimatePresence } from "motion/react";
 import { X } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -61,7 +60,7 @@ export function MobileOverlay({ isOpen, onClose, items }: MobileOverlayProps) {
               exit="closed"
               variants={overlayVariants}
               className={combineWithZIndex(
-                "fixed inset-0 bg-white dark:bg-gray-900/95 overflow-hidden backdrop-blur-sm",
+                "fixed inset-0 bg-white overflow-hidden",
                 "overlay.content"
               )}
             >
@@ -70,7 +69,7 @@ export function MobileOverlay({ isOpen, onClose, items }: MobileOverlayProps) {
                 <div className="p-6">
                   <motion.button
                     onClick={onClose}
-                    className="absolute right-6 top-6 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                    className="absolute right-6 top-6 text-gray-800"
                     whileHover={{ scale: 1.1 }}
                     aria-label="Close menu"
                   >
@@ -91,7 +90,7 @@ export function MobileOverlay({ isOpen, onClose, items }: MobileOverlayProps) {
                       >
                         <Link
                           href={item.href}
-                          className="text-2xl font-medium text-gray-800 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-400 transition-colors"
+                          className="text-2xl font-medium text-gray-800 hover:text-primary-500"
                           onClick={onClose}
                         >
                           {item.name}
@@ -102,15 +101,12 @@ export function MobileOverlay({ isOpen, onClose, items }: MobileOverlayProps) {
                 </div>
 
                 {/* Footer - Fixed */}
-                <div className="mt-auto border-t border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm px-6 py-4">
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-center justify-between">
-                      <div className="w-32">
-                        <LogoImage variant="mobile" />
-                      </div>
-                      <ThemeToggle />
+                <div className="mt-auto border-t border-gray-200 bg-white p-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="w-32">
+                      <LogoImage variant="mobile" />
                     </div>
-                    <DemoButton className="w-full" />
+                    <DemoButton />
                   </div>
                 </div>
               </div>

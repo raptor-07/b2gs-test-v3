@@ -1,14 +1,14 @@
 "use client";
 
-// import { Container } from "@/components/layout/Container";
+import { Container } from "@/components/layout/Container";
 import { ContentSection } from "./components/ContentSection";
 import { InterconnectedAnimation } from "./components/InterconnectedAnimation";
 import Image from "next/image";
 
 export function InterconnectedSection() {
   return (
-    <section className="w-full bg-paper-200 pb-8">
-      {/* <Container> */}
+    <section className="w-full bg-gray-100 pb-8">
+      <Container>
         <div className="m-1 rounded-xl bg-green-800 relative">
           {/* Grainy texture overlay - mobile version */}
           <Image
@@ -40,7 +40,7 @@ export function InterconnectedSection() {
             </div>
           </div>
         </div>
-      {/* </Container> */}
+      </Container>
     </section>
   );
 }

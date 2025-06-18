@@ -125,14 +125,6 @@
     --color-yellow-500: #f0bb20;
     --color-yellow-600: #edb714;
 
-    /* Paper Colors */
-    --color-paper-50: #fdfdfd;
-    --color-paper-100: #f2efe7;
-    --color-paper-200: #e9e5da;
-    --color-paper-300: #dcd8cd;
-    --color-paper-400: #d1cdc4;
-    --color-paper-500: #c1bdb3;
-
     /* ====================================
      * Schematic Colors
      * ==================================== */
@@ -220,20 +212,12 @@
 
   .dark {
     color-scheme: dark;
-
-    /* Essential Dark Mode Variables */
-    --bg-primary: #111111;
-    --bg-secondary: #222222;
-    --text-primary: #ffffff;
-    --text-secondary: #aaaaaa;
   }
 
   body {
-    @apply text-gray-800 bg-gray-50 transition-colors font-lexend;
-  }
-
-  body.dark {
-    @apply text-white bg-gray-900;
+    color: var(--color-gray-800);
+    background: var(--color-gray-50);
+    font-family: var(--typography-fonts-lexend), system-ui, sans-serif;
   }
 
   * {

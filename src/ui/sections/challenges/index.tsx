@@ -2,11 +2,10 @@
 
 import { Container } from "@/components/layout";
 import { ChallengesGrid } from "./components/ChallengesGrid";
-import { InterconnectedSection } from "../interconnected";
 
 export default function ChallengesSection() {
   return (
-    <section className="py-8 bg-paper-200">
+    <section className="py-8 bg-gray-100">
       <Container>
         <div className="flex flex-col gap-4 md:gap-6 lg:gap-4 xl:gap-2">
           {/* Title and Subtitle */}
@@ -22,9 +21,6 @@ export default function ChallengesSection() {
 
           {/* Challenges Grid */}
           <ChallengesGrid />
-
-          {/* Additional Information */}
-          <InterconnectedSection />
         </div>
       </Container>
     </section>

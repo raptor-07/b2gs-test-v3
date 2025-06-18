@@ -1,4 +1,4 @@
-import ThemeToggle from "@/components/client/ThemeToggle";
+import ThemeToggle from "@/components/theme/ThemeToggle";
 
 export default function Page() {
   return (

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import DemoButton from "@/components/buttons/demo-button";
 import { NavbarProps } from "../../types";
-import ThemeToggle from "@/components/client/ThemeToggle";
 
 export function NavigationMenu({ items }: NavbarProps) {
   return (
@@ -13,17 +12,14 @@ export function NavigationMenu({ items }: NavbarProps) {
           <div key={item.name} className="relative group">
             <Link
               href={item.href}
-              className="relative inline-block px-3 py-2 text-sm font-medium text-gray-800 dark:text-gray-100 hover:text-primary-500 dark:hover:text-gray-50"
+              className="relative inline-block px-3 py-2 text-sm font-medium text-gray-800 hover:text-primary-500"
             >
               {item.name}
             </Link>
           </div>
         ))}
       </nav>
-      <div className="flex items-center gap-3">
-        <ThemeToggle />
-        <DemoButton className="h-9" />
-      </div>
+      <DemoButton className="h-9 w-34" />
     </div>
   );
 }

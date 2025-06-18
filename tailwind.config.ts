@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "selector",
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -115,14 +115,6 @@ const config: Config = {
           50: "var(--color-red-50)",
           100: "var(--color-red-100)",
           200: "var(--color-red-200)",
-        },
-        paper: {
-          50: "var(--color-paper-50)",
-          100: "var(--color-paper-100)",
-          200: "var(--color-paper-200)",
-          300: "var(--color-paper-300)",
-          400: "var(--color-paper-400)",
-          500: "var(--color-paper-500)",
         },
 
         // Schematic Colors
@@ -245,20 +237,20 @@ const config: Config = {
   },
   plugins: [
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    function ({ addUtilities }: { addUtilities: any }) {
+    function({ addUtilities }: { addUtilities: any }) {
       addUtilities({
-        ".scrollbar-hide": {
+        '.scrollbar-hide': {
           /* IE and Edge */
-          "-ms-overflow-style": "none",
+          '-ms-overflow-style': 'none',
           /* Firefox */
-          "scrollbar-width": "none",
+          'scrollbar-width': 'none',
           /* Safari and Chrome */
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-        },
+          '&::-webkit-scrollbar': {
+            display: 'none'
+          }
+        }
       });
-    },
+    }
   ],
 };
 export default config;

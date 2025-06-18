@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Lexend, IBM_Plex_Serif } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "./context/ThemeContext";
 import "./globals.css";
 
 const lexend = Lexend({
@@ -95,11 +95,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <head>
+        {/* Theme Script */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch {}
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${lexend.variable} ${ibmPlex.variable} antialiased transition-colors duration-300`}
       >
-        <ThemeProvider attribute="class" disableTransitionOnChange>{children}</ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
