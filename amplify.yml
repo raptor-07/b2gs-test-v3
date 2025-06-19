@@ -6,7 +6,6 @@ frontend:
         - echo "Using Node 18"
         - nvm install 18
         - nvm use 18
-        - echo "Fallback for missing secrets" && export NPM_TOKEN=dummy
         - npm ci || npm install --legacy-peer-deps
     build:
       commands:
