@@ -31,12 +31,10 @@ export function LottieFilesPlayer({
     // Import lottie-player dynamically for Next.js compatibility
     import("@lottiefiles/lottie-player")
       .then(() => {
-        // setIsPlayerLoaded(true);
-        onReady?.(playerRef);
-        setIsPlayerLoaded(true);
+        console.log("Lottie player loaded successfully");
       })
       .catch((error) => {
-        console.error("Error loading lottie-player:", error);
+        console.log("Error loading lottie-player:", error);
         setIsPlayerLoaded(false);
       });
   }, [onReady]);
@@ -76,6 +74,13 @@ export function LottieFilesPlayer({
       // loop={loop}
       // style={style}
       className={className}
+      onLoad={() => {
+        console.log("Lottie player instance loaded");
+        if (playerRef.current) {
+          onReady?.(playerRef);
+          setIsPlayerLoaded(true);
+        }
+      }}
     />
   );
 }
