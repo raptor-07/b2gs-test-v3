@@ -6,6 +6,8 @@ frontend:
         - echo "Using Node 18"
         - nvm install 18
         - nvm use 18
+        - corepack enable
+        - npm i -g npm@10
         - npm ci || npm install --legacy-peer-deps
     build:
       commands:
