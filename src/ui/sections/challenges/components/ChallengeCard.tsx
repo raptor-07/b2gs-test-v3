@@ -85,7 +85,7 @@ export function ChallengeCard({
       <div className="relative z-10 flex flex-col items-start gap-2 w-full">
         {/* Icon Lottie */}
         <div className="w-12 h-12 relative">
-          <motion.div layout className="w-full h-full relative">
+          {/* <motion.div layout className="w-full h-full relative">
             {!isIconPlayerReady && (
               <motion.div
                 layout
@@ -104,14 +104,14 @@ export function ChallengeCard({
                   priority
                 />
               </motion.div>
-            )}
+            )} */}
             <motion.div
-              layout
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isIconPlayerReady ? 1 : 0 }}
-              transition={{ duration: 0.3 }}
+              // layout
+              // initial={{ opacity: 0 }}
+              // animate={{ opacity: isIconPlayerReady ? 1 : 0 }}
+              // transition={{ duration: 0.3 }}
               className="w-full h-full absolute inset-0"
-              style={{ pointerEvents: isIconPlayerReady ? "auto" : "none" }}
+              // style={{ pointerEvents: isIconPlayerReady ? "auto" : "none" }}
             >
               <LottieFilesPlayer
                 id={iconPlayerId.current}
@@ -123,7 +123,7 @@ export function ChallengeCard({
                 onReady={handleIconPlayerReady}
               />
             </motion.div>
-          </motion.div>
+          {/* </motion.div> */}
         </div>
 
         {/* Title */}

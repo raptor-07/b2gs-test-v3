@@ -10,77 +10,54 @@ interface LottieFilesPlayerProps {
   controls?: boolean;
   style?: React.CSSProperties;
   className?: string;
-  // onLoad?: () => void;
   onReady?: (playerRef: React.RefObject<HTMLElement>) => void;
 }
 
 export function LottieFilesPlayer({
   src,
   id,
-  // autoplay = false,
-  // loop = false,
-  // style,
   className,
-  // onLoad,
   onReady,
 }: LottieFilesPlayerProps) {
   const playerRef = useRef<HTMLElement>(null);
-  const [isPlayerLoaded, setIsPlayerLoaded] = useState(false);
+  const [libLoaded, setLibLoaded] = useState(false);
 
+  // Load the lottie-player library once
   useEffect(() => {
-    // Import lottie-player dynamically for Next.js compatibility
     import("@lottiefiles/lottie-player")
-      .then(() => {
-        console.log("Lottie player loaded successfully");
-      })
+      .then(() => setLibLoaded(true))
       .catch((error) => {
         console.log("Error loading lottie-player:", error);
-        setIsPlayerLoaded(false);
       });
-  }, [onReady]);
+  }, []);
 
-  // useEffect(() => {
-  //   if (isPlayerLoaded && playerRef.current) {
-  //     const player = playerRef.current;
-
-  //     // const handleLoad = () => {
-  //     //   onLoad?.();
-  //     // };
-
-  //     // const handleReady = () => {
-  //     //   onReady?.();
-  //     // };
-
-  //     // player.addEventListener("load", handleLoad);
-  //     // player.addEventListener("ready", handleReady);
-
-  //     // return () => {
-  //     //   player.removeEventListener("load", handleLoad);
-  //     //   player.removeEventListener("ready", handleReady);
-  //     // };
-  //   }
-  // }, [isPlayerLoaded, onLoad, onReady]);
-
-  if (!isPlayerLoaded) {
-    return null;
-  }
+  // Attach event listener after both library and DOM node are ready
+  useEffect(() => {
+    if (!libLoaded || !playerRef.current) return;
+    const handleReady = () => {
+      onReady?.(playerRef);
+      // setIsPlayerLoaded(true);
+    };
+    playerRef.current.addEventListener("ready", handleReady);
+    // If already ready (e.g. cached), fire immediately
+    if (
+      typeof (playerRef.current as unknown as { isReady?: boolean }).isReady ===
+        "boolean" &&
+      (playerRef.current as unknown as { isReady: boolean }).isReady
+    ) {
+      handleReady();
+    }
+    return () => {
+      playerRef.current?.removeEventListener("ready", handleReady);
+    };
+  }, [libLoaded, onReady]);
 
   return (
     <lottie-player
       ref={playerRef as React.Ref<HTMLElement>}
       id={id}
       src={src}
-      // autoplay={autoplay}
-      // loop={loop}
-      // style={style}
       className={className}
-      onLoad={() => {
-        console.log("Lottie player instance loaded");
-        if (playerRef.current) {
-          onReady?.(playerRef);
-          setIsPlayerLoaded(true);
-        }
-      }}
     />
   );
 }
