@@ -43,19 +43,27 @@ export function ChallengeCard({
   //   setIsMainLottieLoaded(true);
   // }, []);
 
-  const handleMainPlayerReady = useCallback(() => {
+  const handleMainPlayerReady = () => {
     setIsMainPlayerReady(true);
     setupInteractivity(mainPlayerId.current, lottieContainerId.current);
-  }, [setupInteractivity]);
+  };
 
   // const handleIconLottieLoad = useCallback(() => {
   //   setIsIconLottieLoaded(true);
   // }, []);
 
-  const handleIconPlayerReady = useCallback(() => {
+  interface PlayerReadyHandler {
+    (playerRef: HTMLElement | null): void;
+  }
+
+  const handleIconPlayerReady: PlayerReadyHandler = (playerRef) => {
     setIsIconPlayerReady(true);
-    setupInteractivity(iconPlayerId.current, lottieContainerId.current);
-  }, [setupInteractivity]);
+    setupInteractivity(
+      iconPlayerId.current,
+      lottieContainerId.current,
+      playerRef
+    );
+  };
 
   return (
     <div

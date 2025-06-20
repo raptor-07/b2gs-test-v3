@@ -24,7 +24,7 @@ export function LottieFilesPlayer({
   // onLoad,
   onReady,
 }: LottieFilesPlayerProps) {
-  const playerRef = useRef<HTMLElement>(null);
+  const playerRef = useRef<>(null);
   const [isPlayerLoaded, setIsPlayerLoaded] = useState(false);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export function LottieFilesPlayer({
     import("@lottiefiles/lottie-player")
       .then(() => {
         // setIsPlayerLoaded(true);
-        onReady?.();
+        onReady?.(playerRef);
         setIsPlayerLoaded(true);
       })
       .catch((error) => {
@@ -72,9 +72,9 @@ export function LottieFilesPlayer({
       ref={playerRef}
       id={id}
       src={src}
-      autoplay={autoplay}
-      loop={loop}
-      style={style}
+      // autoplay={autoplay}
+      // loop={loop}
+      // style={style}
       className={className}
     />
   );
