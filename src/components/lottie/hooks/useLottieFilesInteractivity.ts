@@ -13,7 +13,7 @@ export function useLottieFilesInteractivity() {
   const setupInteractivity = async (
     playerId: string,
     containerId?: string,
-    playerRef?: React.RefObject<HTMLElement>
+    playerRef?: React.Ref<HTMLElement>
   ) => {
     try {
       // Import lottie-interactivity dynamically
@@ -51,11 +51,30 @@ export function useLottieFilesInteractivity() {
 
       // console.log("interactivityInstances:", interactivityInstances.current);
 
-      if (playerRef?.current) {
-        playerRef?.current?.addEventListener("load", () => {
+      // if (
+      //   playerRef
+      //   // &&
+      //   // typeof playerRef !== "function" &&
+      //   // "current" in playerRef &&
+      //   // playerRef.current
+      // ) {
+      //   playerRef.current.addEventListener("load", () => {
+      //     console.log(
+      //       `Lottie player ${playerId} loaded, setting up interactivity...`
+      //     );
+      //     create(interactivityConfig);
+      //     console.log(`Lottie interactivity set up for player: ${playerId}`);
+      //   });
+      // }
+      if (playerRef.current) {
+        playerRef.current.addEventListener("load", () => {
+          console.log(
+            `Lottie player ${playerId} loaded, setting up interactivity...`
+          );
           create(interactivityConfig);
         });
       }
+      // create(interactivityConfig);
     } catch (error) {
       console.error("Error setting up Lottie interactivity:", error);
     }

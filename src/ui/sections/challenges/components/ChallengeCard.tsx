@@ -43,17 +43,21 @@ export function ChallengeCard({
   //   setIsMainLottieLoaded(true);
   // }, []);
 
-  const handleMainPlayerReady = () => {
+  const handleMainPlayerReady = (playerRef: React.RefObject<HTMLElement>) => {
     setIsMainPlayerReady(true);
-    setupInteractivity(mainPlayerId.current, lottieContainerId.current);
+    setupInteractivity(
+      mainPlayerId.current,
+      lottieContainerId.current,
+      playerRef
+    );
   };
 
   // const handleIconLottieLoad = useCallback(() => {
   //   setIsIconLottieLoaded(true);
   // }, []);
 
-  const handleIconPlayerReady = (playerRef: React.RefObject<HTMLElement>) => {
-    setIsIconPlayerReady(true);
+  const handleIconPlayerReady = (playerRef: React.Ref<HTMLElement>) => {
+    // setIsIconPlayerReady(true);
     setupInteractivity(
       iconPlayerId.current,
       lottieContainerId.current,
@@ -105,24 +109,24 @@ export function ChallengeCard({
                 />
               </motion.div>
             )} */}
-            <motion.div
-              // layout
-              // initial={{ opacity: 0 }}
-              // animate={{ opacity: isIconPlayerReady ? 1 : 0 }}
-              // transition={{ duration: 0.3 }}
-              className="w-full h-full absolute inset-0"
-              // style={{ pointerEvents: isIconPlayerReady ? "auto" : "none" }}
-            >
-              <LottieFilesPlayer
-                id={iconPlayerId.current}
-                src={iconLottieUrl}
-                autoplay={false}
-                loop={false}
-                className="w-full h-full"
-                style={{ pointerEvents: "none" }}
-                onReady={handleIconPlayerReady}
-              />
-            </motion.div>
+          <motion.div
+            // layout
+            // initial={{ opacity: 0 }}
+            // animate={{ opacity: isIconPlayerReady ? 1 : 0 }}
+            // transition={{ duration: 0.3 }}
+            className="w-full h-full absolute inset-0"
+            // style={{ pointerEvents: isIconPlayerReady ? "auto" : "none" }}
+          >
+            <LottieFilesPlayer
+              id={iconPlayerId.current}
+              src={iconLottieUrl}
+              autoplay={false}
+              loop={false}
+              className="w-full h-full"
+              style={{ pointerEvents: "none" }}
+              onReady={handleIconPlayerReady}
+            />
+          </motion.div>
           {/* </motion.div> */}
         </div>
 

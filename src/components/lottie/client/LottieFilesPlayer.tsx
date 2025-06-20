@@ -34,22 +34,9 @@ export function LottieFilesPlayer({
   // Attach event listener after both library and DOM node are ready
   useEffect(() => {
     if (!libLoaded || !playerRef.current) return;
-    const handleReady = () => {
-      onReady?.(playerRef);
-      // setIsPlayerLoaded(true);
-    };
-    playerRef.current.addEventListener("ready", handleReady);
-    // If already ready (e.g. cached), fire immediately
-    if (
-      typeof (playerRef.current as unknown as { isReady?: boolean }).isReady ===
-        "boolean" &&
-      (playerRef.current as unknown as { isReady: boolean }).isReady
-    ) {
-      handleReady();
-    }
-    return () => {
-      playerRef.current?.removeEventListener("ready", handleReady);
-    };
+
+    onReady?.(playerRef);
+    // setIsPlayerLoaded(true);
   }, [libLoaded, onReady]);
 
   return (
