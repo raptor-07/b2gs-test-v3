@@ -3,12 +3,12 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "Using Node 18"
-        - nvm install 18
-        - nvm use 18
+        - echo "Using Node 20"
+        - nvm install 20
+        - nvm use 20
         - rm -rf node_modules
         - corepack enable
-        - npm i -g npm@10
+        - npm i -g npm@11
         - npm ci || npm install --legacy-peer-deps
     build:
       commands:
