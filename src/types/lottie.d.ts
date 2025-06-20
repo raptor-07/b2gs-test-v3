@@ -20,3 +20,27 @@ declare module "@lottiefiles/react-lottie-player" {
     setPlayerSpeed(speed?: number): void;
   }
 }
+
+// Add support for lottie-player web component
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'lottie-player': React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement> & {
+          id?: string;
+          src?: string;
+          autoplay?: boolean;
+          controls?: boolean;
+          loop?: boolean;
+          mode?: string;
+          speed?: number;
+          style?: React.CSSProperties;
+          ref?: React.Ref<HTMLElement>;
+        },
+        HTMLElement
+      >;
+    }
+  }
+}
+
+export {};

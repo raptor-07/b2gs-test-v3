@@ -24,7 +24,7 @@ export default function ChallengesSection() {
           <ChallengesGrid />
 
           {/* Additional Information */}
-          <InterconnectedSection />
+          {/* <InterconnectedSection /> */}
         </div>
       </Container>
     </section>

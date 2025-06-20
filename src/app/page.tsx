@@ -6,9 +6,9 @@ import ChallengesSection from "@/ui/sections/challenges";
 export default function Home() {
   return (
     <main>
-      <Header />
+      {/* <Header /> */}
       <div className="flex flex-col">
-        <HeroSection />
+        {/* <HeroSection /> */}
         <ChallengesSection />
         {/* <InterconnectedSection /> */}
       </div>
