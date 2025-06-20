@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState, useCallback } from "react";
 import { LottieFilesPlayer } from "@/components/lottie/client/LottieFilesPlayer";
@@ -81,13 +81,15 @@ export function ChallengeCard({
       <div className="relative z-10 flex flex-col items-start gap-2 w-full">
         {/* Icon Lottie */}
         <div className="w-12 h-12 relative">
-          <AnimatePresence mode="wait">
-            {isIconPlayerReady ? (
+          <motion.div layout className="w-full h-full relative">
+            {!isIconPlayerReady && (
               <motion.div
-                key="icon-placeholder"
+                layout
                 initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="w-full h-full"
+                transition={{ duration: 0.3 }}
+                className="w-full h-full absolute inset-0"
               >
                 <Image
                   src={iconPlaceholderImage}
@@ -98,28 +100,26 @@ export function ChallengeCard({
                   priority
                 />
               </motion.div>
-            ) : (
-              <motion.div
-                key="icon-lottie"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="w-full h-full absolute inset-0"
-              >
-                <LottieFilesPlayer
-                  id={iconPlayerId.current}
-                  src={iconLottieUrl}
-                  autoplay={false}
-                  loop={false}
-                  className="w-full h-full"
-                  style={{ pointerEvents: "none" }}
-                  // onLoad={handleIconPlayerReady}
-                  onReady={handleIconPlayerReady}
-                />
-              </motion.div>
             )}
-          </AnimatePresence>
+            <motion.div
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isIconPlayerReady ? 1 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="w-full h-full absolute inset-0"
+              style={{ pointerEvents: isIconPlayerReady ? "auto" : "none" }}
+            >
+              <LottieFilesPlayer
+                id={iconPlayerId.current}
+                src={iconLottieUrl}
+                autoplay={false}
+                loop={false}
+                className="w-full h-full"
+                style={{ pointerEvents: "none" }}
+                onReady={handleIconPlayerReady}
+              />
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Title */}
@@ -139,13 +139,15 @@ export function ChallengeCard({
         {/* Main Animation */}
         <div className="w-full flex justify-center items-center">
           <div className="w-[70%] aspect-video relative">
-            <AnimatePresence mode="wait">
-              {isMainPlayerReady ? (
+            <motion.div layout className="w-full h-full relative">
+              {!isMainPlayerReady && (
                 <motion.div
-                  key="animation-placeholder"
+                  layout
                   initial={{ opacity: 1 }}
+                  animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="w-full h-full"
+                  transition={{ duration: 0.3 }}
+                  className="w-full h-full absolute inset-0"
                 >
                   <Image
                     src={placeholderImage}
@@ -154,28 +156,26 @@ export function ChallengeCard({
                     priority
                   />
                 </motion.div>
-              ) : (
-                <motion.div
-                  key="main-lottie"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-full h-full absolute inset-0"
-                >
-                  <LottieFilesPlayer
-                    id={mainPlayerId.current}
-                    src={animationUrl}
-                    autoplay={false}
-                    loop={false}
-                    className="w-full h-full"
-                    style={{ pointerEvents: "none" }}
-                    // onLoad={handleMainPlayerReady}
-                    onReady={handleMainPlayerReady}
-                  />
-                </motion.div>
               )}
-            </AnimatePresence>
+              <motion.div
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isMainPlayerReady ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-full h-full absolute inset-0"
+                style={{ pointerEvents: isMainPlayerReady ? "auto" : "none" }}
+              >
+                <LottieFilesPlayer
+                  id={mainPlayerId.current}
+                  src={animationUrl}
+                  autoplay={false}
+                  loop={false}
+                  className="w-full h-full"
+                  style={{ pointerEvents: "none" }}
+                  onReady={handleMainPlayerReady}
+                />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>
