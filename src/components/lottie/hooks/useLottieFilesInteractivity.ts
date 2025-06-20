@@ -1,14 +1,14 @@
 "use client";
 
-import { useRef } from "react";
+// import { useRef } from "react";
 
 // Type for LottieFiles interactivity instance
-type LottieInteractivityInstance = unknown;
+// type LottieInteractivityInstance = unknown;
 
 export function useLottieFilesInteractivity() {
-  const interactivityInstances = useRef<
-    Map<string, LottieInteractivityInstance>
-  >(new Map());
+  // const interactivityInstances = useRef<
+  //   Map<string, LottieInteractivityInstance>
+  // >(new Map());
 
   const setupInteractivity = async (
     playerId: string,
@@ -20,9 +20,9 @@ export function useLottieFilesInteractivity() {
       const { create } = await import("@lottiefiles/lottie-interactivity");
 
       // Check if interactivity is already set up for this player
-      if (interactivityInstances.current.has(playerId)) {
-        return;
-      }
+      // if (interactivityInstances.current.has(playerId)) {
+      //   return;
+      // }
 
       // Configure interactivity for hover effects
       const interactivityConfig = {
@@ -49,14 +49,13 @@ export function useLottieFilesInteractivity() {
       //   interactivityConfig
       // );
 
-      console.log("interactivityInstances:", interactivityInstances.current);
+      // console.log("interactivityInstances:", interactivityInstances.current);
 
-      playerRef?.current?.addEventListener("load", () => {
-        interactivityInstances.current.set(
-          playerId,
-          create(interactivityConfig)
-        );
-      });
+      if (playerRef?.current) {
+        playerRef?.current?.addEventListener("load", () => {
+          create(interactivityConfig);
+        });
+      }
     } catch (error) {
       console.error("Error setting up Lottie interactivity:", error);
     }

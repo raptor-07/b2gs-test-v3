@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState } from "react";
 import { LottieFilesPlayer } from "@/components/lottie/client/LottieFilesPlayer";
 import { useLottieFilesInteractivity } from "@/components/lottie/hooks/useLottieFilesInteractivity";
 
@@ -52,11 +52,7 @@ export function ChallengeCard({
   //   setIsIconLottieLoaded(true);
   // }, []);
 
-  interface PlayerReadyHandler {
-    (playerRef: HTMLElement | null): void;
-  }
-
-  const handleIconPlayerReady: PlayerReadyHandler = (playerRef) => {
+  const handleIconPlayerReady = (playerRef: React.RefObject<HTMLElement>) => {
     setIsIconPlayerReady(true);
     setupInteractivity(
       iconPlayerId.current,
@@ -145,7 +141,7 @@ export function ChallengeCard({
         </div>
 
         {/* Main Animation */}
-        <div className="w-full flex justify-center items-center">
+        {/* <div className="w-full flex justify-center items-center">
           <div className="w-[70%] aspect-video relative">
             <motion.div layout className="w-full h-full relative">
               {!isMainPlayerReady && (
@@ -185,7 +181,7 @@ export function ChallengeCard({
               </motion.div>
             </motion.div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

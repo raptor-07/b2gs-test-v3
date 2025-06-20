@@ -11,20 +11,20 @@ interface LottieFilesPlayerProps {
   style?: React.CSSProperties;
   className?: string;
   // onLoad?: () => void;
-  onReady?: () => void;
+  onReady?: (playerRef: React.RefObject<HTMLElement>) => void;
 }
 
 export function LottieFilesPlayer({
   src,
   id,
-  autoplay = false,
-  loop = false,
-  style,
+  // autoplay = false,
+  // loop = false,
+  // style,
   className,
   // onLoad,
   onReady,
 }: LottieFilesPlayerProps) {
-  const playerRef = useRef<>(null);
+  const playerRef = useRef<HTMLElement>(null);
   const [isPlayerLoaded, setIsPlayerLoaded] = useState(false);
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export function LottieFilesPlayer({
 
   return (
     <lottie-player
-      ref={playerRef}
+      ref={playerRef as React.Ref<HTMLElement>}
       id={id}
       src={src}
       // autoplay={autoplay}
