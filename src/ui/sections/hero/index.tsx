@@ -5,12 +5,12 @@ import { Container } from "@/components/layout";
 import { ContentSection } from "./components/ContentSection";
 import { StatsSection } from "./components/StatsSection";
 import { EarthAnimation } from "./components/EarthAnimation";
-import ParticlesBackground from "./components/particles/ParticlesBackground";
+// import ParticlesBackground from "./components/particles/ParticlesBackground";
 
 export default function HeroSection() {
   return (
     <section className="relative w-full py-8 bg-paper-100 dark:bg-mint-900 overflow-hidden">
-      <ParticlesBackground />
+      {/* <ParticlesBackground /> */}
       <Container className="relative z-10 xl:py-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-4 lg:gap-2">
           {/* Content */}

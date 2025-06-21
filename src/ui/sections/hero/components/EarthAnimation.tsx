@@ -6,6 +6,7 @@ import { LottiePlayer } from "@/components/lottie";
 import { useAnimationData } from "@/components/lottie/hooks/useAnimationData";
 import Image from "next/image";
 import useIsMobile from "@/hooks/useIsMobile";
+import ParticlesBackground from "@/ui/sections/hero/components/particles/ParticlesBackground";
 
 export function EarthAnimation({ className }: { className?: string }) {
   const isMobile = useIsMobile();
@@ -23,6 +24,7 @@ export function EarthAnimation({ className }: { className?: string }) {
         className
       )}
     >
+      <ParticlesBackground />
       <AnimatePresence mode="wait">
         {!animationData ? (
           <motion.div
