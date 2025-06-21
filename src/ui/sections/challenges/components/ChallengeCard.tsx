@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { useRef, useState } from "react";
+import { useId } from "react";
 import { LottieFilesPlayer } from "@/components/lottie/client/LottieFilesPlayer";
 import { useLottieFilesInteractivity } from "@/components/lottie/hooks/useLottieFilesInteractivity";
 
@@ -28,39 +27,32 @@ export function ChallengeCard({
   // Add loading states for both player readiness and animation data
   // const [isMainLottieLoaded, setIsMainLottieLoaded] = useState(false);
   // const [isIconLottieLoaded, setIsIconLottieLoaded] = useState(false);
-  const [isMainPlayerReady, setIsMainPlayerReady] = useState(false);
-  const [isIconPlayerReady, setIsIconPlayerReady] = useState(false);
+  // const [isMainPlayerReady, setIsMainPlayerReady] = useState(false);
+  // const [isIconPlayerReady, setIsIconPlayerReady] = useState(false);
 
-  // Generate unique IDs for the players
-  const mainPlayerId = useRef(`main-lottie-${Math.random().toString(36)}`);
-  const iconPlayerId = useRef(`icon-lottie-${Math.random().toString(36)}`);
-  const lottieContainerId = useRef(
-    `lottie-container-${Math.random().toString(36)}`
-  );
+  // Generate stable unique IDs for the players (hydration-safe)
+  // Use React 18's useId for stable IDs between server and client
+  const iconPlayerId = useId() + "-icon";
+  const lottieContainerId = useId() + "-container";
 
   // Create callback handlers
   // const handleMainLottieLoad = useCallback(() => {
   //   setIsMainLottieLoaded(true);
   // }, []);
 
-  const handleMainPlayerReady = (playerRef: React.RefObject<HTMLElement>) => {
-    setIsMainPlayerReady(true);
-    setupInteractivity(
-      mainPlayerId.current,
-      lottieContainerId.current,
-      playerRef
-    );
-  };
-
-  // const handleIconLottieLoad = useCallback(() => {
-  //   setIsIconLottieLoaded(true);
-  // }, []);
+  // const handleMainPlayerReady = (playerRef: React.RefObject<HTMLElement>) => {
+  //   setIsMainPlayerReady(true);
+  //   setupInteractivity(
+  //     mainPlayerId,
+  //     lottieContainerId,
+  //     playerRef
+  //   );
+  // };
 
   const handleIconPlayerReady = (playerRef: React.Ref<HTMLElement>) => {
-    // setIsIconPlayerReady(true);
     setupInteractivity(
-      iconPlayerId.current,
-      lottieContainerId.current,
+      iconPlayerId,
+      lottieContainerId,
       playerRef
     );
   };
@@ -72,7 +64,7 @@ export function ChallengeCard({
         background:
           "linear-gradient(179.959deg, #DDDDDD 0%, rgba(255, 255, 255, 10%) 100%)",
       }}
-      id={lottieContainerId.current}
+      id={lottieContainerId}
     >
       {/* Background texture */}
       <div
@@ -118,7 +110,7 @@ export function ChallengeCard({
             // style={{ pointerEvents: isIconPlayerReady ? "auto" : "none" }}
           >
             <LottieFilesPlayer
-              id={iconPlayerId.current}
+              id={iconPlayerId}
               src={iconLottieUrl}
               autoplay={false}
               loop={false}
