@@ -1,7 +1,12 @@
 "use client";
+import { InteractivityConfig } from "../client/types";
 
 export function useLottieFilesInteractivity() {
-  const setupInteractivity = async (playerId: string, containerId?: string) => {
+  const setupInteractivity = async (
+    playerId: string,
+    containerId?: string,
+    interactivityConfig: InteractivityConfig
+  ) => {
     try {
       // Validate the selector before proceeding
       if (!playerId || !isValidCSSSelector(playerId)) {
@@ -11,17 +16,6 @@ export function useLottieFilesInteractivity() {
 
       // Import lottie-interactivity dynamically
       const { create } = await import("@lottiefiles/lottie-interactivity");
-
-      // Configure interactivity for hover effects
-      const interactivityConfig = {
-        player: `#${playerId}`,
-        mode: "cursor" as const,
-        actions: [
-          {
-            type: "hold" as const,
-          },
-        ],
-      };
 
       // If container is provided, add it to config
       if (containerId && isValidCSSSelector(containerId)) {

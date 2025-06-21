@@ -8,6 +8,7 @@ interface LottieFilesPlayerProps {
   id?: string;
   src: string;
   placeholderImage: string;
+  isInteractive?: boolean;
   autoplay?: boolean;
   loop?: boolean;
   controls?: boolean;
@@ -21,11 +22,13 @@ export function LottieFilesPlayer({
   id,
   src,
   placeholderImage,
+  isInteractive = false,
   style,
   className,
   autoplay = false,
   loop = false,
   controls = false,
+
   onReady,
   onLoad,
 }: LottieFilesPlayerProps) {
@@ -45,6 +48,10 @@ export function LottieFilesPlayer({
   // Attach event listener after both library and DOM node are ready
   useEffect(() => {
     if (!libLoaded || !playerRef.current) return;
+
+    if (!isInteractive) {
+      return; // Skip if not interactive
+    }
 
     const player = playerRef.current;
 
