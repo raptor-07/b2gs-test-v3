@@ -1,8 +1,7 @@
-export { LottiePlayer } from './client/LottiePlayer';
-export { LottieBase } from './client/LottieBase';
-export { LottieWrapper } from './server/LottieWrapper';
-export { usePreloadAnimation } from './hooks/usePreloadAnimation';
-export { useLottieInteractivity } from './hooks/useLottieInteractivity';
+export { LottiePlayer } from "./client/LottiePlayer";
+export { LottieBase } from "./client/LottieBase";
+export { LottieWrapper } from "./server/LottieWrapper";
+export { usePreloadAnimation } from "./hooks/usePreloadAnimation";
 
 // Types
 export type {
@@ -10,5 +9,5 @@ export type {
   LottieOptions,
   InteractivityConfig,
   InteractivityMode,
-  InteractivityAction
-} from './client/types';
+  InteractivityAction,
+} from "./client/types";

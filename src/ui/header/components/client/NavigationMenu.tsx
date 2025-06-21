@@ -3,7 +3,7 @@
 import Link from "next/link";
 import DemoButton from "@/components/buttons/demo-button";
 import { NavbarProps } from "../../types";
-import ThemeToggle from "@/components/client/ThemeToggle";
+// import ThemeToggle from "@/components/client/ThemeToggle";
 
 export function NavigationMenu({ items }: NavbarProps) {
   return (
@@ -21,7 +21,7 @@ export function NavigationMenu({ items }: NavbarProps) {
         ))}
       </nav>
       <div className="flex items-center gap-3">
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
         <DemoButton className="h-9" />
       </div>
     </div>

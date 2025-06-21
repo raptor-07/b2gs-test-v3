@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Lexend, IBM_Plex_Serif } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+// import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 const lexend = Lexend({
@@ -99,7 +99,7 @@ export default function RootLayout({
       <body
         className={`${lexend.variable} ${ibmPlex.variable} antialiased transition-colors duration-300`}
       >
-        <ThemeProvider attribute="class" disableTransitionOnChange>{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   );

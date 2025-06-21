@@ -15,28 +15,28 @@ const challenges = [
     placeholderImage: "/assets/challenges/reach.svg",
     iconPlaceholderImage: "/assets/challenges/tracetrack.svg",
   },
-  // {
-  //   title: "Carbon Intensive Recycling",
-  //   description: [
-  //     "Carbon intensive logistics and freight make traditional recycling unsustainable.",
-  //     "Harmful disposal of hard-to-recycle materials drives high end-of-life emissions.",
-  //   ],
-  //   animation: "/assets/lottie/smoke.json",
-  //   iconLottie: "/assets/lottie/recycle.json",
-  //   placeholderImage: "/assets/challenges/smoke.svg",
-  //   iconPlaceholderImage: "/assets/challenges/recycle.svg",
-  // },
-  // {
-  //   title: "Absence of a Unified Marketplace ",
-  //   description: [
-  //     "Lack of integration between scrap producers and material consumers causes misalignment.",
-  //     "Lack of verification and grading for green recycled materials hinders circularity adoption.",
-  //   ],
-  //   animation: "/assets/lottie/smoke.json",
-  //   iconLottie: "/assets/lottie/recycle.json",
-  //   placeholderImage: "/assets/challenges/smoke.svg",
-  //   iconPlaceholderImage: "/assets/challenges/recycle.svg",
-  // },
+  {
+    title: "Carbon Intensive Recycling",
+    description: [
+      "Carbon intensive logistics and freight make traditional recycling unsustainable.",
+      "Harmful disposal of hard-to-recycle materials drives high end-of-life emissions.",
+    ],
+    animation: "/assets/lottie/smoke.json",
+    iconLottie: "/assets/lottie/recycle.json",
+    placeholderImage: "/assets/challenges/smoke.svg",
+    iconPlaceholderImage: "/assets/challenges/recycle.svg",
+  },
+  {
+    title: "Absence of a Unified Marketplace ",
+    description: [
+      "Lack of integration between scrap producers and material consumers causes misalignment.",
+      "Lack of verification and grading for green recycled materials hinders circularity adoption.",
+    ],
+    animation: "/assets/lottie/smoke.json",
+    iconLottie: "/assets/lottie/recycle.json",
+    placeholderImage: "/assets/challenges/smoke.svg",
+    iconPlaceholderImage: "/assets/challenges/recycle.svg",
+  },
 ];
 
 export function ChallengesGrid() {

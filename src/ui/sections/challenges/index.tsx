@@ -2,7 +2,7 @@
 
 import { Container } from "@/components/layout";
 import { ChallengesGrid } from "./components/ChallengesGrid";
-// import { InterconnectedSection } from "../interconnected";
+import { InterconnectedSection } from "../interconnected";
 
 export default function ChallengesSection() {
   return (
@@ -24,7 +24,7 @@ export default function ChallengesSection() {
           <ChallengesGrid />
 
           {/* Additional Information */}
-          {/* <InterconnectedSection /> */}
+          <InterconnectedSection />
         </div>
       </Container>
     </section>

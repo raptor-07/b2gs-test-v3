@@ -17,11 +17,11 @@ interface ChallengeCardProps {
 export function ChallengeCard({
   title,
   description,
-  // animationUrl,
+  animationUrl,
   iconLottieUrl,
-}: // placeholderImage,
-// iconPlaceholderImage,
-ChallengeCardProps) {
+  placeholderImage,
+  iconPlaceholderImage,
+}: ChallengeCardProps) {
   const { setupInteractivity } = useLottieFilesInteractivity();
 
   // Generate stable unique IDs but sanitize them for CSS selectors
@@ -29,12 +29,19 @@ ChallengeCardProps) {
   // Replace colons and other invalid characters with valid ones
   const sanitizedId = baseId.replace(/:/g, "_").replace(/\./g, "_");
   const iconPlayerId = `${sanitizedId}-icon`;
+  const mainPlayerId = `${sanitizedId}-main`;
   const lottieContainerId = `${sanitizedId}-container`;
 
   // Handle when the lottie player is loaded and ready for interactivity
   const handleIconPlayerLoad = () => {
     console.log(`Icon player ${iconPlayerId} loaded, setting up interactivity`);
     setupInteractivity(iconPlayerId, lottieContainerId);
+  };
+
+  // Set up interactivity for the main animation player
+  const handleMainPlayerLoad = () => {
+    console.log(`Main player ${mainPlayerId} loaded, setting up interactivity`);
+    setupInteractivity(mainPlayerId, lottieContainerId);
   };
 
   return (
@@ -65,10 +72,8 @@ ChallengeCardProps) {
             <LottieFilesPlayer
               id={iconPlayerId}
               src={iconLottieUrl}
-              autoplay={false}
-              loop={false}
+              placeholderImage={iconPlaceholderImage}
               className="w-full h-full"
-              style={{ pointerEvents: "none" }}
               onLoad={handleIconPlayerLoad}
             />
           </motion.div>
@@ -86,6 +91,21 @@ ChallengeCardProps) {
               {text}
             </p>
           ))}
+        </div>
+
+        {/* Main Animation */}
+        <div className="w-full flex justify-center items-center">
+          <div className="w-[70%] aspect-video relative">
+            <motion.div layout className="w-full h-full relative">
+              <LottieFilesPlayer
+                id={mainPlayerId}
+                src={animationUrl}
+                placeholderImage={placeholderImage}
+                className="w-full h-full"
+                onLoad={handleMainPlayerLoad}
+              />
+            </motion.div>
+          </div>
         </div>
       </div>
     </div>

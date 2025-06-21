@@ -1,10 +1,13 @@
 "use client";
 
+import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 interface LottieFilesPlayerProps {
-  src: string;
   id?: string;
+  src: string;
+  placeholderImage: string;
   autoplay?: boolean;
   loop?: boolean;
   controls?: boolean;
@@ -15,14 +18,20 @@ interface LottieFilesPlayerProps {
 }
 
 export function LottieFilesPlayer({
-  src,
   id,
+  src,
+  placeholderImage,
+  style,
   className,
+  autoplay = false,
+  loop = false,
+  controls = false,
   onReady,
   onLoad,
 }: LottieFilesPlayerProps) {
   const playerRef = useRef<HTMLElement>(null);
   const [libLoaded, setLibLoaded] = useState(false);
+  const [lottieReady, setLottieReady] = useState(false);
 
   // Load the lottie-player library once
   useEffect(() => {
@@ -54,19 +63,58 @@ export function LottieFilesPlayer({
     // Also listen for 'ready' event as fallback
     player.addEventListener("ready", handleLoad);
 
+    // Set the player to ready state
+    setLottieReady(true);
+
     // Cleanup
     return () => {
       player.removeEventListener("load", handleLoad);
       player.removeEventListener("ready", handleLoad);
+      setLottieReady(false);
     };
   }, [libLoaded, onReady, onLoad, id]);
 
   return (
-    <lottie-player
-      ref={playerRef as React.Ref<HTMLElement>}
-      id={id}
-      src={src}
-      className={className}
-    />
+    <motion.div style={{ position: "relative" }}>
+      <motion.div
+        animate={{ opacity: lottieReady ? 0 : 1 }}
+        transition={{ opacity: { duration: 0.4 } }}
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <Image
+          src={placeholderImage}
+          alt="Loading animation"
+          width={800}
+          height={800}
+          className={className}
+          style={style}
+        />
+      </motion.div>
+      <motion.div
+        animate={{ opacity: lottieReady ? 1 : 0 }}
+        transition={{ opacity: { duration: 0.4 } }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          pointerEvents: lottieReady ? "auto" : "none",
+        }}
+      >
+        <lottie-player
+          ref={playerRef as React.Ref<HTMLElement>}
+          id={id}
+          src={src}
+          className={className}
+          style={style}
+          {...(autoplay ? { autoplay: true } : {})}
+          {...(loop ? { loop: true } : {})}
+          {...(controls ? { controls: true } : {})}
+        />
+      </motion.div>
+    </motion.div>
   );
 }
