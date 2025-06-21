@@ -17,8 +17,9 @@ export function InterconnectedAnimation({ className }: { className?: string }) {
           <LottieFilesPlayer
             id="interconnected-animation"
             src="/assets/lottie/interconnected.json"
-            className="w-full h-full"
             placeholderImage="/assets/interconnected/interconnected.svg"
+            className="w-full h-full"
+            isInteractive={false}
             style={{ width: "100%", height: "100%" }}
             autoplay={true}
             loop={true}

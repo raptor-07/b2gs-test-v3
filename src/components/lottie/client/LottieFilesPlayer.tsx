@@ -49,6 +49,7 @@ export function LottieFilesPlayer({
     if (!libLoaded || !playerRef.current) return;
 
     if (!isInteractive) {
+      setLottieReady(true);
       return; // Skip if not interactive
     }
 
