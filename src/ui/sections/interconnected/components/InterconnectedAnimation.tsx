@@ -1,14 +1,10 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { cn } from "@/utils/cn";
-import { LottiePlayer } from "@/components/lottie";
-import { useAnimationData } from "@/components/lottie/hooks/useAnimationData";
-import Image from "next/image";
+import { LottieFilesPlayer } from "@/components/lottie/client/LottieFilesPlayer";
 
 export function InterconnectedAnimation({ className }: { className?: string }) {
-  const animationData = useAnimationData("/assets/lottie/interconnected.json");
-
   return (
     <div
       className={cn(
@@ -16,42 +12,21 @@ export function InterconnectedAnimation({ className }: { className?: string }) {
         className
       )}
     >
-      <AnimatePresence mode="wait">
-        {!animationData ? (
-          <motion.div
-            key="placeholder"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="w-full h-full flex items-center justify-center"
-          >
-            <Image
-              src="/assets/interconnected/interconnected.svg"
-              alt="Interconnected Animation Placeholder"
-              width={400}
-              height={400}
-              className="w-full h-auto object-contain"
-              priority
-            />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="lottie"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="w-full h-full relative"
-          >
-            <div className="w-full h-full">
-              <LottiePlayer
-                animationData={animationData}
-                className="w-full h-full"
-                autoplay={true}
-                loop={true}
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div key="lottie" className="w-full h-full relative">
+        <div className="w-full h-full">
+          <LottieFilesPlayer
+            id="interconnected-animation"
+            src="/assets/lottie/interconnected.json"
+            placeholderImage="/assets/interconnected/interconnected.svg"
+            className="w-full h-full"
+            isInteractive={false}
+            style={{ width: "100%", height: "100%" }}
+            autoplay={true}
+            loop={true}
+            controls={false}
+          />
+        </div>
+      </motion.div>
     </div>
   );
 }

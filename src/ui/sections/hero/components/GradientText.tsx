@@ -13,13 +13,15 @@ export function GradientText({ children, className = "" }: GradientTextProps) {
 
   return (
     <motion.span
-      className={`bg-clip-text text-transparent inline-block ${className}`}
+      className={`bg-clip-text text-transparent inline-block pr-[0.3ch] pl-[-0.2ch] ${className}`}
       style={{
         backgroundImage: "linear-gradient(90deg, #05CD99 0%, #4A806F 100%)",
         backgroundSize: "200% 100%",
+        WebkitBackgroundClip: "text",
+        backgroundClip: "text",
       }}
       animate={{
-        backgroundPosition: isHovered ? "20% 50%" : "0% 40%",
+        backgroundPosition: isHovered ? "70% 50%" : "90% 100%",
       }}
       transition={{
         duration: 0.8,

@@ -2,13 +2,13 @@ import type { ISourceOptions } from "@tsparticles/engine";
 
 export const nasaConfig: ISourceOptions = {
   style: {
-    filter: 'blur(0px)',
+    filter: "blur(0px)",
   },
   particles: {
     number: {
-      value: 80,
+      value: 1500,
       density: {
-        enable: true
+        enable: true,
       },
     },
     color: {
@@ -20,19 +20,19 @@ export const nasaConfig: ISourceOptions = {
     },
     opacity: {
       value: {
-        min: 0.3,
+        min: 0.1,
         max: 0.8,
       },
       animation: {
         enable: true,
-        speed: 0.5,
-        sync: false,
+        speed: 0.2,
+        sync: true,
       },
     },
     size: {
       value: {
-        min: 0.8,
-        max: 2.5,
+        min: 1,
+        max: 3,
       },
     },
     move: {
@@ -41,11 +41,11 @@ export const nasaConfig: ISourceOptions = {
         min: 0.3,
         max: 1,
       },
-      direction: "none",
+      direction: "inside",
       random: true,
-      straight: false,
+      straight: true,
       outModes: {
-        default: "bounce"
+        default: "split",
       },
     },
   },
@@ -54,10 +54,6 @@ export const nasaConfig: ISourceOptions = {
       onHover: {
         enable: true,
         mode: "bubble",
-      },
-      onClick: {
-        enable: true,
-        mode: "repulse",
       },
     },
     modes: {
@@ -86,12 +82,11 @@ export const nasaConfig: ISourceOptions = {
       },
     },
   },
-    background: {
-      color: "transparent",
-    },
-    detectRetina: true,
-    fullScreen: {
-      enable: false,
-      zIndex: 0
-    },
+  background: {
+    color: "transparent",
+  },
+  fullScreen: {
+    enable: false,
+    zIndex: -100,
+  },
 };

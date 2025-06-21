@@ -6,6 +6,7 @@ import { LottiePlayer } from "@/components/lottie";
 import { useAnimationData } from "@/components/lottie/hooks/useAnimationData";
 import Image from "next/image";
 import useIsMobile from "@/hooks/useIsMobile";
+import ParticlesBackground from "@/ui/sections/hero/components/particles/ParticlesBackground";
 
 export function EarthAnimation({ className }: { className?: string }) {
   const isMobile = useIsMobile();
@@ -23,6 +24,7 @@ export function EarthAnimation({ className }: { className?: string }) {
         className
       )}
     >
+      <ParticlesBackground />
       <AnimatePresence mode="wait">
         {!animationData ? (
           <motion.div
@@ -44,8 +46,11 @@ export function EarthAnimation({ className }: { className?: string }) {
               alt="Earth Animation Placeholder"
               width={600}
               height={600}
-              className="hidden md:block w-full h-full object-contain rounded-lg"
+              className="hidden md:block w-full h-full object-contain rounded-lg z-100"
               priority
+              style={{
+                zIndex: 1,
+              }}
             />
           </motion.div>
         ) : (
@@ -54,7 +59,7 @@ export function EarthAnimation({ className }: { className?: string }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="w-full h-full relative"
+            className="w-full h-full relative z-10"
           >
             <div className="w-full h-full">
               <LottiePlayer

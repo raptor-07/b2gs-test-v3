@@ -1,12 +1,13 @@
 "use client";
 
-import { useAnimationData } from "@/components/lottie/hooks/useAnimationData";
-import { useLottieInteractivity } from "@/components/lottie";
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import { useRef, useState } from "react";
-import type { ILottie } from "@lottielab/lottie-player";
-import { DynamicLottieReact } from "@/components/lottie/client/DynamicLottieReact";
+import { motion } from "framer-motion";
+import { useId } from "react";
+import { LottieFilesPlayer } from "@/components/lottie/client/LottieFilesPlayer";
+import { useLottieFilesInteractivity } from "@/components/lottie/hooks/useLottieFilesInteractivity";
+import {
+  hoverHoldConfig,
+  LottieInteractivityConfig,
+} from "@/constants/lottieInteractivityConfigs";
 
 interface ChallengeCardProps {
   title: string;
@@ -25,25 +26,29 @@ export function ChallengeCard({
   placeholderImage,
   iconPlaceholderImage,
 }: ChallengeCardProps) {
-  const animationData = useAnimationData(animationUrl);
-  const iconAnimationData = useAnimationData(iconLottieUrl);
-  const mainLottieRef = useRef<ILottie>(null);
-  const iconLottieRef = useRef<ILottie>(null);
-  const { handleLottieInteractivity } = useLottieInteractivity();
+  const interactivityConfig: LottieInteractivityConfig = hoverHoldConfig;
 
-  // Add player ready states
-  const [isMainPlayerReady, setIsMainPlayerReady] = useState(false);
-  const [isIconPlayerReady, setIsIconPlayerReady] = useState(false);
+  const { setupInteractivity } = useLottieFilesInteractivity();
 
-  // Create callback handlers
-  const handleMainPlayerReady = () => {
-    setIsMainPlayerReady(true);
+  // Generate stable unique IDs but sanitize them for CSS selectors
+  const baseId = useId();
+  // Replace colons and other invalid characters with valid ones
+  const sanitizedId = baseId.replace(/:/g, "_").replace(/\./g, "_");
+  const iconPlayerId = `${sanitizedId}-icon`;
+  const mainPlayerId = `${sanitizedId}-main`;
+  const lottieContainerId = `${sanitizedId}-container`;
+
+  // Handle when the lottie player is loaded and ready for interactivity
+  const handleIconPlayerLoad = () => {
+    console.log(`Icon player ${iconPlayerId} loaded, setting up interactivity`);
+    setupInteractivity(iconPlayerId, interactivityConfig, lottieContainerId);
   };
 
-  const handleIconPlayerReady = () => {
-    setIsIconPlayerReady(true);
+  // Set up interactivity for the main animation player
+  const handleMainPlayerLoad = () => {
+    console.log(`Main player ${mainPlayerId} loaded, setting up interactivity`);
+    setupInteractivity(mainPlayerId, interactivityConfig, lottieContainerId);
   };
-
 
   return (
     <div
@@ -52,14 +57,7 @@ export function ChallengeCard({
         background:
           "linear-gradient(179.959deg, #DDDDDD 0%, rgba(255, 255, 255, 10%) 100%)",
       }}
-      onMouseEnter={() => {
-        handleLottieInteractivity(mainLottieRef, "mouseEnter");
-        handleLottieInteractivity(iconLottieRef, "mouseEnter");
-      }}
-      onMouseLeave={() => {
-        handleLottieInteractivity(mainLottieRef, "mouseLeave");
-        handleLottieInteractivity(iconLottieRef, "mouseLeave");
-      }}
+      id={lottieContainerId}
     >
       {/* Background texture */}
       <div
@@ -76,42 +74,16 @@ export function ChallengeCard({
       <div className="relative z-10 flex flex-col items-start gap-2 w-full">
         {/* Icon Lottie */}
         <div className="w-12 h-12 relative">
-            <AnimatePresence mode="wait">
-              {!iconAnimationData ? (
-                <motion.div
-                  key="icon-placeholder"
-                  initial={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="w-full h-full"
-                >
-                  <Image
-                    src={iconPlaceholderImage}
-                    alt={`${title} Icon`}
-                    width={64}
-                    height={64}
-                    className="w-full h-full object-cover rounded-lg"
-                    priority
-                  />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="icon-lottie"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: isIconPlayerReady ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-full h-full"
-                >
-                  <DynamicLottieReact
-                    lottie={iconAnimationData}
-                    ref={iconLottieRef}
-                    loop={false}
-                    className="w-full h-full"
-                    style={{ pointerEvents: "none" }}
-                    onPlayerReady={handleIconPlayerReady}
-                  />
-                </motion.div>
-              )}
-          </AnimatePresence>
+          <motion.div className="w-full h-full absolute inset-0">
+            <LottieFilesPlayer
+              id={iconPlayerId}
+              src={iconLottieUrl}
+              placeholderImage={iconPlaceholderImage}
+              isInteractive={true}
+              className="w-full h-full"
+              onLoad={handleIconPlayerLoad}
+            />
+          </motion.div>
         </div>
 
         {/* Title */}
@@ -131,39 +103,16 @@ export function ChallengeCard({
         {/* Main Animation */}
         <div className="w-full flex justify-center items-center">
           <div className="w-[70%] aspect-video relative">
-            <AnimatePresence mode="wait">
-              {!animationData ? (
-                <motion.div
-                  key="animation-placeholder"
-                  initial={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="w-full h-full"
-                >
-                  <Image
-                    src={placeholderImage}
-                    alt={`${title} Animation`}
-                    fill
-                    priority
-                  />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="main-lottie"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: isMainPlayerReady ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-full h-full"
-                >
-                  <DynamicLottieReact
-                    lottie={animationData}
-                    ref={mainLottieRef}
-                    className="w-full h-full"
-                    style={{ pointerEvents: "none" }}
-                    onPlayerReady={handleMainPlayerReady}
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <motion.div layout className="w-full h-full relative">
+              <LottieFilesPlayer
+                id={mainPlayerId}
+                src={animationUrl}
+                placeholderImage={placeholderImage}
+                isInteractive={true}
+                className="w-full h-full"
+                onLoad={handleMainPlayerLoad}
+              />
+            </motion.div>
           </div>
         </div>
       </div>
