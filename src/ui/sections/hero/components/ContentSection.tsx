@@ -7,8 +7,11 @@ export function ContentSection() {
     <div className="flex flex-col gap-2">
       {/* Tagline */}
       <h1 className="text-lg md:text-4xl lg:text-2xl xl:text-3xl font-medium text-mint-950 leading-tight">
-        Champion <GradientText>Circular Economy</GradientText>, One Scrap at a
-        Time.
+        Champion{" "}
+        <GradientText className="font-ibm italic tracking-[-0.06em]">
+          Circular Economy,
+        </GradientText>
+        <p className="inline text-nowrap">One Scrap at a Time.</p>
       </h1>
 
       {/* SubTag */}

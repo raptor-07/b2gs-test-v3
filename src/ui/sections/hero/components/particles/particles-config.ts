@@ -6,7 +6,7 @@ export const nasaConfig: ISourceOptions = {
   },
   particles: {
     number: {
-      value: 2000,
+      value: 1500,
       density: {
         enable: true,
       },
@@ -87,6 +87,6 @@ export const nasaConfig: ISourceOptions = {
   },
   fullScreen: {
     enable: false,
-    zIndex: 0,
+    zIndex: -100,
   },
 };

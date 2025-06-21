@@ -46,7 +46,7 @@ export function EarthAnimation({ className }: { className?: string }) {
               alt="Earth Animation Placeholder"
               width={600}
               height={600}
-              className="hidden md:block w-full h-full object-contain rounded-lg"
+              className="hidden md:block w-full h-full object-contain rounded-lg z-100"
               priority
             />
           </motion.div>
@@ -56,7 +56,7 @@ export function EarthAnimation({ className }: { className?: string }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="w-full h-full relative"
+            className="w-full h-full relative z-10"
           >
             <div className="w-full h-full">
               <LottiePlayer
