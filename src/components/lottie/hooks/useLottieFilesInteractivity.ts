@@ -1,11 +1,11 @@
 "use client";
-import { InteractivityConfig } from "../client/types";
+import { LottieInteractivityConfig } from "@/constants/lottieInteractivityConfigs";
 
 export function useLottieFilesInteractivity() {
   const setupInteractivity = async (
     playerId: string,
-    containerId?: string,
-    interactivityConfig: InteractivityConfig
+    interactivityConfig: LottieInteractivityConfig,
+    containerId?: string
   ) => {
     try {
       // Validate the selector before proceeding
@@ -24,6 +24,13 @@ export function useLottieFilesInteractivity() {
             container: string;
           }
         ).container = `#${containerId}`;
+      }
+
+      // Set the player ID in the interactivity config
+      interactivityConfig.player = `#${playerId}`;
+      if (!interactivityConfig.player) {
+        console.error("Player ID is required in the interactivity config.");
+        return;
       }
 
       console.log(`Setting up Lottie interactivity for player: ${playerId}`);

@@ -28,7 +28,6 @@ export function LottieFilesPlayer({
   autoplay = false,
   loop = false,
   controls = false,
-
   onReady,
   onLoad,
 }: LottieFilesPlayerProps) {
@@ -41,7 +40,7 @@ export function LottieFilesPlayer({
     import("@lottiefiles/lottie-player")
       .then(() => setLibLoaded(true))
       .catch((error) => {
-        console.log("Error loading lottie-player:", error);
+        console.error("Error loading lottie-player:", error);
       });
   }, []);
 
@@ -79,7 +78,7 @@ export function LottieFilesPlayer({
       player.removeEventListener("ready", handleLoad);
       setLottieReady(false);
     };
-  }, [libLoaded, onReady, onLoad, id]);
+  }, [libLoaded, onReady, onLoad, id, isInteractive]);
 
   return (
     <motion.div style={{ position: "relative" }}>

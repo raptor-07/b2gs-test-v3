@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 import { useId } from "react";
 import { LottieFilesPlayer } from "@/components/lottie/client/LottieFilesPlayer";
 import { useLottieFilesInteractivity } from "@/components/lottie/hooks/useLottieFilesInteractivity";
-import { hoverHoldConfig } from "@/constants/lottieInteractivityConfigs";
+import {
+  hoverHoldConfig,
+  LottieInteractivityConfig,
+} from "@/constants/lottieInteractivityConfigs";
 
 interface ChallengeCardProps {
   title: string;
@@ -23,7 +26,8 @@ export function ChallengeCard({
   placeholderImage,
   iconPlaceholderImage,
 }: ChallengeCardProps) {
-  const interactivityConfig = hoverHoldConfig; // Use the hover-hold config from constants
+  const interactivityConfig: LottieInteractivityConfig = hoverHoldConfig;
+
   const { setupInteractivity } = useLottieFilesInteractivity();
 
   // Generate stable unique IDs but sanitize them for CSS selectors
@@ -37,13 +41,13 @@ export function ChallengeCard({
   // Handle when the lottie player is loaded and ready for interactivity
   const handleIconPlayerLoad = () => {
     console.log(`Icon player ${iconPlayerId} loaded, setting up interactivity`);
-    setupInteractivity(iconPlayerId, lottieContainerId, interactivityConfig);
+    setupInteractivity(iconPlayerId, interactivityConfig, lottieContainerId);
   };
 
   // Set up interactivity for the main animation player
   const handleMainPlayerLoad = () => {
     console.log(`Main player ${mainPlayerId} loaded, setting up interactivity`);
-    setupInteractivity(mainPlayerId, lottieContainerId);
+    setupInteractivity(mainPlayerId, interactivityConfig, lottieContainerId);
   };
 
   return (
@@ -75,6 +79,7 @@ export function ChallengeCard({
               id={iconPlayerId}
               src={iconLottieUrl}
               placeholderImage={iconPlaceholderImage}
+              isInteractive={true}
               className="w-full h-full"
               onLoad={handleIconPlayerLoad}
             />
@@ -103,6 +108,7 @@ export function ChallengeCard({
                 id={mainPlayerId}
                 src={animationUrl}
                 placeholderImage={placeholderImage}
+                isInteractive={true}
                 className="w-full h-full"
                 onLoad={handleMainPlayerLoad}
               />
