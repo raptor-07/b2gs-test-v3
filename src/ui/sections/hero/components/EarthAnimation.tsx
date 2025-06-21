@@ -48,6 +48,9 @@ export function EarthAnimation({ className }: { className?: string }) {
               height={600}
               className="hidden md:block w-full h-full object-contain rounded-lg z-100"
               priority
+              style={{
+                zIndex: 1,
+              }}
             />
           </motion.div>
         ) : (

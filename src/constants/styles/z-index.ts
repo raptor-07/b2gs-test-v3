@@ -4,8 +4,8 @@ export const Z_INDEX = {
 
   // Overlays & Modals
   overlay: {
-    backdrop: 90,
-    content: 100,
+    backdrop: 400,
+    content: 400,
   },
   modal: {
     backdrop: 90,

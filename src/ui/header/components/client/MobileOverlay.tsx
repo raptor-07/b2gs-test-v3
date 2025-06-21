@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeToggle from "@/components/client/ThemeToggle";
+// import ThemeToggle from "@/components/client/ThemeToggle";
 import { X } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -16,6 +16,8 @@ import {
 import { lockScroll, unlockScroll } from "../../utils/scroll-lock";
 import { combineWithZIndex } from "@/utils/styles";
 import { MobileOverlayProps } from "../../types";
+
+import { Z_INDEX } from "@/constants/styles/z-index";
 
 function Backdrop({
   isOpen,
@@ -34,6 +36,7 @@ function Backdrop({
         "fixed inset-0 bg-black/50 backdrop-blur-sm",
         "overlay.backdrop"
       )}
+      style={{ zIndex: Z_INDEX.overlay.backdrop }}
       onClick={onClick}
     />
   );
@@ -64,6 +67,7 @@ export function MobileOverlay({ isOpen, onClose, items }: MobileOverlayProps) {
                 "fixed inset-0 bg-white dark:bg-gray-900/95 overflow-hidden backdrop-blur-sm",
                 "overlay.content"
               )}
+              style={{ zIndex: Z_INDEX.overlay.content }}
             >
               <div className="relative flex flex-col h-[100dvh]">
                 {/* Header - Static */}
@@ -102,15 +106,12 @@ export function MobileOverlay({ isOpen, onClose, items }: MobileOverlayProps) {
                 </div>
 
                 {/* Footer - Fixed */}
-                <div className="mt-auto border-t border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm px-6 py-4">
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-center justify-between">
-                      <div className="w-32">
-                        <LogoImage variant="mobile" />
-                      </div>
-                      <ThemeToggle />
+                <div className="mt-auto border-t border-gray-200 bg-white p-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="w-32">
+                      <LogoImage variant="mobile" />
                     </div>
-                    <DemoButton className="w-full" />
+                    <DemoButton />
                   </div>
                 </div>
               </div>
