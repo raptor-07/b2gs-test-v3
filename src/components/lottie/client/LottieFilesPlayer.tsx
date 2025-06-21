@@ -11,6 +11,7 @@ interface LottieFilesPlayerProps {
   style?: React.CSSProperties;
   className?: string;
   onReady?: (playerRef: React.RefObject<HTMLElement>) => void;
+  onLoad?: (playerRef: React.RefObject<HTMLElement>) => void;
 }
 
 export function LottieFilesPlayer({
@@ -18,6 +19,7 @@ export function LottieFilesPlayer({
   id,
   className,
   onReady,
+  onLoad,
 }: LottieFilesPlayerProps) {
   const playerRef = useRef<HTMLElement>(null);
   const [libLoaded, setLibLoaded] = useState(false);
@@ -35,9 +37,29 @@ export function LottieFilesPlayer({
   useEffect(() => {
     if (!libLoaded || !playerRef.current) return;
 
+    const player = playerRef.current;
+
+    // Call onReady immediately when both lib and player are ready
     onReady?.(playerRef);
-    // setIsPlayerLoaded(true);
-  }, [libLoaded, onReady]);
+
+    // Set up load event listener
+    const handleLoad = () => {
+      console.log(`Lottie player ${id} loaded`);
+      onLoad?.(playerRef);
+    };
+
+    // Add load event listener
+    player.addEventListener("load", handleLoad);
+
+    // Also listen for 'ready' event as fallback
+    player.addEventListener("ready", handleLoad);
+
+    // Cleanup
+    return () => {
+      player.removeEventListener("load", handleLoad);
+      player.removeEventListener("ready", handleLoad);
+    };
+  }, [libLoaded, onReady, onLoad, id]);
 
   return (
     <lottie-player

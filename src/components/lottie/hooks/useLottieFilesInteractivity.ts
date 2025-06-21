@@ -1,42 +1,30 @@
 "use client";
 
-// import { useRef } from "react";
-
-// Type for LottieFiles interactivity instance
-// type LottieInteractivityInstance = unknown;
-
 export function useLottieFilesInteractivity() {
-  // const interactivityInstances = useRef<
-  //   Map<string, LottieInteractivityInstance>
-  // >(new Map());
-
-  const setupInteractivity = async (
-    playerId: string,
-    containerId?: string,
-    playerRef?: React.Ref<HTMLElement>
-  ) => {
+  const setupInteractivity = async (playerId: string, containerId?: string) => {
     try {
+      // Validate the selector before proceeding
+      if (!playerId || !isValidCSSSelector(playerId)) {
+        console.error(`Invalid player ID for CSS selector: ${playerId}`);
+        return;
+      }
+
       // Import lottie-interactivity dynamically
       const { create } = await import("@lottiefiles/lottie-interactivity");
-
-      // Check if interactivity is already set up for this player
-      // if (interactivityInstances.current.has(playerId)) {
-      //   return;
-      // }
 
       // Configure interactivity for hover effects
       const interactivityConfig = {
         player: `#${playerId}`,
-        mode: "cursor",
+        mode: "cursor" as const,
         actions: [
           {
-            type: "hold",
+            type: "hold" as const,
           },
         ],
       };
 
       // If container is provided, add it to config
-      if (containerId) {
+      if (containerId && isValidCSSSelector(containerId)) {
         (
           interactivityConfig as typeof interactivityConfig & {
             container: string;
@@ -44,37 +32,10 @@ export function useLottieFilesInteractivity() {
         ).container = `#${containerId}`;
       }
 
-      // console.log(
-      //   `Setting up Lottie interactivity for player: `,
-      //   interactivityConfig
-      // );
+      console.log(`Setting up Lottie interactivity for player: ${playerId}`);
 
-      // console.log("interactivityInstances:", interactivityInstances.current);
-
-      // if (
-      //   playerRef
-      //   // &&
-      //   // typeof playerRef !== "function" &&
-      //   // "current" in playerRef &&
-      //   // playerRef.current
-      // ) {
-      //   playerRef.current.addEventListener("load", () => {
-      //     console.log(
-      //       `Lottie player ${playerId} loaded, setting up interactivity...`
-      //     );
-      //     create(interactivityConfig);
-      //     console.log(`Lottie interactivity set up for player: ${playerId}`);
-      //   });
-      // }
-      if (playerRef.current) {
-        playerRef.current.addEventListener("load", () => {
-          console.log(
-            `Lottie player ${playerId} loaded, setting up interactivity...`
-          );
-          create(interactivityConfig);
-        });
-      }
-      // create(interactivityConfig);
+      create(interactivityConfig);
+      console.log(`Lottie interactivity set up for player: ${playerId}`);
     } catch (error) {
       console.error("Error setting up Lottie interactivity:", error);
     }
@@ -83,4 +44,14 @@ export function useLottieFilesInteractivity() {
   return {
     setupInteractivity,
   };
+}
+
+// Helper function to validate CSS selectors
+function isValidCSSSelector(selector: string): boolean {
+  try {
+    document.querySelector(`#${selector}`);
+    return true;
+  } catch {
+    return false;
+  }
 }
