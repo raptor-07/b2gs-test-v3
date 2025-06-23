@@ -32,10 +32,10 @@ const challenges = [
       "Lack of integration between scrap producers and material consumers causes misalignment.",
       "Lack of verification and grading for green recycled materials hinders circularity adoption.",
     ],
-    animation: "/assets/lottie/smoke.json",
-    iconLottie: "/assets/lottie/recycle.json",
-    placeholderImage: "/assets/challenges/smoke.svg",
-    iconPlaceholderImage: "/assets/challenges/recycle.svg",
+    animation: "/assets/lottie/ingot.json",
+    iconLottie: "/assets/lottie/unify.json",
+    placeholderImage: "/assets/challenges/ingot.svg",
+    iconPlaceholderImage: "/assets/challenges/unify.svg",
   },
 ];
 

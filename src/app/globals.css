@@ -127,11 +127,11 @@
 
     /* Paper Colors */
     --color-paper-50: #fdfdfd;
-    --color-paper-100: #f2efe7;
-    --color-paper-200: #e9e5da;
-    --color-paper-300: #dcd8cd;
-    --color-paper-400: #d1cdc4;
-    --color-paper-500: #c1bdb3;
+    --color-paper-100: #EEEEEE;
+    --color-paper-200: #EAE9E5;
+    --color-paper-300: #DFDFDD;
+    --color-paper-400: #D4CDBE;
+    --color-paper-500: #CAC0A5;
 
     /* ====================================
      * Schematic Colors

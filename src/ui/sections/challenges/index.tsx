@@ -6,7 +6,7 @@ import { InterconnectedSection } from "../interconnected";
 
 export default function ChallengesSection() {
   return (
-    <section className="py-8 bg-paper-200">
+    <section className="py-8 bg-paper-300">
       <Container>
         <div className="flex flex-col gap-4 md:gap-6 lg:gap-4 xl:gap-2">
           {/* Title and Subtitle */}

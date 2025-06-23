@@ -6,7 +6,7 @@ export const nasaConfig: ISourceOptions = {
   },
   particles: {
     number: {
-      value: 1500,
+      value: 200,
       density: {
         enable: true,
       },
@@ -41,7 +41,7 @@ export const nasaConfig: ISourceOptions = {
         min: 0.3,
         max: 1,
       },
-      direction: "inside",
+      direction: "outside",
       random: true,
       straight: true,
       outModes: {
