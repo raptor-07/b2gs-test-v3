@@ -88,7 +88,7 @@ export function ChallengeCard({
         </div>
 
         {/* Title */}
-        <h3 className="text-base md:text-base text-mint-950 font-semibold">
+        <h3 className="text-base md:text-base text-mint-950 font-semibold lg:text-nowrap">
           {title}
         </h3>
 
