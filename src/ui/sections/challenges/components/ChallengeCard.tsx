@@ -52,10 +52,11 @@ export function ChallengeCard({
 
   return (
     <div
-      className="rounded-xl border border-gray-200 p-6 flex flex-col items-center transition-transform duration-300 relative overflow-hidden"
+      className="rounded-xl border border-gray-200 p-6 flex flex-col items-center transition-transform duration-800 relative overflow-hidden shadow-md hover:shadow-xl hover:border-gray-200 hover:scale-[1.02] will-change-transform"
       style={{
         background:
           "linear-gradient(179.959deg, #DDDDDD 0%, rgba(255, 255, 255, 10%) 100%)",
+        willChange: "transform",
       }}
       id={lottieContainerId}
     >

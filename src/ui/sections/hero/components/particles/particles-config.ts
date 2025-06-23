@@ -5,6 +5,9 @@ export const nasaConfig: ISourceOptions = {
     filter: "blur(0px)",
   },
   particles: {
+    duration: {
+      value: 2,
+    },
     number: {
       value: 200,
       density: {
