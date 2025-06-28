@@ -127,11 +127,11 @@
 
     /* Paper Colors */
     --color-paper-50: #fdfdfd;
-    --color-paper-100: #EEEEEE;
-    --color-paper-200: #EAE9E5;
-    --color-paper-300: #DFDFDD;
-    --color-paper-400: #D4CDBE;
-    --color-paper-500: #CAC0A5;
+    --color-paper-100: #eeeeee;
+    --color-paper-200: #eae9e5;
+    --color-paper-300: #dfdfdd;
+    --color-paper-400: #d4cdbe;
+    --color-paper-500: #cac0a5;
 
     /* ====================================
      * Schematic Colors
@@ -248,4 +248,20 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Grainy number hover effect for ProcessCard */
+.grainy-number {
+  background: linear-gradient(180deg, #eeecec 0%, #a3a2a2 120%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.process-card:hover .grainy-number {
+  background: linear-gradient(180deg, #54a58b 0%, #083628 100%),
+    url(/assets/textures/more-noise.svg);
+  background-blend-mode: overlay;
+  background-clip: text;
+  color: transparent;
 }

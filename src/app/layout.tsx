@@ -1,7 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Lexend, IBM_Plex_Serif } from "next/font/google";
+import { Lexend, IBM_Plex_Serif, Inter } from "next/font/google";
 // import { ThemeProvider } from "next-themes";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--typography-fonts-inter",
+});
 
 const lexend = Lexend({
   subsets: ["latin"],
@@ -97,7 +102,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
-        className={`${lexend.variable} ${ibmPlex.variable} antialiased transition-colors duration-300`}
+        className={`${lexend.variable} ${ibmPlex.variable} ${inter.variable} antialiased transition-colors duration-300`}
       >
         {children}
       </body>

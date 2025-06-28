@@ -10,7 +10,7 @@ export default function ChallengesSection() {
     <section className="py-8 bg-paper-300">
       <Container>
         <InViewPopIn
-          duration={1.5}
+          duration={2}
           delay={0.01}
           className=""
           once={false}
@@ -23,7 +23,7 @@ export default function ChallengesSection() {
               <h2 className="text-lg md:text-2xl lg:text-2xl xl:text-3xl font-medium text-mint-950 leading-tight">
                 Addressing Challenges in Waste Management
               </h2>
-              <p className="text-base md:text-md lg:text-md text-mint-950 tracking-tighter">
+              <p className="text-base md:text-lg text-mint-950 max-w-2xl">
                 Brown2Green is committed to solving critical challenges faced in
                 waste management.
               </p>
