@@ -54,7 +54,7 @@ const processCards = [
 
 export default function CircularFrameworkSection() {
   return (
-    <section className="py-12 bg-paper-300">
+    <section className="py-12 bg-paper-200">
       <Container>
         <InViewPopIn
           duration={1.5}
@@ -101,7 +101,7 @@ export default function CircularFrameworkSection() {
 
             {/* CTA Button */}
             <div className="flex w-full justify-end mt-8">
-              <SecondaryButton className="h-10 w-auto bg-gray-50 text-gray-700 transition-colors duration-300 hover:shadow-md hover:gray-800 border border-gray-500 hover:border-gray-600">
+              <SecondaryButton className="h-10 w-auto bg-gray-100 text-gray-700 transition-colors duration-300 hover:shadow-md hover:gray-800 border border-gray-500 hover:border-gray-600">
                 <p className=" text-sm text-nowrap">Discover Our Services</p>
               </SecondaryButton>
             </div>

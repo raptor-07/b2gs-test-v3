@@ -103,7 +103,7 @@ export const circularTransitionConfig: ISourceOptions = {
       value: 1.5,
     },
     number: {
-      value: 120,
+      value: 1000,
       density: {
         enable: true,
       },
@@ -117,12 +117,12 @@ export const circularTransitionConfig: ISourceOptions = {
     },
     opacity: {
       value: {
-        min: 0.2,
-        max: 0.7,
+        min: 0.1,
+        max: 1,
       },
       animation: {
         enable: true,
-        speed: 0.3,
+        speed: 1.5,
         sync: false,
       },
     },
@@ -141,41 +141,38 @@ export const circularTransitionConfig: ISourceOptions = {
       direction: "none",
       random: true,
       straight: false,
-      outModes: {
-        default: "out",
-      },
     },
   },
-  interactivity: {
-    events: {
-      onHover: {
-        enable: true,
-        mode: "bubble",
-      },
-    },
-    modes: {
-      bubble: {
-        distance: 200,
-        size: 5,
-        duration: 1.5,
-        opacity: 0.7,
-        color: "#05cd99",
-      },
-      repulse: {
-        distance: 300,
-        duration: 0.3,
-      },
-      push: {
-        quantity: 2,
-      },
-      remove: {
-        quantity: 1,
-      },
-    },
-  },
+  //   events: {
+  //     onHover: {
+  //       enable: true,
+  //       mode: "bubble",
+  //     },
+  //   },
+  //   modes: {
+  //     // bubble: {
+  //     //   distance: 200,
+  //     //   size: 5,
+  //     //   duration: 1.5,
+  //     //   opacity: 0.7,
+  //     //   color: "#05cd99",
+  //     // },
+  //     // repulse: {
+  //     //   distance: 300,
+  //     //   duration: 0.3,
+  //     // },
+  //     // push: {
+  //     //   quantity: 2,
+  //     // },
+  //     // remove: {
+  //     //   quantity: 1,
+  //     // },
+  //   },
+  // },
   background: {
     color: "transparent",
   },
+  pauseOnOutsideViewport: true,
   fullScreen: {
     enable: false,
     zIndex: -100,

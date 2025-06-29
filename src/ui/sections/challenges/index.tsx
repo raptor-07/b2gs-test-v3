@@ -7,7 +7,7 @@ import InViewPopIn from "@/components/animations/InViewPopIn";
 
 export default function ChallengesSection() {
   return (
-    <section className="py-8 bg-paper-300">
+    <section className="py-8 bg-paper-200">
       <Container>
         <InViewPopIn
           duration={2}

@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export function InterconnectedSection() {
   return (
-    <section className="w-full bg-paper-300 pb-8">
+    <section className="w-full bg-paper-200 pb-8">
       {/* <Container> */}
       <div className="m-1 rounded-xl bg-green-800 relative">
         {/* Grainy texture overlay - mobile version */}

@@ -75,7 +75,7 @@ export default function CircularTransitionSection() {
               </div>
             </div>
             {/* InfoCard Grid: 3r1c-3r3c */}
-            <div className="row-start-3 row-end-4 col-start-1 col-end-3 flex flex-col md:flex-row justify-center items-stretch gap-6 md:gap-6 w-full">
+            <div className="row-start-3 row-end-4 col-start-1 col-end-3 grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6 items-stretch w-full">
               {infocardData.map((card, idx) => (
                 <InfoCard
                   key={card.title + idx}
