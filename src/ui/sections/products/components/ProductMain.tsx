@@ -106,14 +106,13 @@ export default function ProductMain({
         <ProductCard product={product} />
       </div>
       {/* Lottie Animation */}
-      <div className="row-span-2 col-start-2 flex items-center justify-center">
-        <div className="w-full max-w-[500px] aspect-[500/330] flex items-center justify-center">
+      <div className="row-span-2 col-start-2 flex items-center justify-center h-auto">
+        <div className="w-full max-w-[500px] flex items-center justify-center h-auto">
           <LottieFilesPlayer
             src={product.lottie}
             placeholderImage={product.placeholder}
             isInteractive={false}
-            autoplay={true}
-            className="w-full h-full"
+            className="w-full h-auto"
           />
         </div>
       </div>

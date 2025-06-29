@@ -9,6 +9,7 @@ import Image from "next/image";
 import ProductsNavbar from "./components/ProductsNavbar";
 import ProductMain from "./components/ProductMain";
 import { PRODUCTS } from "./components/ProductMain";
+import SecondaryButton from "@/components/buttons/secondary-button";
 
 export default function ProductsSection() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -82,7 +83,7 @@ export default function ProductsSection() {
                           delay: 0.08,
                           ease: [0.4, 0.0, 0.2, 1],
                         }}
-                        className="absolute w-full h-full"
+                        className="w-full h-full"
                       >
                         <ProductMain product={PRODUCTS[activeIdx]} />
                       </motion.div>
@@ -94,7 +95,7 @@ export default function ProductsSection() {
             {/* CTA Section */}
             <div className="row-start-3 col-start-1 col-end-3">
               <div
-                className="grid grid-cols-[1fr_auto] gap-4 items-center rounded-xl p-6 md:p-10"
+                className="grid grid-cols-[1fr_auto] gap-4 items-center rounded-xl p-6 md:px-10 md:py-6"
                 style={{
                   background:
                     "linear-gradient(89.448deg, #C9DDB3 0%, #C9DDB3 71%, #9CC79C 100%)",
@@ -102,7 +103,7 @@ export default function ProductsSection() {
               >
                 {/* CTA Text */}
                 <div className="flex flex-col gap-3">
-                  <h3 className="text-green-800 text-xl md:text-2xl font-semibold">
+                  <h3 className="text-green-800 text-xl md:text-2xl font-medium">
                     Ready to rethink your{" "}
                     <GradientText className="font-ibm italic tracking-[-0.06em]">
                       sustainability strategy
@@ -113,13 +114,11 @@ export default function ProductsSection() {
                     Want to know more? Connect with us to discover how our
                     products and features can be tailored to your business.
                   </p>
-                  <a
-                    href="#contact"
-                    className="inline-block mt-2 px-6 py-2 rounded-full bg-green-500 text-white font-semibold shadow transition hover:bg-green-600 w-auto min-w-0"
-                    style={{ width: "auto", minWidth: 0 }}
-                  >
-                    Contact Sales
-                  </a>
+                  <div className="flex flex-start">
+                    <SecondaryButton className="h-10 w-auto bg-green-400 text-gray-100 transition-colors duration-300 hover:shadow-md hover:green-800 border border-green-200 hover:border-green-600">
+                      <p className=" text-sm text-nowrap">Contact Sales</p>
+                    </SecondaryButton>
+                  </div>
                 </div>
                 {/* CTA Illustration */}
                 <div className="flex items-center justify-center w-full max-w-[330px] aspect-[500/330]">

@@ -18,7 +18,7 @@ export default function ProductsNavbar({
             ${
               activeIdx === idx
                 ? "bg-green-500 text-gray-100 border-green-500 hover:bg-green-600 hover:text-white"
-                : "bg-gray-100 text-green-700 border-gray-300 hover:bg-green-200 hover:text-green-900"
+                : "bg-gray-100 text-green-700 border-gray-300 hover:bg-gray-200 hover:text-green-900"
             }`}
           onClick={() => onSelect(idx)}
         >
