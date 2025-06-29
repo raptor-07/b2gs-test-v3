@@ -10,7 +10,7 @@ export default function ProductsNavbar({
   onSelect: (idx: number) => void;
 }) {
   return (
-    <div className="flex gap-2 md:gap-4">
+    <div className="flex gap-2 md:gap-4 w-full justify-center">
       {products.map((p, idx) => (
         <button
           key={p.key}

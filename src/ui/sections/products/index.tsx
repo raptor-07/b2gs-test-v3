@@ -16,13 +16,13 @@ export default function ProductsSection() {
   const [direction, setDirection] = useState<"left" | "right">("right");
 
   // Auto-slide timer
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDirection("right");
-      setActiveIdx((idx) => (idx + 1) % PRODUCTS.length);
-    }, 6000);
-    return () => clearTimeout(timer);
-  }, [activeIdx]);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setDirection("right");
+  //     setActiveIdx((idx) => (idx + 1) % PRODUCTS.length);
+  //   }, 10000);
+  //   return () => clearTimeout(timer);
+  // }, [activeIdx]);
 
   // Track direction for animation
   function handleSelect(idx: number) {
@@ -51,7 +51,7 @@ export default function ProductsSection() {
             </div>
             {/* Product Section */}
             <div className="row-start-2 col-start-1 col-end-3">
-              <div className="grid grid-rows-[auto_1fr] grid-cols-2 gap-6">
+              <div className="grid grid-rows-[auto_auto] grid-cols-2 gap-6">
                 {/* Navbar */}
                 <div className="row-start-1 col-start-1 col-end-3 mb-2">
                   <ProductsNavbar
@@ -76,7 +76,12 @@ export default function ProductsSection() {
                           x: direction === "right" ? -100 : 100,
                           opacity: 0,
                         }}
-                        transition={{ type: "spring", duration: 0.5 }}
+                        transition={{
+                          type: "spring",
+                          duration: 0.7,
+                          delay: 0.08,
+                          ease: [0.4, 0.0, 0.2, 1],
+                        }}
                         className="absolute w-full h-full"
                       >
                         <ProductMain product={PRODUCTS[activeIdx]} />
@@ -88,7 +93,7 @@ export default function ProductsSection() {
             </div>
             {/* CTA Section */}
             <div className="row-start-3 col-start-1 col-end-3">
-              <div className="grid grid-cols-2 gap-4 items-center bg-green-50 rounded-xl p-6 md:p-10">
+              <div className="grid grid-cols-[1fr_auto] gap-4 items-center bg-green-50 rounded-xl p-6 md:p-10">
                 {/* CTA Text */}
                 <div className="flex flex-col gap-3">
                   <h3 className="text-green-800 text-xl md:text-2xl font-semibold">
@@ -104,19 +109,19 @@ export default function ProductsSection() {
                   </p>
                   <a
                     href="#contact"
-                    className="inline-block mt-2 px-6 py-2 rounded-full bg-green-500 text-white font-semibold shadow transition hover:bg-green-600"
+                    className="inline-block mt-2 px-6 py-2 rounded-full bg-green-500 text-white font-semibold shadow transition hover:bg-green-600 w-auto min-w-0"
                   >
                     Contact Sales
                   </a>
                 </div>
                 {/* CTA Illustration */}
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center w-full max-w-[330px] aspect-[500/330]">
                   <Image
                     src="/assets/products/circularity-illustration.png"
                     alt="CTA Illustration"
-                    width={180}
-                    height={180}
-                    className="object-contain w-36 h-36 md:w-44 md:h-44"
+                    width={500}
+                    height={330}
+                    className="object-contain w-full h-full"
                   />
                 </div>
               </div>

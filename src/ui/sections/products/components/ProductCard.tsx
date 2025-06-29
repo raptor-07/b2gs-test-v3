@@ -7,19 +7,19 @@ export default function ProductCard({
   product: Product[][number];
 }) {
   return (
-    <div className="grid grid-rows-2 grid-cols-2 gap-2 h-full">
+    <div className="grid grid-rows-[min-content_min-content] grid-cols-2 gap-8">
       {/* Title */}
       <h3 className="row-start-1 col-start-1 text-lg md:text-xl font-semibold text-mint-950">
         {product.title}
       </h3>
       {/* Illustration */}
-      <div className="row-start-1 col-start-2 flex items-start justify-end">
+      <div className="row-start-1 col-start-2 h-auto flex items-start justify-end">
         <Image
           src={product.cardImg}
           alt={product.title}
-          width={80}
-          height={80}
-          className="rounded-lg object-contain w-20 h-20"
+          width={96}
+          height={96}
+          className="w-24 h-24 object-contain"
         />
       </div>
       {/* Subtitle & Bullets */}
@@ -34,10 +34,10 @@ export default function ProductCard({
         </ul>
       </div>
       {/* Learn More */}
-      <div className="row-start-2 col-start-2 flex items-end justify-end">
+      <div className="row-start-2 col-start-2 flex items-end justify-end cursor-pointer">
         <a
           href={product.learnMore}
-          className="text-mint-950 underline text-sm font-medium"
+          className="text-mint-950 underline text-sm font-medium cursor-pointer"
         >
           Learn More
         </a>

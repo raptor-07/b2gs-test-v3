@@ -83,18 +83,36 @@ export default function ProductMain({
   product: (typeof PRODUCTS)[number];
 }) {
   return (
-    <div className="grid grid-rows-2 grid-cols-2 gap-4 h-full">
+    <div className="grid grid-rows-[auto] grid-cols-2 gap-4 h-full">
       {/* Product Card */}
-      <div className="row-span-2 col-start-1">
+      <div
+        className="row-span-2 col-start-1 lg:p-6 rounded-xl border border-gray-200 p-6 flex flex-col items-center transition-transform duration-800 relative overflow-hidden shadow-md hover:shadow-lg hover:border-gray-200  will-change-transform"
+        style={{
+          background:
+            "linear-gradient(179.959deg, #DDDDDD 0%, rgba(255, 255, 255, 10%) 100%)",
+          willChange: "transform",
+        }}
+      >
+        {/* Background texture */}
+        <div
+          className="absolute inset-0 z-0 opacity-10"
+          style={{
+            backgroundImage: "url('/assets/textures/grainy-gray.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
         <ProductCard product={product} />
       </div>
       {/* Lottie Animation */}
       <div className="row-span-2 col-start-2 flex items-center justify-center">
-        <div className="w-40 h-40 md:w-56 md:h-56">
+        <div className="w-full max-w-[500px] aspect-[500/330] flex items-center justify-center">
           <LottieFilesPlayer
             src={product.lottie}
             placeholderImage={product.placeholder}
             isInteractive={false}
+            autoplay={true}
             className="w-full h-full"
           />
         </div>
