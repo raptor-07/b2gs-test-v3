@@ -7,13 +7,13 @@ export default function ProductCard({
   product: Product[][number];
 }) {
   return (
-    <div className="grid grid-rows-[min-content_min-content] grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 p-2 sm:p-0">
+    <div className="grid grid-rows-[auto_auto_auto] grid-cols-1 md:grid-rows-[min-content_min-content] md:grid-cols-2 gap-4 md:gap-8 p-2 md:p-0">
       {/* Title */}
-      <h3 className="row-start-1 col-start-1 text-lg md:text-xl font-semibold text-mint-950">
+      <h3 className="row-start-1 col-start-1 md:row-start-1 md:col-start-1 text-lg md:text-xl font-semibold text-mint-950">
         {product.title}
       </h3>
       {/* Illustration */}
-      <div className="row-start-1 col-start-2 h-auto flex items-start justify-end">
+      <div className="row-start-1 col-start-1 md:row-start-1 md:col-start-2 h-auto flex items-start justify-end">
         <Image
           src={product.cardImg}
           alt={product.title}
@@ -23,7 +23,7 @@ export default function ProductCard({
         />
       </div>
       {/* Subtitle & Bullets */}
-      <div className="row-start-2 col-start-1 flex flex-col gap-1">
+      <div className="row-start-2 col-start-1 md:row-start-2 md:col-start-1 flex flex-col gap-1">
         <span className="text-mint-950 text-sm font-semibold">Features</span>
         <ul className="list-disc pl-4 space-y-1">
           {product.features.map((f, i) => (
@@ -34,7 +34,7 @@ export default function ProductCard({
         </ul>
       </div>
       {/* Learn More */}
-      <div className="row-start-2 col-start-2 flex items-end justify-end">
+      <div className="row-start-3 col-start-1 md:row-start-2 md:col-start-2 flex items-end justify-end">
         <a
           href={product.learnMore}
           className="text-mint-950 underline text-sm font-medium cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-500"
