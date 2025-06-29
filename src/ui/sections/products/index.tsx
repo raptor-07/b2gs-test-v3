@@ -101,6 +101,14 @@ export default function ProductsSection() {
                     "linear-gradient(89.448deg, #C9DDB3 0%, #C9DDB3 71%, #9CC79C 100%)",
                 }}
               >
+                {/* Background texture */}
+                <div
+                  className="absolute inset-0 opacity-10"
+                  style={{
+                    backgroundImage: "url('/assets/textures/grainy-green.svg')",
+                    zIndex: -1,
+                  }}
+                />
                 {/* CTA Text */}
                 <div className="flex flex-col gap-3">
                   <h3 className="text-green-800 text-xl md:text-2xl font-medium">
@@ -121,7 +129,13 @@ export default function ProductsSection() {
                   </div>
                 </div>
                 {/* CTA Illustration */}
-                <div className="flex items-center justify-center w-full max-w-[330px] aspect-[500/330]">
+                <motion.div
+                  className="flex items-center justify-center w-full max-w-[330px] aspect-[500/330]"
+                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                >
                   <Image
                     src="/assets/products/circularity-illustration.png"
                     alt="CTA Illustration"
@@ -129,7 +143,7 @@ export default function ProductsSection() {
                     height={330}
                     className="object-contain w-full h-full"
                   />
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>

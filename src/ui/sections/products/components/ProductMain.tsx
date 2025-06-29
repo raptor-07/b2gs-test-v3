@@ -101,6 +101,7 @@ export default function ProductMain({
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            zIndex: -1,
           }}
         />
         <ProductCard product={product} />

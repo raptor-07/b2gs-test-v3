@@ -34,10 +34,12 @@ export default function ProductCard({
         </ul>
       </div>
       {/* Learn More */}
-      <div className="row-start-2 col-start-2 flex items-end justify-end cursor-pointer">
+      <div className="row-start-2 col-start-2 flex items-end justify-end">
         <a
           href={product.learnMore}
-          className="text-mint-950 underline text-sm font-medium cursor-pointer"
+          className="text-mint-950 underline text-sm font-medium cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-500"
+          tabIndex={0}
+          aria-label={`Learn more about ${product.title}`}
         >
           Learn More
         </a>
