@@ -86,8 +86,8 @@ export default function ProductsSectionAlternative() {
                   />
                 </div>
 
-                {/* Product Main Container - Using Fixed Grid Layout */}
-                <div className="row-start-2 col-start-1 col-end-3 min-h-[320px] relative">
+                {/* Product Main Container - Fixed responsive heights */}
+                <div className="row-start-2 col-start-1 col-end-3 min-h-[500px] sm:min-h-[450px] md:min-h-[380px] lg:min-h-[420px] relative">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={`product-${activeIdx}`}
@@ -95,7 +95,7 @@ export default function ProductsSectionAlternative() {
                       initial="initial"
                       animate="animate"
                       exit="exit"
-                      className="absolute inset-0 w-full"
+                      className="absolute inset-0 w-full h-full"
                     >
                       <ProductMain product={PRODUCTS[activeIdx]} />
                     </motion.div>
