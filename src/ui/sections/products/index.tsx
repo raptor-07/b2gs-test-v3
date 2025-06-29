@@ -1,6 +1,9 @@
+// Alternative approach using crossfade instead of slide
+// This can be used if the slide animation continues to cause issues
+
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Container } from "@/components/layout";
 import InViewPopIn from "@/components/animations/InViewPopIn";
 import { GradientText } from "../hero/components/GradientText";
@@ -11,26 +14,46 @@ import ProductMain from "./components/ProductMain";
 import { PRODUCTS } from "./components/ProductMain";
 import SecondaryButton from "@/components/buttons/secondary-button";
 
-export default function ProductsSection() {
+export default function ProductsSectionAlternative() {
   const [activeIdx, setActiveIdx] = useState(0);
-  const prevIdx = useRef(0);
-  const [direction, setDirection] = useState<"left" | "right">("right");
-
-  // Auto-slide timer
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setDirection("right");
-  //     setActiveIdx((idx) => (idx + 1) % PRODUCTS.length);
-  //   }, 10000);
-  //   return () => clearTimeout(timer);
-  // }, [activeIdx]);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Track direction for animation
   function handleSelect(idx: number) {
-    setDirection(idx > activeIdx ? "right" : "left");
+    if (isTransitioning) return; // Prevent rapid clicking
+    setIsTransitioning(true);
     setActiveIdx(idx);
-    prevIdx.current = activeIdx;
+
+    // Reset transition state after animation completes
+    setTimeout(() => setIsTransitioning(false), 600);
   }
+
+  // Crossfade animation variants
+  const crossfadeVariants = {
+    initial: {
+      opacity: 0,
+      y: 20,
+      scale: 0.98,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.4, 0.0, 0.2, 1],
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      scale: 0.98,
+      transition: {
+        duration: 0.3,
+        ease: [0.4, 0.0, 0.2, 1],
+      },
+    },
+  };
 
   return (
     <section className="relative w-full py-12 bg-paper-300 overflow-hidden">
@@ -50,6 +73,7 @@ export default function ProductsSection() {
                 recycling to provide a comprehensive view.
               </p>
             </div>
+
             {/* Product Section */}
             <div className="row-start-2 col-start-1 col-end-3">
               <div className="grid grid-rows-[auto_auto] grid-cols-1 md:grid-cols-2 gap-6 md:gap-6 gap-y-8">
@@ -61,56 +85,43 @@ export default function ProductsSection() {
                     onSelect={handleSelect}
                   />
                 </div>
-                {/* Product Main (Card + Animation) */}
-                <div className="row-start-2 col-start-1 col-end-3 min-h-[260px]">
-                  <div className="relative w-full h-full">
-                    <AnimatePresence initial={false} custom={direction}>
-                      <motion.div
-                        key={PRODUCTS[activeIdx].key}
-                        custom={direction}
-                        initial={{
-                          x: direction === "right" ? 100 : -100,
-                          opacity: 0,
-                        }}
-                        animate={{ x: 0, opacity: 1 }}
-                        exit={{
-                          x: direction === "right" ? -100 : 100,
-                          opacity: 0,
-                        }}
-                        transition={{
-                          type: "spring",
-                          duration: 0.7,
-                          delay: 0.08,
-                          ease: [0.4, 0.0, 0.2, 1],
-                        }}
-                        className="w-full h-full"
-                      >
-                        <ProductMain product={PRODUCTS[activeIdx]} />
-                      </motion.div>
-                    </AnimatePresence>
-                  </div>
+
+                {/* Product Main Container - Using Fixed Grid Layout */}
+                <div className="row-start-2 col-start-1 col-end-3 min-h-[320px] relative">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`product-${activeIdx}`}
+                      variants={crossfadeVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      className="absolute inset-0 w-full"
+                    >
+                      <ProductMain product={PRODUCTS[activeIdx]} />
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </div>
             </div>
-            {/* CTA Section */}
+
+            {/* CTA Section - Same as before */}
             <div className="row-start-3 col-start-1 col-end-3">
               <div
-                className="grid grid-cols-1 md:grid-cols-[auto_auto] gap-6 md:gap-4 items-center rounded-xl p-6 md:p-6 md:px-10 md:py-6"
+                className="grid grid-cols-1 md:grid-cols-[auto_auto] gap-6 md:gap-4 items-center rounded-xl p-6 md:p-6 md:px-10 md:py-6 relative"
                 style={{
                   background:
                     "linear-gradient(89.448deg, #C9DDB3 0%, #C9DDB3 71%, #9CC79C 100%)",
                 }}
               >
-                {/* Background texture */}
                 <div
-                  className="absolute inset-0 opacity-10"
+                  className="absolute inset-0 opacity-10 rounded-xl"
                   style={{
                     backgroundImage: "url('/assets/textures/grainy-green.svg')",
-                    zIndex: -1,
+                    zIndex: 0,
                   }}
                 />
-                {/* CTA Text */}
-                <div className="flex flex-col gap-4 md:gap-2 lg:gap-4">
+
+                <div className="flex flex-col gap-4 md:gap-2 lg:gap-4 relative z-10">
                   <h3 className="text-green-800 text-xl md:text-md lg:text-2xl font-medium">
                     Ready to rethink your{" "}
                     <GradientText className="font-ibm italic tracking-[-0.04em]">
@@ -124,14 +135,13 @@ export default function ProductsSection() {
                   </p>
                   <div className="flex flex-start">
                     <SecondaryButton className="h-10 w-auto bg-green-400 text-gray-100 transition-colors duration-300 hover:shadow-md hover:green-800 border border-green-200 hover:border-green-600">
-                      <p className=" text-sm text-nowrap">Contact Sales</p>
+                      <p className="text-sm text-nowrap">Contact Sales</p>
                     </SecondaryButton>
                   </div>
                 </div>
-                {/* CTA Illustration */}
+
                 <motion.div
-                  className="flex items-center justify-center w-full 
-                  "
+                  className="flex items-center justify-center w-full relative z-10"
                   animate={{ opacity: 1, scale: 1 }}
                   initial={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
