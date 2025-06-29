@@ -17,8 +17,8 @@ export default function ProductsNavbar({
           className={`px-4 py-2 rounded-full font-medium transition-colors duration-200 border
             ${
               activeIdx === idx
-                ? "bg-green-500 text-gray-100 border-green-500"
-                : "bg-gray-100 text-green-700 border-gray-300 hover:bg-green-50"
+                ? "bg-green-500 text-gray-100 border-green-500 hover:bg-green-600 hover:text-white"
+                : "bg-gray-100 text-green-700 border-gray-300 hover:bg-green-200 hover:text-green-900"
             }`}
           onClick={() => onSelect(idx)}
         >
