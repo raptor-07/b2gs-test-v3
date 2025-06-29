@@ -4,6 +4,7 @@ import { Container } from "@/components/layout";
 import InViewPopIn from "@/components/animations/InViewPopIn";
 import { InfoCard } from "./InfoCard";
 import { TransitionLottie } from "./LottieStack";
+import { circularTransitionConfig } from "@/ui/sections/hero/components/particles/particles-config";
 
 const infocardData = [
   {
@@ -11,52 +12,24 @@ const infocardData = [
     number: "32%",
     description:
       "of all waste generated globally is recycled with regional variations.",
-    particleConfigs: [
-      {
-        type: "circle",
-        particles: {
-          number: {
-            value: 100000,
-            density: {
-              enable: true,
-            },
-          },
-          size: {
-            value: 3,
-            random: true,
-          },
-          move: {
-            speed: 2,
-            direction: "none",
-            outModes: {
-              default: "out",
-            },
-          },
-        },
-      },
-      {},
-    ],
   },
   {
     title: "Global Recycling Rate",
     number: "32%",
     description:
       "of all waste generated globally is recycled with regional variations.",
-    particleConfigs: [{}, {}],
   },
   {
     title: "Global Recycling Rate",
     number: "32%",
     description:
       "of all waste generated globally is recycled with regional variations.",
-    particleConfigs: [{}, {}],
   },
   {
     title: "Global Recycling Rate",
     number: "32%",
     description:
       "of all waste generated globally is recycled with regional variations.",
-    particleConfigs: [{}, {}],
   },
 ];
 
@@ -109,7 +82,7 @@ export default function CircularTransitionSection() {
                   title={card.title}
                   number={card.number}
                   description={card.description}
-                  particleConfigs={card.particleConfigs}
+                  particleConfig={circularTransitionConfig}
                 />
               ))}
             </div>

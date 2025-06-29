@@ -93,3 +93,91 @@ export const nasaConfig: ISourceOptions = {
     zIndex: -100,
   },
 };
+
+export const circularTransitionConfig: ISourceOptions = {
+  style: {
+    filter: "blur(0px)",
+  },
+  particles: {
+    duration: {
+      value: 1.5,
+    },
+    number: {
+      value: 120,
+      density: {
+        enable: true,
+      },
+    },
+    color: {
+      value: ["#05cd99", "#109078", "#147a71", "#166f6e"],
+    },
+    fpsLimit: 60,
+    shape: {
+      type: "circle",
+    },
+    opacity: {
+      value: {
+        min: 0.2,
+        max: 0.7,
+      },
+      animation: {
+        enable: true,
+        speed: 0.3,
+        sync: false,
+      },
+    },
+    size: {
+      value: {
+        min: 1,
+        max: 4,
+      },
+    },
+    move: {
+      enable: true,
+      speed: {
+        min: 0.5,
+        max: 1.2,
+      },
+      direction: "none",
+      random: true,
+      straight: false,
+      outModes: {
+        default: "out",
+      },
+    },
+  },
+  interactivity: {
+    events: {
+      onHover: {
+        enable: true,
+        mode: "bubble",
+      },
+    },
+    modes: {
+      bubble: {
+        distance: 200,
+        size: 5,
+        duration: 1.5,
+        opacity: 0.7,
+        color: "#05cd99",
+      },
+      repulse: {
+        distance: 300,
+        duration: 0.3,
+      },
+      push: {
+        quantity: 2,
+      },
+      remove: {
+        quantity: 1,
+      },
+    },
+  },
+  background: {
+    color: "transparent",
+  },
+  fullScreen: {
+    enable: false,
+    zIndex: -100,
+  },
+};

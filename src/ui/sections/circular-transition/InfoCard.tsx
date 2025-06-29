@@ -15,7 +15,7 @@ interface InfoCardProps {
   title: string;
   number: string;
   description: string;
-  particleConfigs: object[];
+  particleConfig: object;
 }
 
 /* NumberTicker removed: number is now a string and uses GradientText */
@@ -24,16 +24,12 @@ export function InfoCard({
   title,
   number,
   description,
-  particleConfigs,
+  particleConfig,
 }: InfoCardProps) {
   const [hovered, setHovered] = useState(false);
 
   // Pick a random config on mount
-  const [config] = useState<object | undefined>(() =>
-    particleConfigs.length > 0
-      ? particleConfigs[Math.floor(Math.random() * particleConfigs.length)]
-      : undefined
-  );
+  const config = particleConfig;
 
   return (
     <div
