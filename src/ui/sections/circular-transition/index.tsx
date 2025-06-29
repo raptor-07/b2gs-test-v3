@@ -11,7 +11,31 @@ const infocardData = [
     number: "32%",
     description:
       "of all waste generated globally is recycled with regional variations.",
-    particleConfigs: [{}, {}],
+    particleConfigs: [
+      {
+        type: "circle",
+        particles: {
+          number: {
+            value: 100000,
+            density: {
+              enable: true,
+            },
+          },
+          size: {
+            value: 3,
+            random: true,
+          },
+          move: {
+            speed: 2,
+            direction: "none",
+            outModes: {
+              default: "out",
+            },
+          },
+        },
+      },
+      {},
+    ],
   },
   {
     title: "Global Recycling Rate",
@@ -48,7 +72,7 @@ export default function CircularTransitionSection() {
           margin="0%"
           amount="some"
         >
-          <div className="grid grid-rows-[min-content_auto_auto] grid-cols-2 gap-y-24 gap-x-6">
+          <div className="grid grid-rows-[min-content_auto_auto] grid-cols-2 gap-y-12 lg:gap-y-24 gap-x-6">
             {/* Titles: 1r1c-1r2c */}
             <div className="row-start-1 row-end-2 col-start-1 col-end-3 flex flex-col items-start gap-2">
               <h2 className="text-lg md:text-2xl lg:text-2xl xl:text-3xl font-medium text-mint-950 leading-tight">
@@ -59,7 +83,7 @@ export default function CircularTransitionSection() {
               </p>
             </div>
             {/* Lottie Section: Responsive flex container */}
-            <div className="row-start-2 row-end-3 col-start-1 col-end-3 flex flex-col lg:flex-row items-center justify-center gap-y-6 lg:gap-y-0 lg:gap-x-12 w-full">
+            <div className="row-start-2 row-end-3 col-start-1 col-end-3 flex flex-col lg:flex-row items-center justify-center gap-y-12 lg:gap-y-0 lg:gap-x-12 w-full">
               <div className="w-full lg:w-1/2 flex justify-center">
                 <TransitionLottie
                   title="From Linear Economy"
