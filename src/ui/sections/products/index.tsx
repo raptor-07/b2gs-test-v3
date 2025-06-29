@@ -38,7 +38,7 @@ export default function ProductsSection() {
         <InViewPopIn>
           <div className="grid grid-rows-[auto] grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8">
             {/* Titles */}
-            <div className="flex flex-col gap-2 md:gap-6 lg:gap-1 xl:gap-2 row-start-1 col-start-1 col-end-3">
+            <div className="flex flex-col gap-2 md:gap-2 lg:gap-1 xl:gap-2 row-start-1 col-start-1 col-end-3">
               <span className="text-mint-500 text-md md:text-lg uppercase">
                 Our Products
               </span>
@@ -95,7 +95,7 @@ export default function ProductsSection() {
             {/* CTA Section */}
             <div className="row-start-3 col-start-1 col-end-3">
               <div
-                className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 md:gap-4 items-center rounded-xl p-6 md:p-6 md:px-10 md:py-6"
+                className="grid grid-cols-1 md:grid-cols-[auto_auto] gap-6 md:gap-4 items-center rounded-xl p-6 md:p-6 md:px-10 md:py-6"
                 style={{
                   background:
                     "linear-gradient(89.448deg, #C9DDB3 0%, #C9DDB3 71%, #9CC79C 100%)",
@@ -110,15 +110,15 @@ export default function ProductsSection() {
                   }}
                 />
                 {/* CTA Text */}
-                <div className="flex flex-col gap-4">
-                  <h3 className="text-green-800 text-xl md:text-2xl font-medium">
+                <div className="flex flex-col gap-4 md:gap-2 lg:gap-4">
+                  <h3 className="text-green-800 text-xl md:text-md lg:text-2xl font-medium">
                     Ready to rethink your{" "}
                     <GradientText className="font-ibm italic tracking-[-0.04em]">
                       sustainability strategy
                     </GradientText>
                     ?
                   </h3>
-                  <p className="text-green-800 text-base md:text-lg">
+                  <p className="text-green-800 text-base md:text-sm lg:text-lg">
                     Want to know more? Connect with us to discover how our
                     products and features can be tailored to your business.
                   </p>
@@ -130,7 +130,8 @@ export default function ProductsSection() {
                 </div>
                 {/* CTA Illustration */}
                 <motion.div
-                  className="flex items-center justify-center w-full max-w-[330px] aspect-[500/330]"
+                  className="flex items-center justify-center w-full 
+                  "
                   animate={{ opacity: 1, scale: 1 }}
                   initial={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
@@ -141,7 +142,7 @@ export default function ProductsSection() {
                     alt="CTA Illustration"
                     width={500}
                     height={330}
-                    className="object-contain w-full h-full"
+                    className="object-contain h-full max-w-[250px] md:max-w-[200px] lg:max-w-[330px]"
                   />
                 </motion.div>
               </div>

@@ -14,7 +14,7 @@ export default function ProductsNavbar({
       {products.map((p, idx) => (
         <button
           key={p.key}
-          className={`px-4 py-2 rounded-full font-medium transition-colors duration-200 border text-xs sm:text-sm md:text-base
+          className={`px-4 py-2 rounded-full font-medium transition-colors duration-200 border text-xs sm:text-sm lg:text-base
             ${
               activeIdx === idx
                 ? "bg-green-500 text-gray-100 border-green-500 hover:bg-green-600 hover:text-white hover:border-green-800"
