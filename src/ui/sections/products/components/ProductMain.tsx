@@ -83,7 +83,7 @@ export default function ProductMain({
   product: (typeof PRODUCTS)[number];
 }) {
   return (
-    <div className="grid grid-rows-2 md:grid-rows-1 grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 h-full">
+    <div className="grid grid-rows-[auto_auto] md:grid-rows-1 grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 h-full">
       {/* Product Card */}
       <div
         className="order-1 md:order-none lg:p-6 rounded-xl border border-gray-200 p-6 flex flex-col items-center transition-transform duration-800 relative overflow-hidden shadow-md hover:shadow-lg hover:border-gray-200 will-change-transform"
@@ -113,6 +113,7 @@ export default function ProductMain({
             src={product.lottie}
             placeholderImage={product.placeholder}
             isInteractive={false}
+            autoplay={true}
             className="w-full h-auto"
           />
         </div>

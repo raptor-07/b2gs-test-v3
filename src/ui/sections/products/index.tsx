@@ -33,7 +33,7 @@ export default function ProductsSection() {
   }
 
   return (
-    <section className="relative w-full py-12 bg-paper-100 dark:bg-mint-900 overflow-hidden">
+    <section className="relative w-full py-12 bg-paper-300 overflow-hidden">
       <Container>
         <InViewPopIn>
           <div className="grid grid-rows-[auto] grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8">
@@ -95,7 +95,7 @@ export default function ProductsSection() {
             {/* CTA Section */}
             <div className="row-start-3 col-start-1 col-end-3">
               <div
-                className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 md:gap-4 items-center rounded-xl p-4 md:p-6 md:px-10 md:py-6"
+                className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 md:gap-4 items-center rounded-xl p-6 md:p-6 md:px-10 md:py-6"
                 style={{
                   background:
                     "linear-gradient(89.448deg, #C9DDB3 0%, #C9DDB3 71%, #9CC79C 100%)",
@@ -110,10 +110,10 @@ export default function ProductsSection() {
                   }}
                 />
                 {/* CTA Text */}
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-4">
                   <h3 className="text-green-800 text-xl md:text-2xl font-medium">
                     Ready to rethink your{" "}
-                    <GradientText className="font-ibm italic tracking-[-0.06em]">
+                    <GradientText className="font-ibm italic tracking-[-0.04em]">
                       sustainability strategy
                     </GradientText>
                     ?

@@ -14,11 +14,11 @@ export default function ProductsNavbar({
       {products.map((p, idx) => (
         <button
           key={p.key}
-          className={`px-4 py-2 rounded-full font-medium transition-colors duration-200 border
+          className={`px-4 py-2 rounded-full font-medium transition-colors duration-200 border text-xs sm:text-sm md:text-base
             ${
               activeIdx === idx
-                ? "bg-green-500 text-gray-100 border-green-500 hover:bg-green-600 hover:text-white"
-                : "bg-gray-100 text-green-500 border-gray-300 hover:bg-gray-200 hover:text-green-800"
+                ? "bg-green-500 text-gray-100 border-green-500 hover:bg-green-600 hover:text-white hover:border-green-800"
+                : "bg-paper-200 text-green-500 border-gray-300 hover:scale-[1.01] hover:text-green-800 hover:border-green-500"
             }`}
           onClick={() => onSelect(idx)}
         >
