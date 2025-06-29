@@ -9,18 +9,18 @@ interface LottieStackProps {
   placeholderImage?: string;
 }
 
-export function LottieStack({
+export function TransitionLottie({
   title,
   lottieSrc,
   description,
   placeholderImage,
 }: LottieStackProps) {
   return (
-    <div className="flex flex-col items-center">
-      <span className="text-gray-500 text-lg font-semibold text-center mb-2">
+    <div className="flex flex-col items-start w-full">
+      <span className="text-gray-500 text-lg font-semibold text-center mb-2 w-full">
         {title}
       </span>
-      <div className="w-40 h-40 mb-2 flex items-center justify-center">
+      <div className="w-full max-w-[530px] aspect-[530/165] mb-2 flex items-center justify-center mx-auto">
         <LottieFilesPlayer
           src={lottieSrc}
           placeholderImage={placeholderImage ?? ""}
@@ -29,7 +29,7 @@ export function LottieStack({
           className="w-full h-full"
         />
       </div>
-      <span className="text-gray-500 text-sm text-center">{description}</span>
+      <span className="text-gray-500 text-sm text-center w-full">{description}</span>
     </div>
   );
 }
