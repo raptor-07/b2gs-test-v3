@@ -83,10 +83,10 @@ export default function ProductMain({
   product: (typeof PRODUCTS)[number];
 }) {
   return (
-    <div className="grid grid-rows-[auto] grid-cols-2 gap-4 h-full">
+    <div className="grid grid-rows-2 md:grid-rows-1 grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 h-full">
       {/* Product Card */}
       <div
-        className="row-span-2 col-start-1 lg:p-6 rounded-xl border border-gray-200 p-6 flex flex-col items-center transition-transform duration-800 relative overflow-hidden shadow-md hover:shadow-lg hover:border-gray-200  will-change-transform"
+        className="order-1 md:order-none lg:p-6 rounded-xl border border-gray-200 p-6 flex flex-col items-center transition-transform duration-800 relative overflow-hidden shadow-md hover:shadow-lg hover:border-gray-200 will-change-transform"
         style={{
           background:
             "linear-gradient(179.959deg, #DDDDDD 0%, rgba(255, 255, 255, 10%) 100%)",
@@ -107,7 +107,7 @@ export default function ProductMain({
         <ProductCard product={product} />
       </div>
       {/* Lottie Animation */}
-      <div className="row-span-2 col-start-2 flex items-center justify-center h-auto">
+      <div className="order-2 md:order-none flex items-center justify-center h-auto">
         <div className="w-full max-w-[500px] flex items-center justify-center h-auto">
           <LottieFilesPlayer
             src={product.lottie}

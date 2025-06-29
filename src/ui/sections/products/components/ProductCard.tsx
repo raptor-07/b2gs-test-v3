@@ -7,7 +7,7 @@ export default function ProductCard({
   product: Product[][number];
 }) {
   return (
-    <div className="grid grid-rows-[min-content_min-content] grid-cols-2 gap-8">
+    <div className="grid grid-rows-[min-content_min-content] grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 p-2 sm:p-0">
       {/* Title */}
       <h3 className="row-start-1 col-start-1 text-lg md:text-xl font-semibold text-mint-950">
         {product.title}
