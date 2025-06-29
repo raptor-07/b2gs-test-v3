@@ -29,7 +29,9 @@ export function TransitionLottie({
           className="w-full h-full"
         />
       </div>
-      <span className="text-gray-500 text-sm text-center w-full">{description}</span>
+      <span className="text-gray-500 text-md text-center w-full">
+        {description}
+      </span>
     </div>
   );
 }

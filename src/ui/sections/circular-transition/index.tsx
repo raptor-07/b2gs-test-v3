@@ -48,7 +48,7 @@ export default function CircularTransitionSection() {
           margin="0%"
           amount="some"
         >
-          <div className="grid grid-rows-3 grid-cols-2 gap-y-8 gap-x-6">
+          <div className="grid grid-rows-[min-content_auto_auto] grid-cols-2 gap-y-24 gap-x-6">
             {/* Titles: 1r1c-1r2c */}
             <div className="row-start-1 row-end-2 col-start-1 col-end-3 flex flex-col items-start gap-2">
               <h2 className="text-lg md:text-2xl lg:text-2xl xl:text-3xl font-medium text-mint-950 leading-tight">
@@ -78,7 +78,7 @@ export default function CircularTransitionSection() {
               </div>
             </div>
             {/* InfoCard Grid: 3r1c-3r3c */}
-            <div className="row-start-3 row-end-4 col-start-1 col-end-3 flex flex-col md:flex-row justify-start items-stretch gap-6 md:gap-6 w-full">
+            <div className="row-start-3 row-end-4 col-start-1 col-end-3 flex flex-col md:flex-row justify-center items-stretch gap-6 md:gap-6 w-full">
               {infocardData.map((card, idx) => (
                 <InfoCard
                   key={card.title + idx}

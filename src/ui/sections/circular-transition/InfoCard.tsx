@@ -37,7 +37,7 @@ export function InfoCard({
 
   return (
     <div
-      className="w-60 bg-white rounded-xl shadow-md flex flex-col items-start justify-center relative overflow-hidden border border-gray-100 transition-transform hover:scale-105 p-4"
+      className="bg-paper-200 rounded-xl shadow-md flex flex-col items-start justify-center relative overflow-hidden border border-gray-100 transition-transform hover:scale-105 p-4"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
