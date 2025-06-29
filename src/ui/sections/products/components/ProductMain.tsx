@@ -1,0 +1,104 @@
+import { LottieFilesPlayer } from "@/components/lottie/client/LottieFilesPlayer";
+import ProductCard from "./ProductCard";
+
+export type Product = {
+  key: string;
+  name: string;
+  lottie: string;
+  placeholder: string;
+  cardImg: string;
+  title: string;
+  features: string[];
+  learnMore: string;
+};
+const PRODUCTS: Product[] = [
+  {
+    key: "green-compass-dashboard",
+    name: "Green Compass Dashboard",
+    lottie: "/assets/lottie/products/green-compass-dashboard.json",
+    placeholder: "/assets/products/placeholder/green-compass-dashboard.svg",
+    cardImg: "/assets/products/product-sigil/green-compass-dashboard.svg",
+    title: "Green Compass Dashboard",
+    features: [
+      "Real-time waste tracking and analytics",
+      "Automated compliance reporting",
+      "Customizable sustainability KPIs",
+      "Seamless integration with ERP systems",
+      "Intuitive, actionable dashboards",
+    ],
+    learnMore: "#",
+  },
+  {
+    key: "eco-loop-recycling",
+    name: "Eco-Loop Recycling",
+    lottie: "/assets/lottie/products/eco-loop-recycling.json",
+    placeholder: "/assets/products/placeholder/eco-loop-recycling.svg",
+    cardImg: "/assets/products/product-sigil/eco-loop-recycling.svg",
+    title: "Eco-Loop Recycling",
+    features: [
+      "Closed-loop recycling process management",
+      "Material traceability across lifecycle",
+      "Automated pickup scheduling",
+      "Vendor and recycler collaboration tools",
+    ],
+    learnMore: "#",
+  },
+  {
+    key: "green-marketplace",
+    name: "Green Marketplace",
+    lottie: "/assets/lottie/products/green-marketplace.json",
+    placeholder: "/assets/products/placeholder/green-marketplace.svg",
+    cardImg: "/assets/products/product-sigil/green-marketplace.svg",
+    title: "Green Marketplace",
+    features: [
+      "Verified scrap trading platform",
+      "Dynamic pricing and bidding",
+      "Secure payment and logistics integration",
+      "Marketplace analytics and insights",
+    ],
+    learnMore: "#",
+  },
+  {
+    key: "compliance-assistant",
+    name: "Compliance Assistant",
+    lottie: "/assets/lottie/products/compliance-assistant.json",
+    placeholder: "/assets/products/placeholder/compliance-assistant.svg",
+    cardImg: "/assets/products/product-sigil/compliance-assistant.svg",
+    title: "Compliance Assistant",
+    features: [
+      "Automated regulatory updates",
+      "Document management and reminders",
+      "Audit-ready compliance logs",
+      "Multi-region support",
+    ],
+    learnMore: "#",
+  },
+];
+
+export { PRODUCTS };
+
+export default function ProductMain({
+  product,
+}: {
+  product: (typeof PRODUCTS)[number];
+}) {
+  return (
+    <div className="grid grid-rows-2 grid-cols-2 gap-4 h-full">
+      {/* Product Card */}
+      <div className="row-span-2 col-start-1">
+        <ProductCard product={product} />
+      </div>
+      {/* Lottie Animation */}
+      <div className="row-span-2 col-start-2 flex items-center justify-center">
+        <div className="w-40 h-40 md:w-56 md:h-56">
+          <LottieFilesPlayer
+            src={product.lottie}
+            placeholderImage={product.placeholder}
+            isInteractive={false}
+            className="w-full h-full"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
